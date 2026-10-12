@@ -1,0 +1,13 @@
+{
+  "version": "0.2.1",
+  "integrity": "sha512-/zs9DRD8vj9GUwdqFtc9YvxHB1eqm4PnfR4HBnAACJIkpYb2k0Q8FBd07MIgCIxQyNX++GeOCao/PWeq/gFt4Q==",
+  "documentation": {
+    "README.md": "0a0749f2b4271c9f1c082b3b27a445e702424e4a46c0c0d7adb03381e2c9d17c",
+    "example.md": "21d16553acd4291ab5bd68f0f8c0e22bc237aafeab65dae1d824e21300772662",
+    "install.md": "8723c6752c72569cd52b8e6f045365ebe5187ab70de9c902597f643adfe35b43",
+    "output.md": "74db581e3fa5f40cb8a4a868387efec36347a3770e47a725ec78eb3687f6eaac",
+    "reference.md": "6f4ac657d91f9fbe10bf817c4e9fed972b7de01efd68ba08b3e995a50a24ada0",
+    "release-0.2.0.md": "5145b9e3fc2b0de7111869b65903239ff584749b62ce145ecd0fc92e1994ce76",
+    "workflow.md": "83b97ca33f420220bd95fac2fea576349e60ce1c38d561cef186efa6698610ec"
+  }
+}

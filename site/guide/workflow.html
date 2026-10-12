@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Work with Design System Loop | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
+<a href="example.html">Worked example: fix a button’s dark theme</a>
+<a href="install.html">Set up Design System Loop</a>
+<a href="output.html">Reading an audit</a>
+<a href="reference.html">Commands and coverage</a>
+<a href="release-0.2.0.html">0.2.0 release notes</a>
+<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="work-with-design-system-loop">Work with Design System Loop</h1>
+<p>Design System Loop combines an agent skill for design-system work with an engine that checks supported code. Start with the problem or outcome you need help with. The agent investigates and recommends a route; you do not need to classify your company or select a playbook. Scanner silence does not tell you whether a design system exists.</p>
+<h2 id="if-you-do-not-know-where-to-start">If you do not know where to start</h2>
+<p>Tell the agent what brought you here. It should inspect existing evidence, ask only
+questions that affect the work, and explain a diagnosis before proposing changes.
+The plan should say what to change first, where it will be used, what must stay
+the same, who needs to decide anything, and how to check the result. It distinguishes
+what is known from what still needs investigation.</p>
+<blockquote>
+<p>Read node_modules/ds-loop/skill/SKILL.md. Our teams keep building similar components and I do not know why. Investigate a representative example, explain likely causes and alternatives, and recommend what to do first. Do not begin a migration yet.</p>
+</blockquote>
+<p>A precise task needs a shorter plan. Investigate further when the problem or the
+right response is unclear. An appropriate intervention
+may improve documentation or contribution practices instead of adding code.</p>
+<h2 id="start-a-design-system">Start a design system</h2>
+<p><strong>Bring:</strong> a real screen or flow, product constraints, and any visual direction.</p>
+<p><strong>Your agent does:</strong> agree the product scope, inspect existing assets, and choose a compatible implementation base. For a setup request, it builds shared foundations, the primitives and patterns your workflows need, and a guide for using and changing them. A suitable existing library may provide the base.</p>
+<p><strong>You receive:</strong> editable sources connected to your product, working usage examples, customization and contribution instructions, and evidence of what was checked. A component gallery alone is not the finish line. A proposal or pilot request stays within that narrower scope.</p>
+<p><strong>Review:</strong> use the documented components in a new task, change a shared style, and extend a pattern. Check that the product and reference stay consistent. Automated checks and agent trials do not replace feedback from your developers.</p>
+<blockquote>
+<p>Read node_modules/ds-loop/skill/SKILL.md. Set up a design system for this product so our developers can keep building it. Use our product notes and current workflows to recommend the scope, then implement it. Preserve working behavior and use an appropriate existing foundation where it fits. Make it clear how we use, customize and extend the result.</p>
+</blockquote>
+<h2 id="improve-a-partial-system">Improve a partial system</h2>
+<p><strong>Bring:</strong> one inconsistency, the component, and the intended behavior.</p>
+<p><strong>Your agent does:</strong> trace existing patterns and consumers, compare behavior, and make an authorized repair or explain why the difference should stay.</p>
+<p><strong>You receive:</strong> a checked change or documented exception with the reason and affected files.</p>
+<p><strong>Review:</strong> the improvement and any behavior that must stay unchanged. A shared-token change may affect other components.</p>
+<blockquote>
+<p>Read node_modules/ds-loop/skill/SKILL.md. Investigate why the primary button in src/settings/ differs from the shared Button. Check its states, themes, and existing decisions. If it is unintended drift, fix it within this screen and verify the result. If the difference serves a real need, keep it and record why. Do not change the shared scale or other screens without resolving that wider scope. Link the before/after evidence and the saved decision.</p>
+</blockquote>
+<h2 id="maintain-an-existing-system">Maintain an existing system</h2>
+<p><strong>Bring:</strong> a diff or feature, component contracts, and previous decisions.</p>
+<p><strong>Your agent does:</strong> review against those commitments, run applicable checks, and separate regressions from existing issues.</p>
+<p><strong>You receive:</strong> a review with source locations, check results, and unresolved questions.</p>
+<p><strong>Review:</strong> whether the change honors the system across affected states and themes. Add <a href="reference.html">edit feedback or CI</a> after choosing a policy.</p>
+<blockquote>
+<p>Read node_modules/ds-loop/skill/SKILL.md. Review my current diff against this project's design-system conventions and previous decisions. Trace the changed components across their affected states and themes. Report regressions separately from pre-existing issues, with source locations and checks that could not run. Make no code changes in this review. Link any decisions a later task needs to follow.</p>
+</blockquote>
+<h2 id="three-connected-loops">Three connected loops</h2>
+<p>The adoption loop sets the direction: understand the problem, investigate evidence and coverage, recommend a bounded intervention, verify the real flow, and retain the decision. Expand, revise or stop according to what the result demonstrates. Start, Improve, and Maintain change the action and deliverable; they are not scanner-derived maturity grades.</p>
+<p>The audit loop supports a particular change: run context and an unfiltered audit, interpret the findings against intended behavior, change or preserve the code, rerun the audit, and review the real experience. Revise when evidence calls for it. A remaining finding can represent a justified exception or a checker limitation.</p>
+<p>The optional guard loop runs during supported Claude Code edits: enable the hook, edit, audit the edited file, report high-severity findings and newly detected project extraction gaps, then review and revise if needed. A failed audit is reported as not checked. The hook runs after the edit and cannot block it. Lower-severity judgment limits still require an unfiltered audit; CI gating is separate.</p>
+<p>The loops share your existing project conventions and the decisions you retain. Design System Loop does not maintain a central knowledge service or independently approve and ship changes.</p>
+<h2 id="work-with-your-agent">Work with your agent</h2>
+<p>Replace example paths with your own. Give a concrete outcome and state what the agent may edit. The agent reads existing decisions, runs context and an unfiltered audit, and reports coverage gaps. It can carry out already authorized work. It asks when missing product intent or a wider change needs your decision.</p>
+<p>Unread source needs another checker or manual inspection. Unfamiliar names need investigation of the actual naming contract. Configure the scanner only if it can represent that contract; changing configuration is not evidence that the product improved.</p>
+<p>For visible changes, compare rendered before and after states. Rerun the unfiltered audit and checks that observe the affected behavior. Preserve the source revision, diff, and configuration with the evidence. Separate existing defects from regressions.</p>
+<h2 id="review-the-handoff">Review the handoff</h2>
+<p>The handoff states what was delivered, what was deliberately left unchanged, and what remains blocked. It links to changed files, actual checks and their limits, open questions, and relevant decisions. The record explains what was chosen, why, the affected scope, and when to reconsider. Use an existing issue, component document, or decision directory; a new registry is not required. Name where the next task finds it.</p>
+<p>For an adoption pilot, ask a separate agent session to retrieve and apply that decision. Writing a record alone does not prove retrieval, suppress a finding, or create a checker.</p>
+<p>See the <a href="example.html">complete synthetic example</a> and its saved decision. Use the website preview to see the rendered before and after.</p>
+</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>

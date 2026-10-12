@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Set up Design System Loop | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
+<a href="example.html">Worked example: fix a button’s dark theme</a>
+<a href="install.html">Set up Design System Loop</a>
+<a href="output.html">Reading an audit</a>
+<a href="reference.html">Commands and coverage</a>
+<a href="release-0.2.0.html">0.2.0 release notes</a>
+<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="set-up-design-system-loop">Set up Design System Loop</h1>
+<p>Use Node 22.6 or later. Install the complete package in the project you want to inspect.</p>
+<h2 id="install-from-npm">Install from npm</h2>
+<pre><code class="language-sh">npm install --save-dev ds-loop@0.2.1
+</code></pre>
+<p>To test local changes, use <a href="#install-from-source">source installation</a>. Both paths install the CLI and companion skill. A local tarball path is specific to your machine; switch to the matching registry release before asking teammates to install it.</p>
+<h2 id="start-with-your-agent">Start with your agent</h2>
+<p>Ask your agent to read <code>node_modules/ds-loop/skill/SKILL.md</code>. Keep the complete package installed: its launcher requires the adjacent <code>bin/</code> and <code>dist/</code> directories. Copying just the skill folder is not a standalone installation. Your agent's automatic skill discovery depends on its own setup; direct loading makes the entry point explicit.</p>
+<p>Describe the problem or outcome in your own words; you do not need to choose an internal command. For example:</p>
+<blockquote>
+<p>Read node_modules/ds-loop/skill/SKILL.md. Help me understand why developers keep creating local alternatives to our shared components. Investigate the cause and recommend a first delivery with clear completion criteria. Start read-only.</p>
+</blockquote>
+<p>The agent should explain the evidence, recommended intervention, and scope. For a concrete task, say what it may implement. The <a href="workflow.html">workflow guide</a> gives examples for starting, improving, and maintaining a system. Installing the package alone does not activate an agent or arrange ongoing maintenance.</p>
+<h2 id="run-the-checks-yourself">Run the checks yourself</h2>
+<p>You can also use the engine directly, without an agent. From your project directory:</p>
+<pre><code class="language-sh">./node_modules/.bin/ds-loop context .
+./node_modules/.bin/ds-loop audit . --json
+</code></pre>
+<p><code>context</code> reports configuration, conventional intent-source paths and extraction scope. It runs no rules. The unfiltered audit reports findings and checks that could not judge. Inspect both <code>verdict</code> and <code>coverage</code>; exit 0 alone does not establish a clean result. These commands provide measurements; they do not conduct the interview or recommend an engagement plan.</p>
+<h2 id="optional-add-edit-feedback">Optional: add edit feedback</h2>
+<p>From the target project, run:</p>
+<pre><code class="language-sh">./node_modules/.bin/ds-loop guard on
+./node_modules/.bin/ds-loop guard status
+</code></pre>
+<p>This installs a Claude Code PostToolUse hook in <code>.claude/settings.json</code>. It reports high-severity findings after supported edits and announces project extraction-coverage changes. It never blocks an edit. It does not deliver lower-severity judgment limits; run an unfiltered audit at setup and completion. <code>guard off</code> removes its entry while preserving other settings.</p>
+<p>If the audit fails or times out, the hook says the edit was not checked and reports
+the error. Correct the problem and rerun the audit before relying on its result.</p>
+<h2 id="optional-choose-a-ci-policy">Optional: choose a CI policy</h2>
+<pre><code class="language-sh">./node_modules/.bin/ds-loop audit . --min-severity high --require-coverage
+</code></pre>
+<p>This fails on findings at the chosen floor or reported coverage gaps. Its pass applies only to the adapters' stated scope and chosen severity. Review your repository's unsupported formats before enabling it. Run an unfiltered audit separately when you need all findings.</p>
+<h2 id="check-the-installation">Check the installation</h2>
+<p>You should receive a report containing a verdict, adapter coverage and findings or their absence. If the result is <code>not-checked</code>, consult <a href="reference.html#coverage">coverage</a>; reinstalling will not add an adapter for an unsupported format.</p>
+<h2 id="install-from-source">Install from source</h2>
+<p>Use this path to test a local change. In a directory outside the project you want to inspect:</p>
+<pre><code class="language-sh">git clone https://github.com/owaizin/ds-loop.git
+cd ds-loop
+npm ci
+npm pack
+</code></pre>
+<p>This builds <code>ds-loop-0.2.1.tgz</code> without publishing it. From your target project, install the tarball using its actual absolute path:</p>
+<pre><code class="language-sh">npm install --save-dev /absolute/path/to/ds-loop-0.2.1.tgz
+</code></pre>
+<p>Continue with <a href="#start-with-your-agent">Start with your agent</a>, or <a href="#run-the-checks-yourself">run the checks yourself</a>. The launcher uses the compiled JavaScript included in the package.</p>
+<p>To try the public Radix Colors fixture from the source checkout:</p>
+<pre><code class="language-sh">npm run ds-loop -- audit fixtures/radix-colors
+</code></pre>
+<p>The fixture contains known findings, so exit 1 is expected. Fixtures and development scripts are not included in the npm package.</p>
+<p><a href="workflow.html">Next: work through a change</a></p>
+</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>

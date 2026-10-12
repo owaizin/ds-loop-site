@@ -1,0 +1,100 @@
+{
+  "docs.html": {
+    "target": "workflow.html",
+    "anchors": [
+      "main",
+      "guide-grid",
+      "start",
+      "start-title",
+      "start-prompt",
+      "start-prompt-status",
+      "improve",
+      "improve-title",
+      "improve-prompt",
+      "improve-prompt-status",
+      "maintain",
+      "maintain-title",
+      "maintain-prompt",
+      "maintain-prompt-status",
+      "loops",
+      "loops-title",
+      "adoption-loop",
+      "loop-start",
+      "loop-improve",
+      "loop-maintain",
+      "audit-loop",
+      "guard-loop",
+      "workflow",
+      "workflow-title",
+      "engagement",
+      "engagement-title",
+      "install",
+      "install-title",
+      "skill",
+      "skill-title"
+    ]
+  },
+  "setup.html": {
+    "target": "install.html",
+    "anchors": [
+      "main",
+      "build",
+      "build-title",
+      "build-code",
+      "build-code-status",
+      "connect",
+      "connect-title",
+      "first-task",
+      "first-task-status",
+      "task",
+      "task-title",
+      "delivery-prompt",
+      "delivery-prompt-status",
+      "help",
+      "help-title",
+      "connect-code",
+      "connect-code-status",
+      "source",
+      "preview",
+      "source-title"
+    ]
+  },
+  "reference.html": {
+    "target": "reference.html",
+    "anchors": [
+      "main",
+      "coverage",
+      "coverage-title",
+      "commands",
+      "commands-title",
+      "contract",
+      "reachability",
+      "agent-commands",
+      "agent-commands-title",
+      "configuration",
+      "configuration-title",
+      "token-context",
+      "exceptions",
+      "automation",
+      "automation-title",
+      "examples",
+      "examples-title"
+    ]
+  },
+  "example.html": {
+    "target": "example.html",
+    "anchors": [
+      "main",
+      "request",
+      "request-title",
+      "before",
+      "before-title",
+      "decision",
+      "decision-title",
+      "verify",
+      "verify-title",
+      "record",
+      "record-title"
+    ]
+  }
+}

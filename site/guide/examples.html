@@ -1,0 +1,381 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Verified examples | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
+<a href="example.html">Worked example: fix a button’s dark theme</a>
+<a href="install.html">Set up Design System Loop</a>
+<a href="output.html">Reading an audit</a>
+<a href="reference.html">Commands and coverage</a>
+<a href="release-0.2.0.html">0.2.0 release notes</a>
+<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1>Verified examples</h1><p>These fixtures run against the installed 0.2.1 package whenever the website builds. An audit may exit with findings; a crash or missing expected rule blocks publication.</p><section><h2 id="raw-values">Hardcoded component styles</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>tokens.css</p><pre><code>:root { --palette-blue-500: #1da1f2; --brand: var(--palette-blue-500, #1da1f2); }
+</code></pre><p>Card.tsx</p><pre><code>export const Card = () =&gt; &lt;div className=&quot;bg-[#1da1f2] p-[13px]&quot;&gt;Account&lt;/div&gt;;
+</code></pre><h3>Result</h3><pre><code>{
+  &quot;manifest&quot;: {
+    &quot;tool&quot;: &quot;ds-loop&quot;,
+    &quot;command&quot;: &quot;audit&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;fixtureLabel&quot;: &quot;raw-values&quot;,
+    &quot;fixtureSha&quot;: &quot;live&quot;,
+    &quot;adapter&quot;: &quot;css-custom-props@0.3.0 + tailwind-jsx@0.4.0&quot;,
+    &quot;configHash&quot;: &quot;05063bc7&quot;
+  },
+  &quot;rulesRun&quot;: [
+    &quot;token/tier-leakage&quot;,
+    &quot;color/semantic-holds-literal&quot;,
+    &quot;color/literal-duplicate-tokens&quot;,
+    &quot;token/semantic-name-describes-appearance&quot;,
+    &quot;token/var-missing-fallback&quot;,
+    &quot;token/tier-model-undetectable&quot;,
+    &quot;token/raw-dimension-in-semantic&quot;,
+    &quot;token/raw-value-in-markup&quot;,
+    &quot;token/stock-palette-utility&quot;,
+    &quot;color/near-duplicate-primitives&quot;,
+    &quot;color/mixed-storage-forms&quot;,
+    &quot;color/no-intent-plateau&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;ruleId&quot;: &quot;token/raw-value-in-markup&quot;,
+      &quot;severity&quot;: &quot;high&quot;,
+      &quot;summary&quot;: &quot;2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct, 1 already declared as a token)&quot;,
+      &quot;where&quot;: &quot;bg-[#1da1f2] at Card.tsx:1; p-[13px] at Card.tsx:1&quot;,
+      &quot;fix&quot;: &quot;#1da1f2 is already --palette-blue-500. Swap those first. Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.&quot;,
+      &quot;data&quot;: {
+        &quot;count&quot;: 2,
+        &quot;colors&quot;: 1,
+        &quot;dimensions&quot;: 1,
+        &quot;distinct&quot;: 2,
+        &quot;alreadyDeclared&quot;: [
+          {
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;token&quot;: &quot;--palette-blue-500&quot;
+          }
+        ],
+        &quot;hits&quot;: [
+          {
+            &quot;utility&quot;: &quot;bg&quot;,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;variants&quot;: null,
+            &quot;where&quot;: &quot;Card.tsx:1&quot;,
+            &quot;adapter&quot;: &quot;tailwind-jsx&quot;
+          },
+          {
+            &quot;utility&quot;: &quot;p&quot;,
+            &quot;value&quot;: &quot;13px&quot;,
+            &quot;variants&quot;: null,
+            &quot;where&quot;: &quot;Card.tsx:1&quot;,
+            &quot;adapter&quot;: &quot;tailwind-jsx&quot;
+          }
+        ]
+      },
+      &quot;impact&quot;: &quot;The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour.&quot;
+    },
+    {
+      &quot;ruleId&quot;: &quot;color/literal-duplicate-tokens&quot;,
+      &quot;severity&quot;: &quot;medium&quot;,
+      &quot;summary&quot;: &quot;1 colour value(s) are declared by 2 different tokens&quot;,
+      &quot;where&quot;: &quot;#1da1f2 &lt;- --palette-blue-500, (inline)&quot;,
+      &quot;fix&quot;: &quot;Keep one canonical token per value; make the rest var() aliases of it.&quot;,
+      &quot;data&quot;: {
+        &quot;groups&quot;: [
+          {
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;tokens&quot;: [
+              &quot;--palette-blue-500&quot;,
+              &quot;(inline)&quot;
+            ]
+          }
+        ]
+      },
+      &quot;impact&quot;: &quot;The next person to change this colour changes one of the names and not the others, and the system carries two values for one decision.&quot;
+    },
+    {
+      &quot;ruleId&quot;: &quot;token/tier-model-undetectable&quot;,
+      &quot;severity&quot;: &quot;low&quot;,
+      &quot;summary&quot;: &quot;only 0 of 1 referencing token(s) match a tier pattern (0 &lt; floor 0.5) — tier checks could not judge this source&quot;,
+      &quot;where&quot;: &quot;--brand&quot;,
+      &quot;fix&quot;: &quot;Set taxonomy.primitivePattern, semanticNamespaces and componentPattern to this source's naming convention, then re-run. Until then treat a clean token/tier-leakage result as \&quot;not checked\&quot;, not \&quot;passed\&quot;.&quot;,
+      &quot;data&quot;: {
+        &quot;references&quot;: 1,
+        &quot;classified&quot;: 0,
+        &quot;coverage&quot;: 0,
+        &quot;floor&quot;: 0.5
+      },
+      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;unreadFormats&quot;: {},
+    &quot;partialReads&quot;: [
+      {
+        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;extensions&quot;: [
+          &quot;.css&quot;
+        ],
+        &quot;reads&quot;: &quot;custom-property declarations (--token: value) — not rule bodies, not at-rules&quot;
+      },
+      {
+        &quot;adapter&quot;: &quot;tailwind-jsx@0.4.0&quot;,
+        &quot;extensions&quot;: [
+          &quot;.jsx&quot;,
+          &quot;.tsx&quot;,
+          &quot;.js&quot;,
+          &quot;.ts&quot;,
+          &quot;.mjs&quot;
+        ],
+        &quot;reads&quot;: &quot;Tailwind arbitrary values and stock-palette colour utilities inside string literals — not inline style objects, not CSS-in-JS&quot;
+      }
+    ],
+    &quot;unreadTokenFiles&quot;: [],
+    &quot;unconvertible&quot;: {
+      &quot;count&quot;: 0,
+      &quot;samples&quot;: []
+    },
+    &quot;undecided&quot;: {
+      &quot;count&quot;: 0,
+      &quot;samples&quot;: []
+    },
+    &quot;couldNotJudge&quot;: [
+      &quot;token/tier-model-undetectable&quot;
+    ],
+    &quot;complete&quot;: false
+  },
+  &quot;suppressions&quot;: [],
+  &quot;ratios&quot;: {
+    &quot;literal-colors-per-distinct&quot;: 1,
+    &quot;colors-per-distinct-in-scope&quot;: 1,
+    &quot;ambiguous-share&quot;: 0
+  },
+  &quot;next&quot;: [
+    {
+      &quot;command&quot;: &quot;decide on the rest&quot;,
+      &quot;why&quot;: &quot;nothing here is mechanically provable — all 3 findings state their choice on the fix line&quot;
+    },
+    {
+      &quot;command&quot;: &quot;ds-loop scorecard .&quot;,
+      &quot;why&quot;: &quot;pin these ratios as run 1 — a ratio only says something against a previous row&quot;
+    },
+    {
+      &quot;command&quot;: &quot;ds-loop guard on&quot;,
+      &quot;why&quot;: &quot;report high-severity findings after each Claude Code edit (never blocks)&quot;
+    }
+  ],
+  &quot;verdict&quot;: &quot;issues&quot;
+}</code></pre></section><section><h2 id="token-model">A token decision to review</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>tokens.css</p><pre><code>:root { --ocean: #1da1f2; --link: var(--ocean, #1da1f2); }
+</code></pre><h3>Result</h3><pre><code>{
+  &quot;manifest&quot;: {
+    &quot;tool&quot;: &quot;ds-loop&quot;,
+    &quot;command&quot;: &quot;audit&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;fixtureLabel&quot;: &quot;token-model&quot;,
+    &quot;fixtureSha&quot;: &quot;live&quot;,
+    &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+    &quot;configHash&quot;: &quot;05063bc7&quot;
+  },
+  &quot;rulesRun&quot;: [
+    &quot;token/tier-leakage&quot;,
+    &quot;color/semantic-holds-literal&quot;,
+    &quot;color/literal-duplicate-tokens&quot;,
+    &quot;token/semantic-name-describes-appearance&quot;,
+    &quot;token/var-missing-fallback&quot;,
+    &quot;token/tier-model-undetectable&quot;,
+    &quot;token/raw-dimension-in-semantic&quot;,
+    &quot;token/raw-value-in-markup&quot;,
+    &quot;token/stock-palette-utility&quot;,
+    &quot;color/near-duplicate-primitives&quot;,
+    &quot;color/mixed-storage-forms&quot;,
+    &quot;color/no-intent-plateau&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;ruleId&quot;: &quot;color/semantic-holds-literal&quot;,
+      &quot;severity&quot;: &quot;high&quot;,
+      &quot;summary&quot;: &quot;1 semantic token declaration(s) hold a literal colour instead of referencing a primitive&quot;,
+      &quot;where&quot;: &quot;--ocean = #1da1f2 (tokens.css:1)&quot;,
+      &quot;fix&quot;: &quot;There is no primitive tier in this source — every colour is declared where it is used, so there is nothing to reference yet. Add a palette layer first, then point these at it.&quot;,
+      &quot;data&quot;: {
+        &quot;count&quot;: 1,
+        &quot;distinctNames&quot;: 1,
+        &quot;files&quot;: 1,
+        &quot;primitivesInSource&quot;: 0,
+        &quot;tokens&quot;: [
+          &quot;--ocean&quot;
+        ]
+      },
+      &quot;impact&quot;: &quot;Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.&quot;
+    },
+    {
+      &quot;ruleId&quot;: &quot;token/tier-model-undetectable&quot;,
+      &quot;severity&quot;: &quot;low&quot;,
+      &quot;summary&quot;: &quot;only 0 of 1 referencing token(s) match a tier pattern (0 &lt; floor 0.5) — tier checks could not judge this source&quot;,
+      &quot;where&quot;: &quot;--link&quot;,
+      &quot;fix&quot;: &quot;Set taxonomy.primitivePattern, semanticNamespaces and componentPattern to this source's naming convention, then re-run. Until then treat a clean token/tier-leakage result as \&quot;not checked\&quot;, not \&quot;passed\&quot;.&quot;,
+      &quot;data&quot;: {
+        &quot;references&quot;: 1,
+        &quot;classified&quot;: 0,
+        &quot;coverage&quot;: 0,
+        &quot;floor&quot;: 0.5
+      },
+      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;unreadFormats&quot;: {},
+    &quot;partialReads&quot;: [
+      {
+        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;extensions&quot;: [
+          &quot;.css&quot;
+        ],
+        &quot;reads&quot;: &quot;custom-property declarations (--token: value) — not rule bodies, not at-rules&quot;
+      }
+    ],
+    &quot;unreadTokenFiles&quot;: [],
+    &quot;unconvertible&quot;: {
+      &quot;count&quot;: 0,
+      &quot;samples&quot;: []
+    },
+    &quot;undecided&quot;: {
+      &quot;count&quot;: 0,
+      &quot;samples&quot;: []
+    },
+    &quot;couldNotJudge&quot;: [
+      &quot;token/tier-model-undetectable&quot;
+    ],
+    &quot;complete&quot;: false
+  },
+  &quot;suppressions&quot;: [],
+  &quot;ratios&quot;: {
+    &quot;literal-colors-per-distinct&quot;: 1,
+    &quot;colors-per-distinct-in-scope&quot;: 1,
+    &quot;ambiguous-share&quot;: 0
+  },
+  &quot;next&quot;: [
+    {
+      &quot;command&quot;: &quot;decide on the rest&quot;,
+      &quot;why&quot;: &quot;nothing here is mechanically provable — all 2 findings state their choice on the fix line&quot;
+    },
+    {
+      &quot;command&quot;: &quot;ds-loop scorecard .&quot;,
+      &quot;why&quot;: &quot;pin these ratios as run 1 — a ratio only says something against a previous row&quot;
+    },
+    {
+      &quot;command&quot;: &quot;ds-loop guard on&quot;,
+      &quot;why&quot;: &quot;report high-severity findings after each Claude Code edit (never blocks)&quot;
+    }
+  ],
+  &quot;verdict&quot;: &quot;issues&quot;
+}</code></pre></section><section><h2 id="stock-palette">A stock palette utility</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>theme.css</p><pre><code>:root { --palette-blue-500: #2456ab; }
+</code></pre><p>Card.tsx</p><pre><code>export const Card = () =&gt; &lt;div className=&quot;bg-white&quot;&gt;Account&lt;/div&gt;;
+</code></pre><p>ds-loop.config.json</p><pre><code>{&quot;tokenContexts&quot;:[{&quot;files&quot;:[&quot;Card.tsx&quot;],&quot;tokens&quot;:[&quot;theme.css&quot;]}]}
+</code></pre><h3>Result</h3><pre><code>{
+  &quot;manifest&quot;: {
+    &quot;tool&quot;: &quot;ds-loop&quot;,
+    &quot;command&quot;: &quot;audit&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;fixtureLabel&quot;: &quot;stock-palette&quot;,
+    &quot;fixtureSha&quot;: &quot;live&quot;,
+    &quot;adapter&quot;: &quot;css-custom-props@0.3.0 + tailwind-jsx@0.4.0&quot;,
+    &quot;configHash&quot;: &quot;9bbd39ce&quot;,
+    &quot;tokenContext&quot;: [
+      {
+        &quot;file&quot;: &quot;theme.css&quot;,
+        &quot;forFiles&quot;: [
+          &quot;Card.tsx&quot;
+        ],
+        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;sha256&quot;: &quot;918d74b2d41e67c30e5c781f436086fb279163b23977f40bdeec5bb6a825ea3f&quot;
+      }
+    ]
+  },
+  &quot;rulesRun&quot;: [
+    &quot;token/tier-leakage&quot;,
+    &quot;color/semantic-holds-literal&quot;,
+    &quot;color/literal-duplicate-tokens&quot;,
+    &quot;token/semantic-name-describes-appearance&quot;,
+    &quot;token/var-missing-fallback&quot;,
+    &quot;token/tier-model-undetectable&quot;,
+    &quot;token/raw-dimension-in-semantic&quot;,
+    &quot;token/raw-value-in-markup&quot;,
+    &quot;token/stock-palette-utility&quot;,
+    &quot;color/near-duplicate-primitives&quot;,
+    &quot;color/mixed-storage-forms&quot;,
+    &quot;color/no-intent-plateau&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;ruleId&quot;: &quot;token/stock-palette-utility&quot;,
+      &quot;severity&quot;: &quot;medium&quot;,
+      &quot;summary&quot;: &quot;1 use site(s) name the framework palette instead of a theme token (1 distinct across 1 file(s))&quot;,
+      &quot;where&quot;: &quot;bg-white at Card.tsx:1&quot;,
+      &quot;fix&quot;: &quot;Check the resolved framework theme and project contract. Where a semantic role applies, use its utility (for example bg-surface or text-muted-foreground). This audit checks structure, not rendering: confirm the swap in the browser in both modes.&quot;,
+      &quot;data&quot;: {
+        &quot;count&quot;: 1,
+        &quot;distinct&quot;: 1,
+        &quot;files&quot;: 1,
+        &quot;underDarkVariant&quot;: 0,
+        &quot;hits&quot;: [
+          {
+            &quot;utility&quot;: &quot;bg&quot;,
+            &quot;value&quot;: &quot;white&quot;,
+            &quot;variants&quot;: null,
+            &quot;where&quot;: &quot;Card.tsx:1&quot;
+          }
+        ]
+      },
+      &quot;impact&quot;: &quot;Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes.&quot;
+    }
+  ],
+  &quot;coverage&quot;: {
+    &quot;unreadFormats&quot;: {},
+    &quot;partialReads&quot;: [
+      {
+        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;extensions&quot;: [
+          &quot;.css&quot;
+        ],
+        &quot;reads&quot;: &quot;custom-property declarations (--token: value) — not rule bodies, not at-rules&quot;
+      },
+      {
+        &quot;adapter&quot;: &quot;tailwind-jsx@0.4.0&quot;,
+        &quot;extensions&quot;: [
+          &quot;.jsx&quot;,
+          &quot;.tsx&quot;,
+          &quot;.js&quot;,
+          &quot;.ts&quot;,
+          &quot;.mjs&quot;
+        ],
+        &quot;reads&quot;: &quot;Tailwind arbitrary values and stock-palette colour utilities inside string literals — not inline style objects, not CSS-in-JS&quot;
+      }
+    ],
+    &quot;unreadTokenFiles&quot;: [],
+    &quot;unconvertible&quot;: {
+      &quot;count&quot;: 0,
+      &quot;samples&quot;: []
+    },
+    &quot;undecided&quot;: {
+      &quot;count&quot;: 0,
+      &quot;samples&quot;: []
+    },
+    &quot;couldNotJudge&quot;: [],
+    &quot;complete&quot;: true
+  },
+  &quot;suppressions&quot;: [],
+  &quot;ratios&quot;: {
+    &quot;literal-colors-per-distinct&quot;: 1,
+    &quot;colors-per-distinct-in-scope&quot;: 1,
+    &quot;ambiguous-share&quot;: 0
+  },
+  &quot;next&quot;: [
+    {
+      &quot;command&quot;: &quot;decide on the rest&quot;,
+      &quot;why&quot;: &quot;nothing here is mechanically provable — all 1 findings state their choice on the fix line&quot;
+    },
+    {
+      &quot;command&quot;: &quot;ds-loop scorecard .&quot;,
+      &quot;why&quot;: &quot;pin these ratios as run 1 — a ratio only says something against a previous row&quot;
+    },
+    {
+      &quot;command&quot;: &quot;ds-loop guard on&quot;,
+      &quot;why&quot;: &quot;report high-severity findings after each Claude Code edit (never blocks)&quot;
+    }
+  ],
+  &quot;verdict&quot;: &quot;issues&quot;
+}</code></pre></section></article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>

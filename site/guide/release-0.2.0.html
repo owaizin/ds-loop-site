@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>0.2.0 release notes | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
+<a href="example.html">Worked example: fix a button’s dark theme</a>
+<a href="install.html">Set up Design System Loop</a>
+<a href="output.html">Reading an audit</a>
+<a href="reference.html">Commands and coverage</a>
+<a href="release-0.2.0.html">0.2.0 release notes</a>
+<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="020-release-notes">0.2.0 release notes</h1>
+<p>This release gives the companion skill a guided engagement: understand the team's
+problem, recommend a bounded delivery, carry out authorized work, verify it, and
+leave a retrievable decision. The CLI supplies measurements and narrow mechanical
+fixes. Installing the package does not start an agent.</p>
+<h2 id="skill-experience">Skill experience</h2>
+<ul>
+<li>Start from the user's problem, including a fresh investigation when requested.
+A request to “guide me” starts discovery rather than a severity-ranked backlog.</li>
+<li>Follow establishment, improvement/adoption, or maintenance according to evidence
+and existing commitments. Scanner coverage cannot determine company maturity.</li>
+<li>Keep existing authorization through the task; ask again when the next action
+changes scope or shared commitments.</li>
+<li>Show compact text views for progress, consequential decisions, and completion.
+Report unrun checks explicitly. Richer visuals and specialist skills are optional.</li>
+<li>Link exception handling to the shipped configuration recipe. Preserve decisions
+in the team's existing documentation and verify retrieval for adoption pilots.</li>
+</ul>
+<h2 id="engine-changes">Engine changes</h2>
+<ul>
+<li>Correct tier classification for names whose final segment resembles a semantic
+namespace. Semantic namespaces can open an unprefixed name or follow a brand
+prefix. Primitive-name recognition is shared by color and tier rules.</li>
+<li>Add <code>token/stock-palette-utility</code> and Tailwind adapter 0.4.0. This detects selected
+named palette utilities when applicable token context exists; it does not resolve
+Tailwind themes or prove a contrast failure.</li>
+<li>Add <code>tokenContexts</code> for explicit associations between use sites and CSS token
+declarations. Missing context is reported as unjudged. These declarations are
+read as context for the palette rule, not added to the files being judged.</li>
+<li>Add <code>ignore</code> entries with a required reason. Reports retain suppression counts,
+and exceptions contribute to the configuration hash.</li>
+<li>Add a <code>risk:</code> explanation to findings and required <code>Rule.impact</code> to the typed API.</li>
+<li>Add <code>context --write-contract</code> to draft measured facts and unresolved questions in
+<code>DESIGN-SYSTEM.md</code>. It never overwrites an existing file or establishes policy.</li>
+<li>Explain why <code>fix</code> proposes no edits. <code>fix --help</code> works without a path or valid
+project configuration; unsupported fix options are rejected. Fixing remains
+limited to eligible <code>var()</code> fallbacks, with a preview unless <code>--write</code> is passed.</li>
+<li>Report hook execution failures as not checked instead of treating them as silence.</li>
+<li>Keep matched exceptions and coverage limits visible in the default overview.
+Show the installed skill's location for guided work and how to run commands from
+a local npm installation.</li>
+</ul>
+<h2 id="upgrading">Upgrading</h2>
+<p>Use a distinct 0.2.0 package for this feature set. Local tarballs previously rebuilt
+under 0.1.2 may differ from the registry's 0.1.2; a version string alone cannot
+identify those builds. Inspect the dependency's resolved artifact and integrity.</p>
+<p>Review <a href="reference.html">configuration and coverage</a> before carrying over local
+experiments. Once <code>tokenContexts</code> is configured, all palette use sites in the audit
+scope need an applicable mapping; partial mappings can leave checks unjudged and
+fail <code>--require-coverage</code>. An exception's <code>files: []</code> matches no files. Invalid
+exception scopes fail configuration loading.</p>
+<p>Re-run an unfiltered audit after upgrading. Adapter versions and configuration
+hashes can change, so scorecard measurements may not be directly comparable.
+Typed API consumers implementing rules must supply <code>impact</code>.</p>
+<p>See <a href="install.html">installation</a> for loading the complete package and activating the
+skill. The engine has no new runtime dependencies.</p>
+</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>

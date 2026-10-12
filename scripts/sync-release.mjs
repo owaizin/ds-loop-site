@@ -1,0 +1,12 @@
+import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+const current = JSON.parse(readFileSync('package.json')).dependencies['ds-loop'];
+const latest = JSON.parse(execFileSync('npm', ['view', 'ds-loop', 'dist-tags.latest', '--json'], { encoding: 'utf8' }));
+if (!/^\d+\.\d+\.\d+$/.test(latest)) throw new Error(`Refusing non-stable release ${latest}`);
+const compare = (a, b) => { const x=a.split('.').map(Number), y=b.split('.').map(Number); for(let i=0;i<3;i++) if(x[i]!==y[i]) return x[i]-y[i]; return 0; };
+if (compare(latest, current) < 0) throw new Error('npm latest moved backwards; manual review required.');
+if (latest !== current) execFileSync('npm', ['install', '--save-exact', '--ignore-scripts', `ds-loop@${latest}`], { stdio: 'inherit' });
+execFileSync('npm', ['run', 'build'], { stdio: 'inherit' });
+execFileSync('npm', ['run', 'check'], { stdio: 'inherit' });
+execFileSync('npm', ['test'], { stdio: 'inherit' });
+console.log(latest === current ? `Already on ${current}.` : `Prepared release ${latest} for review.`);

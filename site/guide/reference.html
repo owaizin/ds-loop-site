@@ -1,0 +1,276 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Commands and coverage | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
+<a href="example.html">Worked example: fix a button’s dark theme</a>
+<a href="install.html">Set up Design System Loop</a>
+<a href="output.html">Reading an audit</a>
+<a href="reference.html">Commands and coverage</a>
+<a href="release-0.2.0.html">0.2.0 release notes</a>
+<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="commands-and-coverage">Commands and coverage</h1>
+<p>Run commands from the target project so configuration resolves from its working directory. Paths select the source to inspect.</p>
+<h2 id="engine-commands">Engine commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Result</th>
+<th>Writes?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>context [path]</code></td>
+<td>Config, conventional intent-source locations, extraction scope; no rules</td>
+<td>Only with <code>--write-contract</code>, which creates <code>DESIGN-SYSTEM.md</code> and never overwrites one</td>
+</tr>
+<tr>
+<td><code>audit [path]</code></td>
+<td>Findings, ratios, verdict and coverage</td>
+<td>Only with <code>--out &lt;dir&gt;</code></td>
+</tr>
+<tr>
+<td><code>scan &lt;path&gt;</code></td>
+<td>Extracted-value taxonomy and palette clusters</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>sweep &lt;path&gt;</code></td>
+<td>Clustering curve across the configured ΔE range</td>
+<td>Only with <code>--out &lt;dir&gt;</code></td>
+</tr>
+<tr>
+<td><code>scorecard [path]</code></td>
+<td>Ratios and comparable deltas</td>
+<td>Appends <code>.ds-scorecard/history.jsonl</code> in cwd; <code>--dry-run</code> previews</td>
+</tr>
+<tr>
+<td><code>fix &lt;path&gt;</code></td>
+<td>Mechanically resolvable <code>var()</code> fallbacks</td>
+<td>Only with <code>--write</code></td>
+</tr>
+<tr>
+<td><code>guard on|off|status</code></td>
+<td>Claude Code post-edit feedback configuration</td>
+<td><code>on</code> and <code>off</code> edit <code>.claude/settings.json</code></td>
+</tr>
+</tbody></table>
+<p><code>fix</code> is not an automatic token migration. <code>scorecard</code> does not gate CI. <code>guard</code> cannot prevent an edit.</p>
+<h3 id="preview-a-mechanical-fix">Preview a mechanical fix</h3>
+<pre><code class="language-sh">ds-loop fix . --help
+ds-loop fix .
+ds-loop fix . --write
+ds-loop audit .
+</code></pre>
+<p>The first command explains eligibility; the second previews without writing.
+Review that preview against the permitted scope and exceptions before applying it.
+The fixer only inserts missing <code>var()</code> fallbacks in CSS custom-property declarations
+when the referenced token has a direct color or dimension literal in scope. It does
+not follow alias chains, migrate JSX utilities, or fix other rule classes. <code>--target</code>
+belongs to <code>audit</code>, not <code>fix</code>. A zero-edit result explains whether the scope yielded
+no declarations, no candidates, or references without eligible literal targets.
+It does not establish a clean audit. Use an unfiltered audit afterward.</p>
+<h3 id="the-contract-file">The contract file</h3>
+<p><code>ds-loop context --write-contract</code> creates an optional <code>DESIGN-SYSTEM.md</code> draft and
+never overwrites an existing file. Keep an existing decision home when it serves the
+team. The draft contains measured declarations, configured tier classifications,
+storage forms, extraction limits, and recorded exceptions with reasons and file scope.
+Open questions cover the adopted model, source of truth and consumer requirements;
+tier questions apply only where the team uses those tiers.</p>
+<p><code>context</code> locates the file; an agent must read and apply its decisions. Editing it
+does not configure or suppress rules. Naming patterns can describe a compatible
+model, but cannot change the engine's permitted tier relationships. State an
+unsupported model as a limitation rather than redesigning it to obtain a clean audit.</p>
+<h2 id="agent-procedures">Agent procedures</h2>
+<p>The skill includes <code>discover</code>, <code>census</code>, <code>drift</code>, <code>establish</code>, <code>tokenize</code>, <code>scaffold</code>, <code>extract</code>, <code>shape</code>, <code>review</code> and <code>doctor</code>. They instruct an agent to investigate or perform a task. They are not CLI commands and their conclusions are not engine findings. See the <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1?activeTab=code">skill entry</a>.</p>
+<h2 id="audit-options">Audit options</h2>
+<p>Use <code>--json</code> for structured output, <code>--out &lt;dir&gt;</code> to retain reports, <code>--target</code> for a rule domain, <code>--files a,b</code> or <code>--since main</code> to narrow files, and <code>--min-severity</code> to filter findings. Targets are <code>all</code>, <code>tokens</code>, <code>color</code>, <code>spacing</code>, <code>typography</code>, <code>elevation</code> and <code>motion</code>. <code>--require-coverage</code> makes reported coverage gaps fail too.</p>
+<p>The audit exits 1 on surviving findings; without strict coverage, <code>not-checked</code> can exit 0. Severity filtering does not remove coverage limits from the report.</p>
+<h2 id="scoped-checks-and-token-context">Scoped checks and token context</h2>
+<p><code>--files</code> limits the files judged; paths are relative to your working directory.
+<code>--since &lt;ref&gt;</code> selects committed changes from the merge base with that ref to HEAD
+in the target repository. It does not include uncommitted edits. An empty selection
+returns <code>not-checked</code>; an invalid Git comparison fails instead of auditing the tree.</p>
+<p>For <code>token/stock-palette-utility</code>, identify the CSS declarations each consumer uses.
+Record that association in <code>ds-loop.config.json</code>, or an explicit JSON config:</p>
+<pre><code class="language-json">{
+  "tokenContexts": [
+    { "files": ["app/*"], "tokens": ["app/theme.css"] }
+  ]
+}
+</code></pre>
+<p>Adding the first mapping makes explicit context required for every stock-palette
+use site in the audit scope, including a full-tree audit. Unmapped use sites become
+unjudged; they do not fall back to unrelated declarations elsewhere in the tree.
+With <code>--require-coverage</code>, a partial mapping rollout can therefore fail CI. Inventory
+the affected consumers and supply their mappings, or record justified exceptions
+for deliberately unthemed scopes, before adopting mappings in that CI run.</p>
+<p>These paths are relative to the audit source root (the containing directory when
+auditing a single file). <code>files</code> accepts exact paths or trailing-<code>*</code> prefixes;
+<code>tokens</code> accepts exact CSS file paths inside that root. This option requires JSON;
+the YAML subset cannot represent these entries. If an earlier auto-discovered YAML
+config exists, migrate its settings into JSON or select the JSON with <code>--config</code>.
+The hook uses automatic config discovery, so its configuration must be the first
+matching file in the discovery order below.</p>
+<p>The declarations are read only. They enable the palette check without adding
+out-of-scope declaration findings or changing ratios. JSON reports retain the
+selected files and context paths, consumers, adapter versions, content hashes and
+read failures in <code>manifest</code>. The mapping changes <code>configHash</code>.</p>
+<p>A scoped palette check without applicable, readable color declarations reports a
+low-severity judgment limit. <code>coverage.couldNotJudge</code> retains it even when a severity
+floor hides the finding. <code>--require-coverage</code> fails on that gap. Deliberately
+unthemed consumers can have a recorded rule exception with a reason.</p>
+<p>These mappings do not resolve CSS imports, Tailwind configuration or effective
+colors. Other rules still judge only selected files. Unscoped audits without any
+mappings retain the broad gate: a color declaration anywhere in the target enables
+palette findings. Use explicit mappings to bound that assumption in a mixed-theme
+repository; inspect the project contract and rendered behavior before changing code.
+The default hook still filters this medium-severity rule.</p>
+<h2 id="configuration">Configuration</h2>
+<p>Automatic discovery checks <code>.ds-loop-config.yml</code>, <code>.ds-loop-config.yaml</code>, <code>ds-loop.config.json</code>, <code>.ds-ops-config.yml</code> and <code>.ds-ops-config.yaml</code>, in that order, in cwd. The explicit <code>--config &lt;file&gt;</code> path currently accepts JSON. Auto-discovered YAML uses a small supported subset, not a full YAML parser.</p>
+<p>For a project whose actual contract uses <code>--foundation-*</code> primitives and <code>--intent-*</code> semantics, an illustrative <code>ds-loop.config.json</code> is:</p>
+<pre><code class="language-json">{
+  "taxonomy": {
+    "primitivePattern": "^--foundation-",
+    "semanticNamespaces": ["intent"]
+  }
+}
+</code></pre>
+<p>Use patterns from your own contract. These settings configure existing rules; they do not create new checks. The engine's palette → semantic → component model is an assumption, not a required architecture. If your model cannot be represented faithfully, report the limitation.</p>
+<h3 id="recording-an-exception">Recording an exception</h3>
+<p>To suppress one verified case, edit the project's existing configuration; avoid
+creating a second competing config. The JSON example below belongs in
+<code>ds-loop.config.json</code>. If a YAML config already takes precedence, migrate its
+settings deliberately or pass <code>--config &lt;file.json&gt;</code> for the audit. The hook needs
+the configuration selected by automatic discovery.</p>
+<p>A rule that is wrong about one token does not need a wider threshold. Widening one silences the whole
+class in every future run and records nothing anyone can disagree with. Record the case instead, with the
+argument attached:</p>
+<pre><code class="language-json">{
+  "ignore": [
+    {
+      "rule": "color/semantic-holds-literal",
+      "value": "--color-surface-raised",
+      "files": ["theme.css"],
+      "reason": "The palette layer lands next sprint and this token is the seed for it.",
+      "createdAt": "2026-09-19"
+    }
+  ]
+}
+</code></pre>
+<p><code>reason</code> is required — a config with an entry that lacks one fails to load, because an entry dropped
+silently would look like the exception was honoured. <code>rule</code> takes a rule id or <code>*</code>; <code>value</code> matches a token
+name or a literal, and <code>*</code> with <code>files</code> is the whole-file exception. Entries remove values from that rule's
+<em>input</em>, so the counts a surviving finding reports stay true, and <code>audit</code> prints every entry that matched —
+a clean verdict still shows what was argued away to reach it. Exceptions are part of <code>configHash</code>, so a
+scorecard delta across a changed exception set reports that the instrument moved.</p>
+<p><code>files</code> must be a list. Omit it to cover all files; an empty list covers none.
+A path matches exactly or as a path suffix; a trailing <code>*</code> matches a prefix from
+the audit source root. Thus <code>theme.css</code> also matches <code>legacy/theme.css</code>, while
+<code>legacy/*</code> limits the exception to that prefix. Interior wildcards are unsupported.
+Malformed selectors fail loading instead of silently widening an exception.
+Review the reported matches before relying on a suppression.</p>
+<p>Run <code>ds-loop audit . --json</code> before and after the edit. Check <code>suppressions</code> for
+the intended rule, value and matched count; compare finding locations with the
+configured file scope and confirm unrelated occurrences remain visible.
+A lower count caused by an exception is a policy change, not a product
+repair. Editing <code>DESIGN-SYSTEM.md</code> alone does not configure an exception.</p>
+<p>The <a href="https://github.com/owaizin/ds-loop/blob/main/src/config/schema.ts">configuration schema</a> and <a href="https://github.com/owaizin/ds-loop/blob/main/src/config/defaults.ts">defaults</a> define clustering, taxonomy and sweep settings. Defaults are uncalibrated. Use <code>sweep</code> to investigate your source before choosing a clustering cutoff. The <code>.ds-ops-config.yml</code> compatibility path reads system context and maps supported severity settings from design-system-ops.</p>
+<p>Tailwind JSX adapter 0.4.0 adds numeric opacity modifiers and respects configured
+palette families during detection. Re-measure a baseline before comparing it with
+0.3.0; extraction counts may change.</p>
+<h2 id="coverage">Coverage</h2>
+<table>
+<thead>
+<tr>
+<th>Adapter</th>
+<th>Reads</th>
+<th>Does not read</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CSS custom properties</td>
+<td>Custom-property declarations in <code>.css</code></td>
+<td>Ordinary rule bodies and declarations inside at-rules</td>
+</tr>
+<tr>
+<td>Tailwind JSX</td>
+<td>Arbitrary-value strings and framework-palette colour utilities in <code>.jsx</code>, <code>.tsx</code>, <code>.js</code>, <code>.ts</code>, <code>.mjs</code></td>
+<td>Utilities naming your own theme tokens, arbitrary variants/bracketed opacity, inline style objects, CSS-in-JS</td>
+</tr>
+</tbody></table>
+<p>Sass maps, design-token JSON and other unsupported formats remain outside these adapters. Recognized colors that cannot be converted are reported as ambiguous. A file extension is not a promise of full syntax coverage.</p>
+<p><code>clean</code>, <code>issues</code> and <code>not-checked</code> are different verdicts. Read <code>coverage.couldNotJudge</code> even when severity filtering hides the associated finding. <code>context</code> runs no rules, and the hook filters at high severity; an unfiltered audit is the channel for all judgment limitations.</p>
+<h2 id="rules">Rules</h2>
+<p>Twelve deterministic rules examine supported extracted values. Interpret their
+findings against the applicable project contract and the report's coverage.</p>
+<table>
+<thead>
+<tr>
+<th>rule</th>
+<th>severity</th>
+<th>catches</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>token/tier-leakage</code></td>
+<td>high</td>
+<td>component → primitive skips and upward references under the configured tier assumption; investigate applicability and theme behavior</td>
+</tr>
+<tr>
+<td><code>color/semantic-holds-literal</code></td>
+<td>high</td>
+<td>a semantic token holding a literal colour instead of <code>var(--primitive)</code></td>
+</tr>
+<tr>
+<td><code>token/raw-value-in-markup</code></td>
+<td>high</td>
+<td>a component hardcoding a colour or length at the use site — <code>bg-[#1da1f2]</code>, <code>p-[13px]</code>. Names the token that already carries the value when one does.</td>
+</tr>
+<tr>
+<td><code>token/raw-dimension-in-semantic</code></td>
+<td>high</td>
+<td>a semantic or component token holding a raw <code>16px</code> / <code>1rem</code> instead of a spacing / type primitive</td>
+</tr>
+<tr>
+<td><code>token/semantic-name-describes-appearance</code></td>
+<td>medium / low</td>
+<td>a semantic token named for a colour or size (<code>color.action.blue</code>) — a primitive with extra steps. Low when only category / chart tokens.</td>
+</tr>
+<tr>
+<td><code>token/stock-palette-utility</code></td>
+<td>medium</td>
+<td>a use site names a framework-palette utility such as <code>bg-white</code>. Verify the applicable theme and project contract. Scoped checks without token context report a low-severity judgment limit.</td>
+</tr>
+<tr>
+<td><code>color/literal-duplicate-tokens</code></td>
+<td>medium</td>
+<td>tokens declaring identical color literals; equivalent values do not establish equivalent intent</td>
+</tr>
+<tr>
+<td><code>color/mixed-storage-forms</code></td>
+<td>medium</td>
+<td>hex + hsl-channels + rgb in one source</td>
+</tr>
+<tr>
+<td><code>color/near-duplicate-primitives</code></td>
+<td>low</td>
+<td>primitive colors within the configured ΔE threshold; investigate whether distinct values serve distinct needs</td>
+</tr>
+<tr>
+<td><code>color/no-intent-plateau</code></td>
+<td>low</td>
+<td>a palette with no ΔE knee at the count the humans shipped</td>
+</tr>
+<tr>
+<td><code>token/tier-model-undetectable</code></td>
+<td>low</td>
+<td>too few referencing tokens match the configured tier patterns; silent at zero references, so it cannot establish that a design system is absent</td>
+</tr>
+<tr>
+<td><code>token/var-missing-fallback</code></td>
+<td>low</td>
+<td>a <code>var(--token)</code> with no fallback — resolves to nothing the moment that token is undefined</td>
+</tr>
+</tbody></table>
+<p>Route them with <code>--target color|tokens|spacing|typography|elevation|motion</code>, narrow with <code>--files a,b</code> or <code>--since main</code>, raise the floor with <code>--min-severity high</code>.</p>
+<h2 id="limits-of-the-result">Limits of the result</h2>
+<p>A finding is evidence to investigate, not proof of design intent. Ratios describe extracted code, not system maturity. The engine does not observe rendered behavior, accessibility, user comprehension or product outcomes. It uses regex-based extraction with documented ceilings.</p>
+<p><a href="output.html">Example reports</a> · <a href="index.html">Back to the guide</a></p>
+</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>
