@@ -73,3 +73,11 @@ Verification: 320/390/768/1024/1440/1600px viewport checks now return identical 
 Not verified: native 200% browser zoom, RTL mirror, pseudo-localization, and assistive technology. This review covers the current English homepage and the tested viewport sizes. Approve the inspected layout scope; no known high-severity issue remains within that scope.
 
 Current layout screenshots: `artifacts/layout-frame-desktop.jpg`, `artifacts/layout-frame-mobile.jpg`, and `artifacts/layout-frame-report.jpg`.
+
+## Guide masthead restoration and saved playground (2026-10-12)
+
+Restored the original guide blueprint SVG from the engine repository's `site/docs.html` immediately before website extraction (`f5095d8^`). The website generator now wraps the locked package's guide title and introduction in the existing responsive masthead, with the grid illustration and hatched edge. The artwork source lives in `content/guide-blueprint.html`; generated documentation is rebuilt rather than hand-edited. Technical text and the locked package version are unchanged.
+
+The loop playground now starts from shared `selectedLoopSettings`, resets to the current homepage look, and retains the original two-ring preset. Verified the ellipse slider changes the rendered ring count and reset restores it.
+
+Validation: build, all 3 tests, 574 local links/anchors, and diff whitespace checks pass. Guide reviewed at the default desktop width and 390px mobile (375px client/scroll widths, no horizontal page overflow). Screenshots: `artifacts/restored-guide-header-desktop.jpg` and `artifacts/restored-guide-header-mobile.jpg`. This save includes the earlier visual exploration/restoration snapshots as historical artifacts; they are not the current homepage design.

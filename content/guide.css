@@ -9,3 +9,8 @@
 .release-doc th, .release-doc td { padding: 12px 16px; border-bottom: 1px solid #393047; text-align: left; }
 .release-note { border: 1px solid #393047; border-radius: 8px; padding: 16px 20px; font-size: 14px; }
 .release-doc :is(h2,h3) { scroll-margin-top: 32px; }
+
+/* Preserve the original blueprint masthead around the released guide introduction. */
+.release-doc .doc-title { margin-bottom: 28px; }
+.release-doc .doc-title h1 { margin-top: 0; }
+.release-doc .guide-title-copy { min-width: 0; }

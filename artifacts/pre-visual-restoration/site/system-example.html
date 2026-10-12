@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System Loop | A SaaS design-system example</title>
+<meta name="description" content="Watch new SaaS screens take shape with shared design-system styles, then compare four inconsistent screens with their shared foundation.">
+<meta name="theme-color" content="#080512">
+<meta property="og:title" content="Design System Loop | A SaaS design-system example">
+<meta property="og:description" content="Watch new SaaS screens take shape with shared design-system styles, then compare four inconsistent screens with their shared foundation.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/ds-circuit.svg" type="image/svg+xml">
+<link rel="preload" href="assets/manrope.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
+<link rel="stylesheet" href="theme.css">
+<script src="home.js" defer>
+</script>
+<script src="app.js" defer>
+</script>
+<link rel="stylesheet" href="restored-loop.css"><link rel="stylesheet" href="practice.css"><link rel="stylesheet" href="delivery.css"></head>
+<body class="visual-home system-example-page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="Design System Loop home"><img class="brand-emblem" src="assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a>
+<nav class="nav" aria-label="Main">
+<a href="guide/workflow.html">Guide</a>
+<a href="system-example.html" aria-current="page">SaaS example</a>
+<a class="github-link" href="https://github.com/owaizin/ds-loop">GitHub</a>
+<a class="nav-start" href="guide/install.html">Get started</a>
+</nav>
+</header>
+<main id="main" class="wrap"><div class="doc-title"><h1>Bring your screens<br>into the same system.</h1><p>Compare four product areas built independently, then see how shared navigation, controls, and table patterns bring them together. Further down, watch new screens use that foundation.</p></div><figure class="system-showcase" id="system-example">
+<div class="showcase-toolbar"><div><strong>Four areas. One shared system.</strong><span>Compare independent implementations with a shared foundation.</span></div><a href="#decisions">What changes <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a></div>
+<iframe id="hero-example" data-specimen-frame src="demo/saas-comparison.html" title="Compare four independent SaaS designs with a shared design system"></iframe>
+<div class="showcase-caption"><p>Drag the divider to compare the same four product areas.</p><div class="comparison-links"><a href="demo/saas-before.html">View before</a><a href="demo/saas-after.html">View after</a></div></div>
+<figcaption>Authored examples with synthetic data. These illustrate design decisions, not automated repair.</figcaption>
+</figure>
+<section class="example-decisions" id="decisions"><h2>What we changed</h2><p>Both versions use the same product data. We changed the layout, controls, and labels by applying the conventions below.</p><div class="table-scroll"><table><thead><tr><th>Area</th><th>Independent implementations</th><th>Shared foundation</th></tr></thead><tbody><tr><th>Page structure</th><td>A legacy sidebar, top navigation, a separate billing portal, and a second member-management sidebar.</td><td>A shared workspace shell, page header, and spacing rules.</td></tr><tr><th>Controls</th><td>Feature-specific colors, button shapes, search, and filter treatments.</td><td>A common action style and matching control conventions.</td></tr><tr><th>Repeated data</th><td>Cramped project rows, crowded request cards, inconsistent invoice and member lists.</td><td>A common table structure, row density, and metadata hierarchy.</td></tr><tr><th>Status language</th><td>Status treatments compete with content and vary between product areas.</td><td>Shared labels and appearances for equivalent states.</td></tr><tr><th>Product differences</th><td>Projects have teams, Requests have priorities, Billing has invoices, and Members have roles.</td><td>Each area keeps its own data and actions within the common structure.</td></tr></tbody></table></div></section>
+<section class="example-decisions"><h2>Using Design System Loop for this work</h2><p>Your team defines which patterns should be shared. The companion skill guides an agent through the relevant code, existing conventions, affected consumers, and verification. The engine supplies findings for the code it supports.</p><p>Your team and agent need to inspect the layout, content hierarchy, and status terminology. These require design judgment beyond the engine’s code checks.</p><p>For a reproducible code-level example with actual audit output, browser checks, and a saved decision, read the <a href="worked-example.html">completed theme delivery</a>.</p><p>Inspect the illustrative <a href="demo/saas-before.html">independent implementations</a>, <a href="demo/saas-after.html">shared foundation</a>, and <a href="demo/saas.css">specimen CSS</a>.</p></section>
+<section class="new-screens-section" id="new-screens" aria-labelledby="new-screens-title"><div class="new-screens-heading"><h2 id="new-screens-title">Build on what’s<br>already there.</h2><p>The next feature should use the decisions you’ve already made. Watch Billing and Members take shape with the same navigation, typography, controls, and table patterns.</p></div><figure class="build-showcase"><iframe id="build-example" data-specimen-frame src="demo/saas-build.html" title="Billing and Members assemble from shared components"></iframe><figcaption>Authored animation with synthetic data, illustrating component reuse. Design System Loop guides the work; your team reviews the result.</figcaption></figure></section>
+<section class="practice-section maintenance-section" aria-labelledby="maintenance-title" ><div class="section-kicker"><span>KEEP THE REASONING</span><span>SUPPORTING MAINTENANCE EXAMPLE</span></div><div class="editorial-heading"><h2 id="maintenance-title">A system is never<br>finished. It’s practiced.</h2><p>Return with the next feature, a changed convention, or a new contributor. Check the code again and carry forward the decisions that still apply.</p></div>
+<section class="workflow-stage hero-loop" id="workflow" aria-labelledby="workflow-title">
+<h2 id="workflow-title" class="sr-only">Design-system maintenance loop</h2>
+<div class="restored-loop-instrument" aria-label="Design-system maintenance cycle">
+<button id="loop-playback" class="loop-motion" type="button" aria-label="Pause loop animation" title="Pause loop animation"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="pause-symbol" d="M8 6v12M16 6v12"/><path class="play-symbol" d="m9 6 9 6-9 6Z"/></svg></button>
+<svg class="restored-orbital-field" viewBox="0 0 1100 600" preserveAspectRatio="none" fill="none" aria-hidden="true"><defs><linearGradient id="horizon-light" x1="0" y1="0" x2="1100" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#72e8e0" stop-opacity="0"/><stop offset=".2" stop-color="#72e8e0"/><stop offset=".4" stop-color="#9aafff"/><stop offset=".6" stop-color="#ccadff"/><stop offset=".8" stop-color="#f2a3c5"/><stop offset="1" stop-color="#ffe2b4" stop-opacity="0"/></linearGradient><filter id="horizon-glow" x="-25%" y="-100%" width="150%" height="300%"><feGaussianBlur stdDeviation="12"/></filter></defs><ellipse cx="550" cy="290" rx="535" ry="236" stroke="#49246d" opacity=".3"/><ellipse cx="550" cy="290" rx="505" ry="214" stroke="#7048a8" opacity=".24"/><path d="M15 290C15 600 1085 600 1085 290" stroke="url(#horizon-light)" stroke-width="14" filter="url(#horizon-glow)"/><path d="M15 290C15 600 1085 600 1085 290" stroke="url(#horizon-light)" stroke-width="2"/></svg>
+<svg class="restored-loop-track" viewBox="0 0 1000 520" preserveAspectRatio="none" fill="none" aria-hidden="true">
+<defs>
+<linearGradient id="spectrum" x1="130" y1="430" x2="870" y2="90" gradientUnits="userSpaceOnUse"><stop stop-color="#72e8e0"/><stop offset=".3" stop-color="#9aafff"/><stop offset=".55" stop-color="#ccadff"/><stop offset=".76" stop-color="#f2a3c5"/><stop offset="1" stop-color="#ffe2b4"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8b99b7"/><stop offset=".2" stop-color="#242c43"/><stop offset=".6" stop-color="#101623"/><stop offset="1" stop-color="#8193b5"/></linearGradient>
+<filter id="bloom" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<path class="restored-track-aura" d="M315 90H685C805 90 870 150 870 260S805 430 685 430H315C195 430 130 370 130 260S195 90 315 90Z"/>
+<path class="restored-track-body" d="M315 90H685C805 90 870 150 870 260S805 430 685 430H315C195 430 130 370 130 260S195 90 315 90Z"/>
+<path class="restored-track-center" d="M315 90H685C805 90 870 150 870 260S805 430 685 430H315C195 430 130 370 130 260S195 90 315 90Z"/>
+<path class="restored-track-progress" pathLength="100" d="M315 90H685C805 90 870 150 870 260S805 430 685 430H315C195 430 130 370 130 260S195 90 315 90Z"/>
+<path class="restored-track-arrows" d="m495 82 9 8-9 8m367 154 8 9 8-9m-373 170-9 8 9 8m-367-174-8-9-8 9"/>
+<path class="restored-record-connectors" d="M315 126 410 198M685 126 590 198M685 394 590 322M315 394 410 322"/>
+</svg>
+<div class="restored-record-light" aria-hidden="true"></div><div class="restored-loop-record" id="loop-record" aria-live="off"><div class="restored-record-content"><div class="restored-record-tab" id="record-stage">01 / MEASURE</div><strong id="record-title">Locate a<br>token bypass.</strong><div class="restored-record-rule"><span id="record-label-a">Finding</span><b id="record-value-a">Hardcoded color</b></div><div class="restored-record-rule"><span id="record-label-b">Source</span><b id="record-value-b">Card.tsx:2</b></div></div><small>Illustrative design decisions</small></div>
+<div class="restored-loop-stops" role="group" aria-label="Explore the maintenance cycle">
+<button class="restored-loop-stop restored-stop-measure" type="button" disabled data-loop-step="measure" aria-pressed="true" aria-controls="loop-record loop-explanation"><img class="restored-loop-icon" src="assets/measure-spectral.png" width="56" height="56" alt=""><span><strong>Measure</strong><small>Find code issues</small></span></button>
+<button class="restored-loop-stop restored-stop-decide" type="button" disabled data-loop-step="decide" aria-pressed="false" aria-controls="loop-record loop-explanation"><img class="restored-loop-icon" src="assets/decide-spectral.png" width="56" height="56" alt=""><span><strong>Decide</strong><small>Choose the convention</small></span></button>
+<button class="restored-loop-stop restored-stop-verify" type="button" disabled data-loop-step="verify" aria-pressed="false" aria-controls="loop-record loop-explanation"><img class="restored-loop-icon" src="assets/verify-spectral.png" width="56" height="56" alt=""><span><strong>Verify</strong><small>Check the affected UI</small></span></button>
+<button class="restored-loop-stop restored-stop-retain" type="button" disabled data-loop-step="retain" aria-pressed="false" aria-controls="loop-record loop-explanation"><img class="restored-loop-icon" src="assets/retain-spectral.png" width="56" height="56" alt=""><span><strong>Retain</strong><small>Save the reasoning</small></span></button>
+</div></div>
+<div class="loop-explanation" id="loop-explanation" role="status" aria-live="off"><div><h3 id="loop-detail-title">Start with what the code says.</h3><span class="loop-owner-label" id="loop-owner">Engine</span></div><p id="loop-detail-copy">Run the supported checks to locate hardcoded values, token issues, and other findings. Keep coverage limits with the report so the team knows what still needs inspection.</p><a id="loop-detail-link" href="docs.html#audit-loop">Explore code checks <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+<noscript><p>The team and agent interpret the findings, choose the convention, verify the affected screens, and save the decision in project documentation.</p></noscript>
+</section>
+
+<div class="retention-grid"><article><span class="mini-label">SAVED MEASUREMENTS</span><h3>See what changed.<br>Keep the context.</h3><p>The offline HTML dashboard brings current findings and saved trends together. Compare runs with the same measurement configuration; keep coverage beside the numbers.</p><a href="samples/dashboard.html">Explore the sample dashboard ↗</a><p class="sample-caption">Public CSS fixture · current findings, no saved history.</p></article><article class="decision-note"><span class="mini-label">ILLUSTRATIVE DECISION / 004</span><h3>Keep compact admin rows.</h3><dl><div><dt>Convention</dt><dd>Shared data-table pattern</dd></div><div><dt>Exception</dt><dd>Compact density for admin workflows</dd></div><div><dt>Reason</dt><dd>More records visible during review</dd></div></dl><a href="demo/decision.md">Read an example decision ↗</a></article></div></section>
+<section class="example-next"><h2>Compare patterns in your codebase</h2><p>The guide includes prompts for building a usable foundation, improving shared patterns, and reviewing contributions.</p><div class="actions"><a class="button" href="guide/workflow.html">Explore the workflows</a><a class="text-link" href="guide/install.html">Get started</a></div></section></main><footer class="site-footer wrap"><div><a class="brand" href="index.html">Design System Loop</a><p>Shared foundations<br>for growing products.</p></div><div class="footer-links"><a href="guide/workflow.html">Start, improve, maintain</a><a href="system-example.html">SaaS example</a><a href="guide/reference.html">Technical reference</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></div></footer>
+</body></html>

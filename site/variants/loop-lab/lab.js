@@ -1,3 +1,5 @@
+import { createLoopField, selectedLoopSettings } from '../../loop-field.js';
+
 // A preview-only layer: the homepage supplies the current loop, unchanged.
 (async () => {
   const scene = document.getElementById('scene');
@@ -5,19 +7,7 @@
   const form = document.getElementById('controls');
   const pause = document.getElementById('motion-pause');
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const defaults = {
-    count: 2,
-    width: 100,
-    height: 100,
-    depth: 0,
-    vanish: 0,
-    zoom: 100,
-    opacity: 30,
-    thickness: 1,
-    glow: 100,
-    motion: 'still',
-    duration: 12,
-  };
+  const defaults = { ...selectedLoopSettings };
   let state = { ...defaults };
   let paused = false;
   let fieldController;
@@ -92,7 +82,6 @@
       element.setAttribute(attribute, new URL(element.getAttribute(attribute), homepage).href);
     }
     scene.replaceChildren(workflow);
-    const { createLoopField } = await import('../../loop-field.js');
     fieldController = createLoopField(workflow.querySelector('.restored-orbital-field'), defaults);
     const script = document.createElement('script');
     script.src = new URL('../../home.js', location.href).href;
@@ -124,23 +113,23 @@
       syncAnimation();
     });
     document.getElementById('reset').addEventListener('click', () => {
-      apply(defaults, 'Original background restored. Homepage unchanged.');
+      apply(defaults, 'Current homepage settings restored.');
       history.replaceState(null, '', location.pathname + location.search);
     });
-    document.getElementById('infinity').addEventListener('click', () => {
+    document.getElementById('original').addEventListener('click', () => {
       apply(
         {
           ...defaults,
-          count: 24,
-          width: 125,
-          height: 84,
-          depth: 88,
-          vanish: 75,
-          opacity: 48,
-          zoom: 80,
-          motion: reducedMotion.matches ? 'still' : 'inward',
+          count: 2,
+          width: 100,
+          height: 100,
+          depth: 0,
+          vanish: 0,
+          opacity: 30,
+          zoom: 100,
+          motion: 'still',
         },
-        'Infinity preset loaded. Adjust the geometry or motion to make it yours.',
+        'Original two-ring preset loaded. Adjust the geometry or motion to make it yours.',
       );
     });
     pause.addEventListener('click', () => {

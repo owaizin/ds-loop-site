@@ -11,8 +11,9 @@
 <link rel="stylesheet" href="../../craft.css">
 <link rel="stylesheet" href="../../refinements.css">
 <link rel="stylesheet" href="../../restored-loop.css">
+<link rel="stylesheet" href="../../positioning.css">
 <link rel="stylesheet" href="lab.css">
-<script src="lab.js" defer></script>
+<script type="module" src="lab.js"></script>
 </head>
 <body class="visual-home loop-lab">
 <header class="lab-header"><a href="../../index.html#workflow">← Back to homepage</a><span>Loop playground</span><span class="lab-local">Preview only</span></header>
@@ -20,7 +21,7 @@
 <section class="lab-preview" aria-label="Live loop preview"><div id="scene"><p>Loading the current loop…</p></div><p class="preview-note">The current cards and inner loop stay in place. These controls change the background ellipses.</p></section>
 <aside class="lab-controls" aria-labelledby="controls-title">
 <div class="lab-intro"><h1 id="controls-title">Shape the loop</h1><p>Try a wider orbit or a tunnel that keeps moving into the distance.</p></div>
-<div class="lab-presets"><button type="button" id="reset">Current look</button><button type="button" id="infinity">Try infinity</button></div>
+<div class="lab-presets"><button type="button" id="reset">Current look</button><button type="button" id="original">Original two rings</button></div>
 <form id="controls">
 <fieldset><legend>Geometry</legend>
 <label for="zoom">Preview zoom <output id="zoom-value" for="zoom">100%</output></label><input id="zoom" name="zoom" type="range" min="50" max="100" step="1" value="100">
