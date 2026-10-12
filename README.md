@@ -2,6 +2,8 @@
 
 Public website: https://design-system-loop.vercel.app
 
+Design System Loop helps teams build and improve their design system with a coding agent: use evidence, preserve legitimate choices, implement agreed work, and leave a verified handoff. The homepage is written for product teams without dedicated design-system capacity.
+
 This repository owns the website, visuals, demos and deployment. The [DS Loop repository](https://github.com/owaizin/ds-loop) owns the engine, companion skill and technical documentation.
 
 ## Work locally
@@ -51,3 +53,7 @@ npm run sync
 ```
 
 For rollback, revert the website update commit (package, lockfile and generated guide together), then merge. The sync deliberately refuses an npm `latest` downgrade; investigate that manually.
+
+## Worked delivery evidence
+
+The homepage keeps the approved spectral artwork and product demonstrations. Its report walkthrough links to `site/worked-example.html` and the public synthetic fixture in `site/samples/theme-delivery/`. Reproduce its source and token-only audit checks with `node scripts/verify-theme-delivery.mjs /path/to/ds-loop` using the 0.4.0 source checkout. Browser observations and limits are recorded separately in the fixture handoff.

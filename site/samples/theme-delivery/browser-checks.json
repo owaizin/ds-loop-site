@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-12",
+  "browser": "Codex in-app browser",
+  "measurements": [
+    {
+      "state": "before",
+      "theme": "light",
+      "background": "rgb(36, 91, 219)",
+      "height": 43.59375,
+      "text": "rgb(255, 255, 255)",
+      "width": 129.1953125
+    },
+    {
+      "state": "before",
+      "theme": "dark",
+      "background": "rgb(36, 91, 219)",
+      "height": 43.59375,
+      "text": "rgb(18, 32, 71)",
+      "width": 129.1953125
+    },
+    {
+      "state": "after",
+      "theme": "light",
+      "background": "rgb(36, 91, 219)",
+      "height": 43.59375,
+      "text": "rgb(255, 255, 255)",
+      "width": 129.1953125
+    },
+    {
+      "state": "after",
+      "theme": "dark",
+      "background": "rgb(154, 184, 255)",
+      "height": 43.59375,
+      "text": "rgb(18, 32, 71)",
+      "width": 129.1953125
+    }
+  ],
+  "workflowChecks": [
+    {
+      "state": "before",
+      "theme": "light",
+      "focus": {
+        "outline": "3px",
+        "style": "solid",
+        "text": "Save changes"
+      },
+      "name": "Research workspace",
+      "status": "Saved “Research workspace” for this preview. Reload resets it."
+    },
+    {
+      "state": "before",
+      "theme": "dark",
+      "focus": {
+        "outline": "3px",
+        "style": "solid",
+        "text": "Save changes"
+      },
+      "name": "Research workspace",
+      "status": "Saved “Research workspace” for this preview. Reload resets it."
+    },
+    {
+      "state": "after",
+      "theme": "light",
+      "focus": {
+        "outline": "3px",
+        "style": "solid",
+        "text": "Save changes"
+      },
+      "name": "Research workspace",
+      "status": "Saved “Research workspace” for this preview. Reload resets it."
+    },
+    {
+      "state": "after",
+      "theme": "dark",
+      "focus": {
+        "outline": "3px",
+        "style": "solid",
+        "text": "Save changes"
+      },
+      "name": "Research workspace",
+      "status": "Saved “Research workspace” for this preview. Reload resets it."
+    }
+  ],
+  "emptyNameCheck": {
+    "focused": "workspace",
+    "missing": true,
+    "name": "Research workspace"
+  },
+  "limits": [
+    "Page-local memory only; no persistence or backend",
+    "No full accessibility or assistive-technology assessment",
+    "No separate-agent retrieval trial",
+    "Browser measurements are observations from this environment, not cross-browser guarantees"
+  ]
+}

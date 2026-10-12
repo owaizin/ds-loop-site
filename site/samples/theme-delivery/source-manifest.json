@@ -1,0 +1,12 @@
+{
+  "engineVersion": "0.4.0",
+  "auditScope": "tokens.css only; no claim of full workflow audit",
+  "sha256": {
+    "before.css": "dd84031e1603398f83193c9447dba352ffa8d39091cf534b8ada3098039c6a97",
+    "after.css": "1cef920440826debead7b481b694bebbfd904da23ff025de4e8dcc43383073cd",
+    "workflow.css": "687d68e0b51597285e753baecaf523448fc62561fabf766886ee4514e5e608dd",
+    "workflow.js": "543beeeaac99fd8ff7bb82607abd716324e3642e7138e28476d181c7d9798750",
+    "before.html": "0b1e4853a279cd1200618ab70fa8318243cf1102c6582aa0580066b12b5e90e7",
+    "after.html": "86d6f26564e29cb7663df5ebf6851bbf49e59678d54fa4d65409d38d69432541"
+  }
+}

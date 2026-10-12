@@ -1,0 +1,55 @@
+/* Fit the new positioning into the existing centered Violet orbit composition. */
+.visual-home .hero-intro h1 {
+  max-width: 900px;
+}
+.agent-phrase {
+  white-space: nowrap;
+}
+.visual-home .hero-summary .lead {
+  max-width: 62ch;
+}
+.visual-home .hero-summary .hero-descriptor {
+  margin: 18px auto 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.visual-home .restored-loop-stop > span {
+  min-width: 0;
+}
+@media (max-width: 760px) {
+  .visual-home .hero-loop .restored-loop-instrument {
+    height: 650px;
+  }
+  .visual-home .hero-summary .hero-descriptor {
+    max-width: 30ch;
+  }
+  .visual-home .restored-loop-stop strong {
+    line-height: 1.25;
+  }
+  .visual-home .restored-loop-stop {
+    min-height: 106px;
+  }
+}
+@media (max-width: 380px) {
+  .visual-home .restored-loop-stop {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 6px;
+    text-align: center;
+    min-height: 122px;
+  }
+  .visual-home .restored-loop-stop .restored-loop-icon {
+    width: 26px;
+    height: 26px;
+    flex-basis: 26px;
+  }
+  .visual-home .restored-stop-measure,
+  .visual-home .restored-stop-decide {
+    top: 9%;
+  }
+  .visual-home .restored-stop-verify,
+  .visual-home .restored-stop-retain {
+    top: 83%;
+  }
+}

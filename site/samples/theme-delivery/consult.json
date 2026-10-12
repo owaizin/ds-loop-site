@@ -1,0 +1,102 @@
+{
+  "title": "Workspace settings \u2014 let the action follow its theme",
+  "problem": [
+    {
+      "text": "The action background repeats the light palette value in both themes. The existing dark palette cannot reach the button through that literal.",
+      "evidence": [
+        {
+          "ref": "before.css:3"
+        },
+        {
+          "ref": "before.css:7"
+        }
+      ]
+    }
+  ],
+  "practices": [
+    {
+      "system": "Supplied fixture convention",
+      "text": "Primary actions follow each theme\u2019s palette. The two palette values remain legitimate product choices.",
+      "evidence": [
+        {
+          "ref": "before.css:2"
+        },
+        {
+          "ref": "before.css:6"
+        }
+      ]
+    }
+  ],
+  "assumptions": [
+    {
+      "text": "The supplied convention for this public synthetic fixture is that primary actions follow each theme's existing palette. Preserve component dimensions, text colors and form behavior.",
+      "evidence": []
+    }
+  ],
+  "after": {
+    "text": "Use a theme-local palette alias for the action background. Keep the existing light and dark palettes, component geometry and form behavior.",
+    "evidence": [
+      {
+        "ref": "before.css:2"
+      },
+      {
+        "ref": "before.css:6"
+      }
+    ],
+    "architecture": {
+      "title": "Preserve the palette; connect the semantic role",
+      "lanes": [
+        {
+          "id": "before",
+          "label": "Before \u2014 observed"
+        },
+        {
+          "id": "after",
+          "label": "After \u2014 proposed"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "literal",
+          "lane": "before",
+          "label": "Action role repeats light blue",
+          "status": "observed",
+          "evidence": [
+            {
+              "ref": "before.css:7"
+            }
+          ]
+        },
+        {
+          "id": "alias",
+          "lane": "after",
+          "label": "Action role follows theme palette",
+          "status": "proposed",
+          "replaces": "literal",
+          "evidence": [
+            {
+              "ref": "before.css:6"
+            }
+          ]
+        }
+      ],
+      "edges": []
+    }
+  },
+  "plan": [
+    {
+      "title": "Connect the action role to its palette",
+      "changes": "Replace the two literal action-background declarations with var(--palette-blue-500, #245bdb) in their existing theme scopes.",
+      "why": "A palette edit should propagate to the primary action without replacing the component or changing legitimate theme choices.",
+      "verification": "Measure both theme colors and button dimensions; exercise keyboard form submission; retain the decision and the limits. This report records the initial assessment; completed checks are linked from the website's worked delivery.",
+      "evidence": [
+        {
+          "ref": "before.css:3"
+        },
+        {
+          "ref": "before.css:7"
+        }
+      ]
+    }
+  ]
+}

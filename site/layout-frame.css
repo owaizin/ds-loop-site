@@ -1,0 +1,171 @@
+/* AlignUI-inspired measurement frame, in DS Loop's Violet orbit language. */
+.visual-home {
+  --frame-width: 1216px;
+  --frame-margin: 64px;
+  --frame-inset: 32px;
+  --section-space: 96px;
+  --frame-line: #b9a5d020;
+  --frame-mark: #b9a5d048;
+}
+.visual-home .wrap {
+  width: min(var(--frame-width), calc(100% - var(--frame-margin) * 2));
+}
+.visual-home .site-header,
+.visual-home .crafted-footer {
+  padding-inline: var(--frame-inset);
+  border-inline: 1px solid var(--frame-line);
+}
+.visual-home .site-header {
+  min-height: 104px;
+}
+.visual-home main > .wrap {
+  border-color: var(--frame-line);
+}
+.visual-home main {
+  /* The orbit's decorative SVG can bleed past the frame, but not widen the page. */
+  overflow-x: clip;
+}
+.visual-home main > .wrap > :is(section, figure) {
+  margin: 0;
+  padding: var(--section-space) var(--frame-inset);
+  border-block-start: 1px solid var(--frame-line);
+  border-radius: 0;
+  overflow: visible;
+}
+.visual-home main > .wrap > .system-hero {
+  padding-block: 72px 64px;
+}
+.visual-home .hero-summary {
+  margin-block-start: 28px;
+}
+.visual-home .hero-summary .actions {
+  margin-block-start: 28px;
+}
+.visual-home .hero-loop {
+  padding-inline: 0;
+  margin-block-start: 48px;
+}
+.visual-home :is(.customer-problem, .entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div, .home-faq) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+.visual-home :is(.entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div) {
+  margin-block-end: 40px;
+}
+.visual-home :is(.showcase-toolbar, .new-screens-heading) h2 {
+  max-width: none;
+}
+.visual-home .showcase-toolbar {
+  padding: 0 0 32px;
+}
+.visual-home .report-story-heading > p {
+  max-width: 60ch;
+}
+.visual-home .entry-grid,
+.visual-home .adoption-sequence {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.visual-home .adoption-sequence {
+  gap: 32px;
+}
+.visual-home .crafted-footer {
+  padding-block: 64px 24px;
+}
+.visual-home main > .wrap > .home-close {
+  overflow: hidden;
+  padding-block: 96px 112px;
+}
+/* Replace the older one-sided crosshairs with paired square junctions. */
+.visual-home :is(.customer-problem, .entry-paths, .system-scope, .new-screens-section, .adoption-section, .home-faq)::after {
+  display: none;
+}
+.section-junctions {
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  pointer-events: none;
+}
+.section-junctions::before,
+.section-junctions::after {
+  content: "";
+  position: absolute;
+  inset-block-start: -3px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--frame-mark);
+  background: var(--paper);
+}
+.section-junctions::before { inset-inline-start: -4px; }
+.section-junctions::after { inset-inline-end: -4px; }
+.layout-ruler {
+  display: none;
+  position: absolute;
+  inset-block: 32px;
+  width: 32px;
+  overflow: hidden;
+  color: #a998bc70;
+  pointer-events: none;
+  user-select: none;
+}
+.ruler-start { inset-inline-start: -40px; }
+.ruler-end { inset-inline-end: -40px; transform: scaleX(-1); }
+.layout-ruler::before,
+.layout-ruler::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: 4px;
+  background: repeating-linear-gradient(to bottom, var(--frame-line) 0 1px, transparent 1px 8px);
+}
+.layout-ruler::after {
+  width: 9px;
+  background: repeating-linear-gradient(to bottom, var(--frame-mark) 0 1px, transparent 1px 80px);
+}
+.layout-ruler i {
+  position: absolute;
+  /* Physical coordinates keep the vertical type anchored to this vertical scale. */
+  top: calc(var(--mark) * 80px + 2px);
+  right: 14px;
+  font: 9px/1 var(--mono);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.ruler-end i { transform: scaleX(-1); }
+@media (min-width: 1200px) {
+  .layout-ruler { display: block; }
+}
+@media (max-width: 1100px) {
+  .visual-home {
+    --frame-margin: 32px;
+    --frame-inset: 24px;
+    --section-space: 72px;
+  }
+  .visual-home :is(.customer-problem, .entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div, .home-faq) {
+    gap: 32px;
+  }
+}
+@media (max-width: 760px) {
+  .visual-home {
+    --frame-margin: 8px;
+    --frame-inset: 16px;
+    --section-space: 48px;
+  }
+  .visual-home .site-header { padding-block: 20px; }
+  .visual-home main > .wrap > .system-hero { padding-block: 40px 32px; }
+  .visual-home .hero-loop { margin-block-start: 32px; }
+  .visual-home :is(.customer-problem, .entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div, .home-faq, .adoption-sequence) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .visual-home :is(.entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div) {
+    margin-block-end: 28px;
+  }
+  .visual-home .showcase-toolbar { padding-block-end: 24px; }
+  .visual-home main > .wrap > .home-close { padding-block: 64px 80px; }
+  .visual-home .crafted-footer { padding-block-start: 48px; }
+  .section-junctions::before,
+  .section-junctions::after { width: 5px; height: 5px; inset-block-start: -2px; }
+  .section-junctions::before { inset-inline-start: -3px; }
+  .section-junctions::after { inset-inline-end: -3px; }
+}

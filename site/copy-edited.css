@@ -1,0 +1,19 @@
+/* Keep the chosen headline readable without orphaned words on narrow phones. */
+.visual-home :is(.hero-intro h1, .entry-path h3, .report-story-heading h2, .scope-intro h2, .new-screens-heading h2, .home-close h2) {
+  text-wrap: balance;
+}
+.visual-home .hero-summary .hero-descriptor {
+  max-width: none;
+}
+.hero-descriptor > span {
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .hero-descriptor > span { display: block; }
+  .hero-descriptor > .descriptor-divider { display: none; }
+}
+@media (max-width: 380px) {
+  .visual-home .hero-intro h1 {
+    font-size: clamp(28px, 9.5vw, 36px);
+  }
+}

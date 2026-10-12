@@ -1,0 +1,515 @@
+{
+  "fileImports": {
+    "version": "1.1.0",
+    "files": {
+      "tokens.css": {
+        "state": "no-static-importer",
+        "basis": "No static importer found.",
+        "importers": []
+      }
+    },
+    "unresolved": [],
+    "configIssues": [],
+    "limits": [
+      "Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.",
+      "No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.",
+      "Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.",
+      "Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved."
+    ]
+  },
+  "findingEvidence": [
+    {
+      "evidence": [
+        {
+          "raw": "#245bdb",
+          "provenance": {
+            "file": "tokens.css",
+            "line": 3,
+            "selector": ":root",
+            "property": "--color-action-background",
+            "tokenName": "--color-action-background",
+            "surface": null,
+            "category": null,
+            "fixtureSha": "live",
+            "adapterId": "css-custom-props",
+            "adapterVersion": "0.6.0",
+            "classification": "color",
+            "reason": "opaque color value on a non-shadow token"
+          }
+        },
+        {
+          "raw": "#245bdb",
+          "provenance": {
+            "file": "tokens.css",
+            "line": 7,
+            "selector": ".theme-dark",
+            "property": "--color-action-background",
+            "tokenName": "--color-action-background",
+            "surface": null,
+            "category": null,
+            "fixtureSha": "live",
+            "adapterId": "css-custom-props",
+            "adapterVersion": "0.6.0",
+            "classification": "color",
+            "reason": "opaque color value on a non-shadow token"
+          }
+        }
+      ],
+      "ruleId": "color/semantic-holds-literal",
+      "severity": "high",
+      "summary": "2 semantic token declaration(s) hold a literal colour instead of referencing a primitive (1 distinct token names across 1 file(s))",
+      "where": "--color-action-background = #245bdb (tokens.css:3); --color-action-background = #245bdb (tokens.css:7)",
+      "fix": "Point each at a primitive: --token: var(--<ns>-palette-<name>). If no primitive matches, add one first.",
+      "data": {
+        "count": 2,
+        "distinctNames": 1,
+        "files": 1,
+        "primitivesInSource": 2,
+        "tokens": [
+          "--color-action-background"
+        ]
+      },
+      "impact": "Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.",
+      "dimensions": {
+        "reached": {
+          "state": "no-static-importer",
+          "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+        },
+        "declaredIntentional": {
+          "state": "not-recorded",
+          "records": []
+        },
+        "domainValue": {
+          "state": "not-established",
+          "hints": [],
+          "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+        },
+        "occurrences": {
+          "all": 2,
+          "reached": 0,
+          "noStaticImporter": 2,
+          "unresolved": 0
+        },
+        "locations": [
+          {
+            "file": "tokens.css",
+            "line": 3,
+            "value": "#245bdb",
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "No static importer found."
+            },
+            "declaredIntentional": [],
+            "domainHints": []
+          },
+          {
+            "file": "tokens.css",
+            "line": 7,
+            "value": "#245bdb",
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "No static importer found."
+            },
+            "declaredIntentional": [],
+            "domainHints": []
+          }
+        ]
+      }
+    },
+    {
+      "ruleId": "color/literal-duplicate-tokens",
+      "severity": "medium",
+      "summary": "1 colour value(s) are declared by 3 different tokens",
+      "where": "#245bdb <- --palette-blue-500, --color-action-background",
+      "fix": "Keep one canonical token per value; make the rest var() aliases of it.",
+      "data": {
+        "groups": [
+          {
+            "value": "#245bdb",
+            "tokens": [
+              "--palette-blue-500",
+              "--color-action-background"
+            ]
+          }
+        ]
+      },
+      "impact": "The next person to change this colour changes one of the names and not the others, and the system carries two values for one decision.",
+      "dimensions": {
+        "reached": {
+          "state": "unresolved",
+          "basis": "This aggregate has no complete source locations; file membership is unresolved."
+        },
+        "declaredIntentional": {
+          "state": "not-recorded",
+          "records": []
+        },
+        "domainValue": {
+          "state": "not-established",
+          "hints": [],
+          "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+        },
+        "occurrences": {
+          "all": null,
+          "reached": null,
+          "noStaticImporter": null,
+          "unresolved": null
+        },
+        "locations": []
+      }
+    }
+  ],
+  "findingTotals": {
+    "all": 2,
+    "reached": 0,
+    "noStaticImporter": 1,
+    "unresolved": 1,
+    "basis": "Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences."
+  },
+  "reachedStyleInventory": {},
+  "reachedRatios": {
+    "literal-colors-per-distinct": null,
+    "colors-per-distinct-in-scope": null,
+    "ambiguous-share": null
+  },
+  "documentation": {
+    "version": "0.1.0",
+    "status": "not-checked",
+    "packages": [],
+    "limits": [
+      "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+      "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+      "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+    ]
+  },
+  "manifest": {
+    "tool": "ds-loop",
+    "command": "audit",
+    "target": "all",
+    "fixtureLabel": "public-theme-delivery",
+    "fixtureSha": "live",
+    "adapter": "css-custom-props@0.6.0",
+    "configHash": "5b0a0820"
+  },
+  "tokenArchitecture": {
+    "maxAliasDepth": 4,
+    "tokens": [
+      {
+        "name": "--palette-blue-500",
+        "tier": "primitive",
+        "group": "primitive:palette-blue",
+        "declarations": [
+          {
+            "file": "tokens.css",
+            "line": 2,
+            "value": "#245bdb",
+            "selector": ":root",
+            "mode": false,
+            "sourceOrder": 0
+          },
+          {
+            "file": "tokens.css",
+            "line": 6,
+            "value": "#9ab8ff",
+            "selector": ".theme-dark",
+            "mode": false,
+            "sourceOrder": 2
+          }
+        ],
+        "references": [],
+        "aliasTargets": [],
+        "aliasDepth": 0,
+        "cycle": false
+      },
+      {
+        "name": "--color-action-background",
+        "tier": "semantic",
+        "group": "semantic:color-action",
+        "declarations": [
+          {
+            "file": "tokens.css",
+            "line": 3,
+            "value": "#245bdb",
+            "selector": ":root",
+            "mode": false,
+            "sourceOrder": 1
+          },
+          {
+            "file": "tokens.css",
+            "line": 7,
+            "value": "#245bdb",
+            "selector": ".theme-dark",
+            "mode": false,
+            "sourceOrder": 3
+          }
+        ],
+        "references": [],
+        "aliasTargets": [],
+        "aliasDepth": 0,
+        "cycle": false
+      }
+    ],
+    "groups": [
+      {
+        "id": "primitive:palette-blue",
+        "lane": "primitive",
+        "label": "--palette-blue-*",
+        "tokens": 1,
+        "declarations": 2,
+        "references": 0
+      },
+      {
+        "id": "semantic:color-action",
+        "lane": "semantic",
+        "label": "--color-action-*",
+        "tokens": 1,
+        "declarations": 2,
+        "references": 0
+      }
+    ],
+    "edges": [],
+    "references": [],
+    "health": {
+      "unreferenced": [
+        "--palette-blue-500",
+        "--color-action-background"
+      ],
+      "undeclared": [],
+      "semanticLiterals": [
+        "--color-action-background"
+      ],
+      "deepAliases": [],
+      "cycles": [],
+      "redeclarations": []
+    },
+    "limits": [
+      "Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.",
+      "Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.",
+      "Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.",
+      "Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.",
+      "Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.",
+      "Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted."
+    ]
+  },
+  "styleInventory": {},
+  "rulesRun": [
+    "docs/undocumented-shared-component",
+    "token/upstream-bypass",
+    "token/tier-leakage",
+    "color/semantic-holds-literal",
+    "color/literal-duplicate-tokens",
+    "token/semantic-name-describes-appearance",
+    "token/var-missing-fallback",
+    "token/tier-model-undetectable",
+    "token/raw-dimension-in-semantic",
+    "token/raw-value-in-markup",
+    "token/stock-palette-utility",
+    "color/near-duplicate-primitives",
+    "color/mixed-storage-forms",
+    "color/no-intent-plateau",
+    "token/raw-value-in-style"
+  ],
+  "findings": [
+    {
+      "evidence": [
+        {
+          "raw": "#245bdb",
+          "provenance": {
+            "file": "tokens.css",
+            "line": 3,
+            "selector": ":root",
+            "property": "--color-action-background",
+            "tokenName": "--color-action-background",
+            "surface": null,
+            "category": null,
+            "fixtureSha": "live",
+            "adapterId": "css-custom-props",
+            "adapterVersion": "0.6.0",
+            "classification": "color",
+            "reason": "opaque color value on a non-shadow token"
+          }
+        },
+        {
+          "raw": "#245bdb",
+          "provenance": {
+            "file": "tokens.css",
+            "line": 7,
+            "selector": ".theme-dark",
+            "property": "--color-action-background",
+            "tokenName": "--color-action-background",
+            "surface": null,
+            "category": null,
+            "fixtureSha": "live",
+            "adapterId": "css-custom-props",
+            "adapterVersion": "0.6.0",
+            "classification": "color",
+            "reason": "opaque color value on a non-shadow token"
+          }
+        }
+      ],
+      "ruleId": "color/semantic-holds-literal",
+      "severity": "high",
+      "summary": "2 semantic token declaration(s) hold a literal colour instead of referencing a primitive (1 distinct token names across 1 file(s))",
+      "where": "--color-action-background = #245bdb (tokens.css:3); --color-action-background = #245bdb (tokens.css:7)",
+      "fix": "Point each at a primitive: --token: var(--<ns>-palette-<name>). If no primitive matches, add one first.",
+      "data": {
+        "count": 2,
+        "distinctNames": 1,
+        "files": 1,
+        "primitivesInSource": 2,
+        "tokens": [
+          "--color-action-background"
+        ]
+      },
+      "impact": "Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.",
+      "dimensions": {
+        "reached": {
+          "state": "no-static-importer",
+          "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+        },
+        "declaredIntentional": {
+          "state": "not-recorded",
+          "records": []
+        },
+        "domainValue": {
+          "state": "not-established",
+          "hints": [],
+          "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+        },
+        "occurrences": {
+          "all": 2,
+          "reached": 0,
+          "noStaticImporter": 2,
+          "unresolved": 0
+        },
+        "locations": [
+          {
+            "file": "tokens.css",
+            "line": 3,
+            "value": "#245bdb",
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "No static importer found."
+            },
+            "declaredIntentional": [],
+            "domainHints": []
+          },
+          {
+            "file": "tokens.css",
+            "line": 7,
+            "value": "#245bdb",
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "No static importer found."
+            },
+            "declaredIntentional": [],
+            "domainHints": []
+          }
+        ]
+      }
+    },
+    {
+      "ruleId": "color/literal-duplicate-tokens",
+      "severity": "medium",
+      "summary": "1 colour value(s) are declared by 3 different tokens",
+      "where": "#245bdb <- --palette-blue-500, --color-action-background",
+      "fix": "Keep one canonical token per value; make the rest var() aliases of it.",
+      "data": {
+        "groups": [
+          {
+            "value": "#245bdb",
+            "tokens": [
+              "--palette-blue-500",
+              "--color-action-background"
+            ]
+          }
+        ]
+      },
+      "impact": "The next person to change this colour changes one of the names and not the others, and the system carries two values for one decision.",
+      "dimensions": {
+        "reached": {
+          "state": "unresolved",
+          "basis": "This aggregate has no complete source locations; file membership is unresolved."
+        },
+        "declaredIntentional": {
+          "state": "not-recorded",
+          "records": []
+        },
+        "domainValue": {
+          "state": "not-established",
+          "hints": [],
+          "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+        },
+        "occurrences": {
+          "all": null,
+          "reached": null,
+          "noStaticImporter": null,
+          "unresolved": null
+        },
+        "locations": []
+      }
+    }
+  ],
+  "coverage": {
+    "unreadFormats": {},
+    "partialReads": [
+      {
+        "adapter": "css-custom-props@0.6.0",
+        "extensions": [
+          ".css"
+        ],
+        "reads": "custom-property declarations (--token: value) — not rule bodies, not at-rules"
+      }
+    ],
+    "unreadTokenFiles": [],
+    "unconvertible": {
+      "count": 0,
+      "samples": []
+    },
+    "undecided": {
+      "count": 0,
+      "samples": []
+    },
+    "couldNotJudge": [],
+    "complete": true,
+    "documentation": {
+      "version": "0.1.0",
+      "status": "not-checked",
+      "packages": [],
+      "limits": [
+        "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+        "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+        "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+      ]
+    }
+  },
+  "suppressions": [],
+  "ratios": {
+    "literal-colors-per-distinct": 2,
+    "colors-per-distinct-in-scope": 1.333,
+    "ambiguous-share": 0
+  },
+  "next": [
+    {
+      "command": "decide on the rest",
+      "why": "nothing here is mechanically provable — all 2 findings state their choice on the fix line"
+    },
+    {
+      "command": "ds-loop scorecard .",
+      "why": "pin these ratios as run 1 — a ratio only says something against a previous row"
+    },
+    {
+      "command": "ds-loop install",
+      "why": "wire your coding agent to the skill, instead of pasting that path yourself",
+      "setup": true
+    },
+    {
+      "command": "ds-loop guard on",
+      "why": "report high-severity findings after each Claude Code edit (never blocks)"
+    }
+  ],
+  "verdict": "issues",
+  "suggestionIndex": {
+    "candidates": [],
+    "declarations": []
+  }
+}

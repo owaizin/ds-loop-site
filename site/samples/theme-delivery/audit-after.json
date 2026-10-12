@@ -1,0 +1,260 @@
+{
+  "fileImports": {
+    "version": "1.1.0",
+    "files": {
+      "tokens.css": {
+        "state": "no-static-importer",
+        "basis": "No static importer found.",
+        "importers": []
+      }
+    },
+    "unresolved": [],
+    "configIssues": [],
+    "limits": [
+      "Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.",
+      "No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.",
+      "Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.",
+      "Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved."
+    ]
+  },
+  "findingEvidence": [],
+  "findingTotals": {
+    "all": 0,
+    "reached": 0,
+    "noStaticImporter": 0,
+    "unresolved": 0,
+    "basis": "Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences."
+  },
+  "reachedStyleInventory": {},
+  "reachedRatios": {
+    "literal-colors-per-distinct": null,
+    "colors-per-distinct-in-scope": null,
+    "ambiguous-share": null
+  },
+  "documentation": {
+    "version": "0.1.0",
+    "status": "not-checked",
+    "packages": [],
+    "limits": [
+      "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+      "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+      "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+    ]
+  },
+  "manifest": {
+    "tool": "ds-loop",
+    "command": "audit",
+    "target": "all",
+    "fixtureLabel": "public-theme-delivery",
+    "fixtureSha": "live",
+    "adapter": "css-custom-props@0.6.0",
+    "configHash": "5b0a0820"
+  },
+  "tokenArchitecture": {
+    "maxAliasDepth": 4,
+    "tokens": [
+      {
+        "name": "--palette-blue-500",
+        "tier": "primitive",
+        "group": "primitive:palette-blue",
+        "declarations": [
+          {
+            "file": "tokens.css",
+            "line": 2,
+            "value": "#245bdb",
+            "selector": ":root",
+            "mode": false,
+            "sourceOrder": 0
+          },
+          {
+            "file": "tokens.css",
+            "line": 6,
+            "value": "#9ab8ff",
+            "selector": ".theme-dark",
+            "mode": false,
+            "sourceOrder": 2
+          }
+        ],
+        "references": [],
+        "aliasTargets": [],
+        "aliasDepth": 0,
+        "cycle": false
+      },
+      {
+        "name": "--color-action-background",
+        "tier": "semantic",
+        "group": "semantic:color-action",
+        "declarations": [
+          {
+            "file": "tokens.css",
+            "line": 3,
+            "value": "var(--palette-blue-500, #245bdb)",
+            "selector": ":root",
+            "mode": false,
+            "sourceOrder": 1
+          },
+          {
+            "file": "tokens.css",
+            "line": 7,
+            "value": "var(--palette-blue-500, #245bdb)",
+            "selector": ".theme-dark",
+            "mode": false,
+            "sourceOrder": 3
+          }
+        ],
+        "references": [
+          "--palette-blue-500"
+        ],
+        "aliasTargets": [
+          "--palette-blue-500"
+        ],
+        "aliasDepth": 1,
+        "cycle": false
+      }
+    ],
+    "groups": [
+      {
+        "id": "primitive:palette-blue",
+        "lane": "primitive",
+        "label": "--palette-blue-*",
+        "tokens": 1,
+        "declarations": 2,
+        "references": 0
+      },
+      {
+        "id": "semantic:color-action",
+        "lane": "semantic",
+        "label": "--color-action-*",
+        "tokens": 1,
+        "declarations": 2,
+        "references": 2
+      }
+    ],
+    "edges": [
+      {
+        "from": "semantic:color-action",
+        "to": "primitive:palette-blue",
+        "count": 2,
+        "findings": []
+      }
+    ],
+    "references": [
+      {
+        "from": "--color-action-background",
+        "to": "--palette-blue-500",
+        "file": "tokens.css",
+        "line": 3,
+        "property": "--color-action-background",
+        "fromGroup": "semantic:color-action",
+        "toGroup": "primitive:palette-blue",
+        "findings": []
+      },
+      {
+        "from": "--color-action-background",
+        "to": "--palette-blue-500",
+        "file": "tokens.css",
+        "line": 7,
+        "property": "--color-action-background",
+        "fromGroup": "semantic:color-action",
+        "toGroup": "primitive:palette-blue",
+        "findings": []
+      }
+    ],
+    "health": {
+      "unreferenced": [
+        "--color-action-background"
+      ],
+      "undeclared": [],
+      "semanticLiterals": [],
+      "deepAliases": [],
+      "cycles": [],
+      "redeclarations": []
+    },
+    "limits": [
+      "Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.",
+      "Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.",
+      "Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.",
+      "Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.",
+      "Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.",
+      "Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted."
+    ]
+  },
+  "styleInventory": {},
+  "rulesRun": [
+    "docs/undocumented-shared-component",
+    "token/upstream-bypass",
+    "token/tier-leakage",
+    "color/semantic-holds-literal",
+    "color/literal-duplicate-tokens",
+    "token/semantic-name-describes-appearance",
+    "token/var-missing-fallback",
+    "token/tier-model-undetectable",
+    "token/raw-dimension-in-semantic",
+    "token/raw-value-in-markup",
+    "token/stock-palette-utility",
+    "color/near-duplicate-primitives",
+    "color/mixed-storage-forms",
+    "color/no-intent-plateau",
+    "token/raw-value-in-style"
+  ],
+  "findings": [],
+  "coverage": {
+    "unreadFormats": {},
+    "partialReads": [
+      {
+        "adapter": "css-custom-props@0.6.0",
+        "extensions": [
+          ".css"
+        ],
+        "reads": "custom-property declarations (--token: value) — not rule bodies, not at-rules"
+      }
+    ],
+    "unreadTokenFiles": [],
+    "unconvertible": {
+      "count": 0,
+      "samples": []
+    },
+    "undecided": {
+      "count": 0,
+      "samples": []
+    },
+    "couldNotJudge": [],
+    "complete": true,
+    "documentation": {
+      "version": "0.1.0",
+      "status": "not-checked",
+      "packages": [],
+      "limits": [
+        "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+        "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+        "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+      ]
+    }
+  },
+  "suppressions": [],
+  "ratios": {
+    "literal-colors-per-distinct": 1,
+    "colors-per-distinct-in-scope": 1,
+    "ambiguous-share": 0
+  },
+  "next": [
+    {
+      "command": "ds-loop scorecard .",
+      "why": "pin these ratios as run 1 — a ratio only says something against a previous row"
+    },
+    {
+      "command": "ds-loop install",
+      "why": "wire your coding agent to the skill, instead of pasting that path yourself",
+      "setup": true
+    },
+    {
+      "command": "ds-loop guard on",
+      "why": "report high-severity findings after each Claude Code edit (never blocks)"
+    }
+  ],
+  "verdict": "clean",
+  "suggestionIndex": {
+    "candidates": [],
+    "declarations": []
+  }
+}

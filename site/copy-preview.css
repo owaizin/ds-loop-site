@@ -1,0 +1,17 @@
+@font-face{font-family:Manrope;src:url('assets/manrope.ttf') format('truetype');font-display:swap}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#080512;color:#eee8ff;font-family:Manrope,system-ui,sans-serif}
+body{height:100dvh;display:flex;flex-direction:column}
+.comparison-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex:none;padding:12px 24px;background:#151021;border-bottom:1px solid #b9a5d033}
+.comparison-title{display:grid;gap:3px;font-size:13px}.comparison-title span{font-size:11px;color:#b5a8c8}
+.comparison-tools{display:flex;align-items:center;gap:18px}.highlight-control{display:flex;gap:7px;align-items:center;font-size:12px;white-space:nowrap;cursor:pointer}.highlight-control input{accent-color:#a97aff;width:16px;height:16px;margin:0}.highlight-control input:focus-visible{outline:2px solid #dfc8ff;outline-offset:3px}
+.copy-switch{display:flex;border:1px solid #b9a5d040;padding:3px;margin:0;border-radius:7px;gap:3px;flex:none}
+.copy-switch legend,.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.copy-switch label{position:relative;cursor:pointer}.copy-switch input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.copy-switch span{display:block;padding:10px 16px;border-radius:4px;font-size:13px;font-weight:650;color:#b5a8c8}
+.copy-switch input:checked+span{background:#6940ae;color:white;box-shadow:0 1px 3px #0005}
+.copy-switch input:focus-visible+span{outline:2px solid #dfc8ff;outline-offset:3px}
+.open-version{font-size:12px;color:#d1bedf;text-decoration:none}.open-version:hover{text-decoration:underline}.open-version:focus-visible{outline:2px solid #dfc8ff;outline-offset:5px}
+.comparison-stage{flex:1;min-height:0}.comparison-stage iframe{border:0;width:100%;height:100%;display:block;background:#080512}.comparison-stage iframe[hidden]{display:none}
+@media(max-width:700px){.comparison-bar{padding:10px 14px;gap:10px;flex-wrap:wrap}.comparison-title{flex:1}.comparison-title span{display:none}.copy-switch{order:3;width:100%}.copy-switch label{flex:1;text-align:center}.copy-switch span{padding:10px 8px}.open-version{font-size:11px}}
+@media(max-width:900px){.comparison-tools{gap:9px}.comparison-tools .open-version{display:none}.comparison-bar{gap:12px}.highlight-control{font-size:11px}}
