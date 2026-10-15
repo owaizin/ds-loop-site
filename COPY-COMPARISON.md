@@ -1,8 +1,10 @@
 # Homepage copy comparison
 
+Latest selection: the user approved the later Claude copy-and-flow version. It is now the main homepage; see `CLAUDE-COPY-REVIEW.md`. The comparison described below remains an earlier review snapshot.
+
 Open http://127.0.0.1:4187/copy-preview.html . The top control switches between Current copy and Edited copy. Both versions use the same design, graphics, and demos. Highlight changes outlines changed text in either version; hovering reveals the other wording. Disable highlights for a clean page review. The comparison keeps the corresponding section in view, carries over the selected loop/report step and expanded FAQ answers, and supports native radio-button keyboard controls. The selected version is stored in the URL. Open this version opens the selected standalone page on desktop.
 
-The original homepage is unchanged. copy-current.html is a snapshot of it with a noindex directive. copy-edited.html is the proposed edit, with separate copies of the dynamic loop and report text scripts. These files are review artifacts; changes to the main page do not automatically regenerate the snapshots. None is linked from the production homepage.
+As of October 15, the selected edited copy is applied to the main homepage, including the dynamic loop and report text. copy-current.html is a snapshot of the earlier homepage with a noindex directive. copy-edited.html is the selected edit, with separate copies of the dynamic loop and report text scripts. These files are review artifacts; changes to the main page do not automatically regenerate the snapshots. None is linked from the production homepage.
 
 ## What changed
 

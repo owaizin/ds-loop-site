@@ -1,0 +1,79 @@
+/* Homepage editorial roles. Specimen iframes keep their own product type systems. */
+.homepage-polish {
+  --type-display: clamp(2.25rem, 4vw, 3.5rem);
+  --type-section: clamp(1.75rem, 2.6vw, 2.25rem);
+  --type-subsection: clamp(1.375rem, 2vw, 1.75rem);
+  --type-card: 1.25rem;
+  --type-body: 1rem;
+  --type-label: .875rem;
+  --type-caption: .8125rem;
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+.homepage-polish :is(h1,h2,h3) { text-wrap: balance; overflow-wrap: break-word; }
+.homepage-polish p { text-wrap: pretty; letter-spacing: 0; }
+.homepage-polish .hero-intro h1 {
+  font-size: var(--type-display); font-weight: 500; line-height: 1.2;
+  letter-spacing: -.02em; max-width: 30ch; margin-inline: auto;
+}
+.homepage-polish .hero-summary .lead {
+  font-family: var(--body); font-size: 1.125rem; font-weight: 400;
+  line-height: 1.6; max-width: 62ch;
+}
+.homepage-polish main :is(.drift-copy,.entry-heading,.report-story-heading,.scope-intro,.sb-heading,.start-heading) > h2 {
+  font-size: var(--type-section); font-weight: 500; line-height: 1.3;
+  letter-spacing: -.02em; max-width: 27ch; margin: 0; text-align: start;
+}
+.homepage-polish :is(.entry-path,.scope-panel,.adoption-sequence) h3 {
+  font-size: var(--type-card); font-weight: 600; line-height: 1.4; letter-spacing: -.01em;
+}
+.homepage-polish :is(.copy-reuse-heading,.report-document-head,.report-title-block,.report-code-scene,.result-receipt) h3,
+.homepage-polish .home-close .home-faq h2 {
+  font-size: var(--type-subsection); font-weight: 500; line-height: 1.3; letter-spacing: -.02em;
+}
+.homepage-polish :is(.drift-copy,.entry-heading,.report-story-heading,.scope-intro,.sb-heading) > p,
+.homepage-polish :is(.entry-path,.scope-panel,.adoption-sequence) p,
+.homepage-polish .entry-path > span,
+.homepage-polish .home-close .copy-start-intro > p:first-child,
+.homepage-polish .home-close .home-faq details p {
+  font-size: var(--type-body); font-weight: 400; line-height: 1.6; max-width: 65ch;
+}
+.homepage-polish :is(.copy-reuse-heading,.report-document-head,.report-title-block,.report-code-scene,.result-receipt,.report-caption) p {
+  font-size: var(--type-body); line-height: 1.6; max-width: 65ch;
+}
+.homepage-polish .home-faq summary { font-size: var(--type-body); font-weight: 500; line-height: 1.5; }
+.homepage-polish :is(.hero-descriptor,.nav a,.actions a,.report-navigation strong,.restore-command code,.crafted-footer a) {
+  font-size: var(--type-label); line-height: 1.5;
+}
+.homepage-polish :is(.copy-trust-detail,.close-note,.restore-copy-status,.report-disclosure,.sb-note,.crafted-footer p),
+.homepage-polish .restore-command button {
+  font-size: var(--type-caption); font-weight: 400; line-height: 1.6;
+}
+.homepage-polish .copy-label { font-size: .75rem; line-height: 1.5; letter-spacing: .05em; }
+.homepage-polish a { text-underline-offset: .2em; text-decoration-thickness: from-font; }
+.homepage-polish .report-step-number { font-variant-numeric: tabular-nums; }
+
+/* Read heading → install actions → steps in DOM order and on narrow screens. */
+.homepage-polish .start-heading {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  align-items: start; gap: 48px;
+}
+.homepage-polish .home-close .start-heading .copy-start-intro { margin: 0; max-width: none; min-width: 0; }
+.homepage-polish .start-heading .copy-start-intro > p:first-child { margin: 0; }
+.homepage-polish .home-close .start-heading .actions { margin-top: 24px; gap: 16px 24px; flex-wrap: wrap; }
+.homepage-polish .home-close .start-heading .restore-command { margin-top: 24px; gap: 12px 16px; }
+.homepage-polish .home-close .start-heading .close-note { margin-top: 12px; }
+.homepage-polish .home-close .adoption-sequence { margin-top: 48px; }
+@media(max-width:760px) {
+  .homepage-polish { --type-display: clamp(2rem, 6vw, 2.75rem); }
+  .homepage-polish .nav a { white-space: nowrap; font-size: var(--type-caption); padding-inline: 8px; }
+  .homepage-polish .start-heading { grid-template-columns: minmax(0,1fr); gap: 24px; }
+  .homepage-polish .hero-intro h1 { line-height: 1.4; }
+  .homepage-polish .hero-summary .lead { font-size: var(--type-body); }
+  .homepage-polish main :is(.drift-copy,.entry-heading,.report-story-heading,.scope-intro,.sb-heading,.start-heading) > h2 { line-height: 1.4; }
+  .homepage-polish .copy-phrase { white-space: normal; }
+  .homepage-polish .home-close .adoption-sequence { margin-top: 32px; }
+}
+
+.homepage-polish .report-title-block .report-overline { font-size: var(--type-caption); line-height: 1.5; }
+.homepage-polish .scope-panels .scope-panel p { font-size: var(--type-body); font-weight: 400; line-height: 1.6; max-width: 65ch; }

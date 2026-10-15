@@ -1,290 +1,180 @@
-// Authored component reuse, never a live generation or automatic repair claim.
+// Authored formation demo: library signals, traced wireframes, then real components.
 const bench = document.querySelector('.workbench');
 const stage = document.querySelector('.bench-stage');
-const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const screen = document.getElementById('assembly-screen');
 const status = document.querySelector('.assembly-status');
-const replay = document.querySelector('.replay');
 const pause = document.querySelector('.pause');
+const tabs = [...document.querySelectorAll('[data-screen]')];
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const ns = 'http://www.w3.org/2000/svg';
+const ease = 'cubic-bezier(.16,1,.3,1)'; // Retained from the original formation.
 const phases = [
-  { key: 'shell', start: 350, label: 'Reusing the workspace layout' },
-  { key: 'type', start: 1600, label: 'Applying the shared type hierarchy' },
-  { key: 'controls', start: 2750, label: 'Reusing controls and surfaces' },
-  { key: 'rows', start: 4050, label: 'Applying table patterns and states' },
+  {key:'shell', start:350, label:'Reusing space and surfaces'},
+  {key:'type', start:1600, label:'Applying the shared type hierarchy'},
+  {key:'controls', start:2750, label:'Connecting shared controls'},
+  {key:'patterns', start:4050, label:'Composing patterns for this task'},
 ];
 const duration = 5700;
-const ease = 'cubic-bezier(.16,1,.3,1)';
-const parts = [...document.querySelectorAll('[data-part]')];
-const routes = document.querySelector('.connection-routes');
+const hold = 4200;
+let animations = [], parts = [], clock, frame, current = '', visible = false;
+let started = false, userPaused = false, complete = true, automatic = true;
+let selected = 1;
+const routes = document.createElementNS(ns, 'svg');
+routes.classList.add('formation-routes');
+routes.setAttribute('aria-hidden', 'true');
+stage.prepend(routes);
 const signals = new Map();
-let animations = [];
-let clock;
-let frame;
-let visible = false;
-let userPaused = false;
-let complete = true;
-let started = false;
-let currentPhase = '';
-const screens = {
-  billing: {
-    area: 'Billing',
-    description: 'Manage invoices and payment details.',
-    action: 'Download invoices',
-    metricA: 'Current plan',
-    valueA: 'Team',
-    detailA: '12 seats in your workspace',
-    metricB: 'Next invoice',
-    valueB: '$249.00',
-    detailB: 'Billed on October 1',
-    filter: 'All invoices',
-    search: 'Search invoices',
-    column: 'Invoice',
-    columnB: 'Amount',
-    row1: 'September subscription',
-    row2: 'Additional seats',
-    row3: 'August subscription',
-    amount1: '$249.00',
-    amount2: '$48.00',
-    amount3: '$249.00',
-    status1: 'Paid',
-    status2: 'Pending',
-    status3: 'Paid',
-    symbol1: '01',
-    symbol2: '02',
-    symbol3: '03',
-  },
-  members: {
-    area: 'Members',
-    description: 'Manage access to your workspace.',
-    action: 'Invite member',
-    metricA: 'Workspace members',
-    valueA: '12',
-    detailA: 'Across 3 product teams',
-    metricB: 'Pending invites',
-    valueB: '2',
-    detailB: 'Awaiting an acceptance',
-    filter: 'All members',
-    search: 'Search members',
-    column: 'Name',
-    columnB: 'Role',
-    row1: 'Jordan Lee',
-    row2: 'Alex Morgan',
-    row3: 'Sam Rivera',
-    amount1: 'Admin',
-    amount2: 'Editor',
-    amount3: 'Viewer',
-    status1: 'Active',
-    status2: 'Invited',
-    status3: 'Active',
-    symbol1: 'JL',
-    symbol2: 'AM',
-    symbol3: 'SR',
-  },
-};
-for (const part of parts) {
-  const wire = document.createElement('div');
-  wire.className = 'wire-lines';
-  wire.setAttribute('aria-hidden', 'true');
-  for (let i = 0; i < 3; i++) wire.append(document.createElement('i'));
-  part.append(wire);
-  const svg = document.createElementNS(ns, 'svg');
-  svg.classList.add('part-outline');
-  svg.setAttribute('aria-hidden', 'true');
-  const rect = document.createElementNS(ns, 'rect');
-  rect.setAttribute('x', '1');
-  rect.setAttribute('y', '1');
-  rect.setAttribute('rx', '6');
-  rect.setAttribute('pathLength', '100');
-  svg.append(rect);
-  part.append(svg);
-}
 for (const phase of phases) {
   const route = document.createElementNS(ns, 'path');
-  route.classList.add('route');
-  route.dataset.route = phase.key;
-  const signal = route.cloneNode();
-  signal.classList.remove('route');
-  signal.classList.add('signal');
+  route.classList.add('formation-route');
+  const signal = document.createElementNS(ns, 'path');
+  signal.classList.add('formation-signal');
   signal.setAttribute('pathLength', '100');
   routes.append(route, signal);
-  signals.set(phase.key, signal);
+  signals.set(phase.key, {route, signal});
+}
+function prepare() {
+  parts = [...screen.querySelectorAll('[data-part]')];
+  for (const part of parts) {
+    const wire = document.createElement('div');
+    wire.className = 'formation-wire';
+    wire.setAttribute('aria-hidden', 'true');
+    for (let i=0;i<3;i++) wire.append(document.createElement('i'));
+    const outline = document.createElementNS(ns,'svg');
+    outline.classList.add('formation-outline');
+    outline.setAttribute('aria-hidden','true');
+    const rect = document.createElementNS(ns,'rect');
+    for (const [key,value] of Object.entries({x:1,y:1,rx:6,pathLength:100})) rect.setAttribute(key,value);
+    outline.append(rect);
+    part.append(wire,outline);
+  }
 }
 function measure() {
   const root = stage.getBoundingClientRect();
+  routes.setAttribute('viewBox',`0 0 ${root.width} ${root.height}`);
   for (const phase of phases) {
-    const from = document.querySelector(`[data-source="${phase.key}"] .source-port`).getBoundingClientRect();
-    const to = document.querySelector(`[data-part="${phase.key}"]`).getBoundingClientRect();
-    const x1 = from.left - root.left + from.width / 2;
-    const y1 = from.top - root.top + from.height / 2;
-    const x2 = to.left - root.left;
-    const y2 = to.top - root.top + to.height / 2;
-    const mid = x1 + (x2 - x1) * 0.5;
-    const d = `M${x1} ${y1}H${mid - 10}Q${mid} ${y1} ${mid} ${y1 + (y2 > y1 ? 10 : -10)}V${y2 + (y2 > y1 ? -10 : 10)}Q${mid} ${y2} ${mid + 10} ${y2}H${x2}`;
-    document.querySelector(`.route[data-route="${phase.key}"]`).setAttribute('d', d);
-    signals.get(phase.key).setAttribute('d', d);
+    const from = document.querySelector(`[data-source="${phase.key}"]`).getBoundingClientRect();
+    const to = screen.querySelector(`[data-part="${phase.key}"]`).getBoundingClientRect();
+    const x1=from.right-root.left, y1=from.top-root.top+from.height/2;
+    const x2=to.left-root.left, y2=to.top-root.top+Math.min(to.height/2,42);
+    const mid=(x1+x2)/2;
+    const path=`M${x1} ${y1}C${mid} ${y1},${mid} ${y2},${x2} ${y2}`;
+    const {route,signal}=signals.get(phase.key);
+    route.setAttribute('d',path); signal.setAttribute('d',path);
   }
 }
-function finish() {
-  complete = true;
-  bench.dataset.playback = 'complete';
-  cancelAnimationFrame(frame);
-  for (const animation of animations) animation.cancel();
-  animations = [];
-  for (const part of parts) part.dataset.state = 'done';
-  for (const source of document.querySelectorAll('[data-source]')) {
-    source.dataset.active = 'false';
-    source.dataset.complete = 'true';
+// Reserve the tallest composition so automatic rotation never moves the surrounding page.
+function reserveHeight() {
+  let height=0;
+  for (const tab of tabs) {
+    const clone=document.getElementById(`screen-${tab.dataset.screen}`).content.firstElementChild.cloneNode(true);
+    clone.classList.add('formation-measure');
+    clone.setAttribute('aria-hidden','true');
+    screen.append(clone); height=Math.max(height,clone.getBoundingClientRect().height); clone.remove();
   }
-  status.textContent = 'Built from the shared foundation';
-  document.querySelector('.screen-count').textContent = '4 foundations reused';
-  pause.disabled = true;
-  pause.textContent = 'Pause';
+  screen.style.minHeight=`${Math.ceil(height)}px`;
+  measure();
+}
+function clear() {
+  cancelAnimationFrame(frame);
+  animations.forEach(a=>a.cancel()); animations=[];
+}
+function settle() {
+  complete=true; bench.dataset.building='false';
+  for(const part of parts) part.dataset.state='done';
+  for(const source of document.querySelectorAll('[data-source]')) {
+    source.dataset.active='false'; source.dataset.complete='true';
+  }
+  status.textContent=`${tabs[selected].textContent} built from shared foundations`;
+  document.querySelector('.screen-count').textContent='4 / 4';
 }
 function tick() {
-  if (complete) return;
-  const time = Number(clock.currentTime) || 0;
-  const phase = [...phases].reverse().find((item) => time >= item.start);
-  if (phase && phase.key !== currentPhase) {
-    currentPhase = phase.key;
-    status.textContent = phase.label;
-    for (const source of document.querySelectorAll('[data-source]'))
-      source.dataset.active = String(source.dataset.source === phase.key);
+  const time=Number(clock.currentTime)||0;
+  if(!complete) {
+    const phase=[...phases].reverse().find(p=>time>=p.start);
+    if(phase && phase.key!==current) {
+      current=phase.key; status.textContent=phase.label;
+      for(const source of document.querySelectorAll('[data-source]')) source.dataset.active=String(source.dataset.source===current);
+    }
+    for(const part of parts) if(time>=phases.find(p=>p.key===part.dataset.part).start+400) part.dataset.state='built';
+    for(const p of phases) document.querySelector(`[data-source="${p.key}"]`).dataset.complete=String(time>=p.start+900);
+    document.querySelector('.screen-count').textContent=`${phases.filter(p=>time>=p.start+900).length} / 4`;
+    if(time>=duration) settle();
   }
-  for (const part of parts) {
-    const p = phases.find((item) => item.key === part.dataset.part);
-    if (time >= p.start + 400) part.dataset.state = 'built';
+  if(time>=duration+hold) {
+    if(automatic) { select((selected+1)%tabs.length); return; }
+    clear(); pause.disabled=true; return;
   }
-  document.querySelector('.screen-count').textContent =
-    `${phases.filter((p) => time >= p.start + 900).length} / 4 foundations reused`;
-  for (const p of phases)
-    document.querySelector(`[data-source="${p.key}"]`).dataset.complete = String(time >= p.start + 900);
-  if (time >= duration) {
-    finish();
-    return;
-  }
-  if (!userPaused && visible && !document.hidden) frame = requestAnimationFrame(tick);
+  frame=requestAnimationFrame(tick);
 }
 function sync() {
-  const playing = !complete && !userPaused && visible && !document.hidden;
-  bench.dataset.playback = complete ? 'complete' : playing ? 'playing' : 'paused';
-  bench.dataset.inView = String(visible);
-  for (const animation of animations) playing ? animation.play() : animation.pause();
-  pause.textContent = userPaused ? 'Resume' : 'Pause';
-  pause.setAttribute('aria-pressed', String(userPaused));
   cancelAnimationFrame(frame);
-  if (playing) frame = requestAnimationFrame(tick);
+  const running=visible&&!document.hidden&&!userPaused&&!reduced.matches;
+  bench.dataset.playback=running?'playing':'paused';
+  bench.dataset.inView=String(visible);
+  pause.textContent=userPaused?'Resume':'Pause';
+  pause.setAttribute('aria-pressed',String(userPaused));
+  for(const animation of animations) running?animation.play():animation.pause();
+  if(running && clock && animations.length) frame=requestAnimationFrame(tick);
 }
 function build() {
-  cancelAnimationFrame(frame);
-  for (const animation of animations) animation.cancel();
-  animations = [];
-  if (reduced.matches) {
-    finish();
-    return;
-  }
-  complete = false;
-  started = true;
-  userPaused = false;
-  currentPhase = '';
-  pause.disabled = false;
-  status.textContent = 'Starting with the shared foundations';
-  document.querySelector('.screen-count').textContent = '0 / 4 foundations reused';
+  clear(); started=true; current=''; complete=false;
+  if(reduced.matches) { settle();pause.disabled=true;return; }
+  pause.disabled=false; bench.dataset.building='true';
+  status.textContent='Starting with the shared foundations';
+  document.querySelector('.screen-count').textContent='0 / 4';
+  for(const source of document.querySelectorAll('[data-source]')) {source.dataset.active='false';source.dataset.complete='false';}
   measure();
-  for (const source of document.querySelectorAll('[data-source]')) {
-    source.dataset.active = 'false';
-    source.dataset.complete = 'false';
+  for(const part of parts) {
+    part.dataset.state='draft';
+    const phase=phases.find(p=>p.key===part.dataset.part);
+    const children=[...part.children].filter(e=>!e.classList.contains('formation-wire')&&!e.classList.contains('formation-outline'));
+    children.forEach((child,i)=>animations.push(child.animate([
+      {opacity:0,transform:'translateY(14px) scale(.97)'},
+      {opacity:1,transform:'translateY(0) scale(1)'},
+    ],{duration:650,delay:phase.start+350+i*60,easing:ease,fill:'both'})));
+    animations.push(part.querySelector('.formation-wire').animate([{opacity:.85},{opacity:0}],{duration:400,delay:phase.start+250,easing:ease,fill:'both'}));
+    animations.push(part.querySelector('rect').animate([
+      {strokeDashoffset:100,opacity:0},{strokeDashoffset:100,opacity:1,offset:.05},
+      {strokeDashoffset:0,opacity:1,offset:.7},{strokeDashoffset:0,opacity:0},
+    ],{duration:1000,delay:phase.start,easing:ease,fill:'both'}));
   }
-  const counters = {};
-  for (const part of parts) {
-    part.dataset.state = 'draft';
-    const p = phases.find((item) => item.key === part.dataset.part);
-    const order = counters[p.key] || 0;
-    counters[p.key] = order + 1;
-    const delay = p.start + 350 + order * 110;
-    animations.push(
-      part.querySelector('.part-content').animate(
-        [
-          { opacity: 0, transform: 'translateY(8px)' },
-          { opacity: 1, transform: 'translateY(0)' },
-        ],
-        { duration: 650, delay, easing: ease, fill: 'both' },
-      ),
-    );
-    animations.push(
-      part.querySelector('.wire-lines').animate([{ opacity: 0.8 }, { opacity: 0 }], {
-        duration: 400,
-        delay: delay - 100,
-        easing: ease,
-        fill: 'both',
-      }),
-    );
-    animations.push(
-      part.querySelector('.part-outline rect').animate(
-        [
-          { strokeDashoffset: 100, opacity: 0 },
-          { strokeDashoffset: 100, opacity: 1, offset: 0.05 },
-          { strokeDashoffset: 0, opacity: 1, offset: 0.7 },
-          { strokeDashoffset: 0, opacity: 0 },
-        ],
-        { duration: 1000, delay: p.start, easing: ease, fill: 'both' },
-      ),
-    );
-    if (p.key === 'rows')
-      for (const [index, row] of [...part.querySelectorAll('.product-row')].entries())
-        animations.push(
-          row.animate(
-            [
-              { opacity: 0, transform: 'translateY(6px)' },
-              { opacity: 1, transform: 'translateY(0)' },
-            ],
-            { duration: 500, delay: delay + index * 110, easing: ease, fill: 'both' },
-          ),
-        );
-  }
-  for (const p of phases)
-    animations.push(
-      signals.get(p.key).animate(
-        [
-          { strokeDashoffset: 100, opacity: 0 },
-          { strokeDashoffset: 80, opacity: 1, offset: 0.12 },
-          { strokeDashoffset: -18, opacity: 1, offset: 0.85 },
-          { strokeDashoffset: -25, opacity: 0 },
-        ],
-        { duration: 1000, delay: p.start - 150, easing: 'linear', fill: 'both' },
-      ),
-    );
-  clock = bench.animate([{ opacity: 1 }, { opacity: 1 }], { duration, fill: 'both' });
-  animations.push(clock);
-  sync();
+  for(const phase of phases) animations.push(signals.get(phase.key).signal.animate([
+    {strokeDashoffset:100,opacity:0},{strokeDashoffset:80,opacity:1,offset:.12},
+    {strokeDashoffset:-18,opacity:1,offset:.85},{strokeDashoffset:-25,opacity:0},
+  ],{duration:1000,delay:phase.start-150,easing:'linear',fill:'both'}));
+  clock=bench.animate([{opacity:1},{opacity:1}],{duration:duration+hold,fill:'both'});
+  animations.push(clock); sync();
 }
-for (const button of document.querySelectorAll('[data-screen]'))
-  button.addEventListener('click', () => {
-    for (const tab of document.querySelectorAll('[data-screen]'))
-      tab.setAttribute('aria-pressed', String(tab === button));
-    const data = screens[button.dataset.screen];
-    for (const item of document.querySelectorAll('[data-nav]'))
-      item.classList.toggle('selected-nav', item.dataset.nav === button.dataset.screen);
-    for (const node of document.querySelectorAll('[data-copy]')) node.textContent = data[node.dataset.copy];
-    build();
-  });
-replay.addEventListener('click', build);
-pause.addEventListener('click', () => {
-  userPaused = !userPaused;
-  sync();
-});
-document.addEventListener('visibilitychange', sync);
-reduced.addEventListener('change', () => {
-  if (reduced.matches) finish();
-});
-new ResizeObserver(measure).observe(stage);
-new IntersectionObserver(
-  ([entry]) => {
-    visible = entry.isIntersecting;
-    if (visible && !started) build();
-    else sync();
-  },
-  { threshold: 0.25 },
-).observe(stage);
-document.querySelector('.bench-controls').hidden = false;
-for (const part of parts) if (!reduced.matches) part.dataset.state = 'draft';
-measure();
+function select(index) {
+  clear(); selected=index;
+  tabs.forEach((tab,i)=>tab.setAttribute('aria-pressed',String(i===index)));
+  screen.replaceChildren(document.getElementById(`screen-${tabs[index].dataset.screen}`).content.cloneNode(true));
+  prepare();build();
+}
+tabs.forEach((tab,i)=>tab.addEventListener('click',()=>{automatic=false;userPaused=false;select(i);}));
+document.querySelector('.replay').addEventListener('click',()=>{userPaused=false;build();});
+pause.addEventListener('click',()=>{userPaused=!userPaused;sync();});
+// A keyboard reader owns their chosen screen; never rotate it out from under focus.
+document.querySelector('.screen-tabs').addEventListener('focusin',()=>{automatic=false;});
+document.addEventListener('visibilitychange',sync);
+reduced.addEventListener('change',()=>{if(reduced.matches){clear();settle();pause.disabled=true;}else build();});
+const observeVisibility=([entry])=>{
+  visible=entry.isIntersecting;
+  if(visible&&!started) build();else sync();
+};
+// Observe the actual embed in its host viewport; nested iframe clipping can leave
+// an internal observer stale after the host resizes an auto-height frame.
+try {
+  if(window.frameElement) new parent.IntersectionObserver(observeVisibility,{threshold:0}).observe(window.frameElement);
+  else new IntersectionObserver(observeVisibility,{threshold:0}).observe(stage);
+} catch {
+  new IntersectionObserver(observeVisibility,{threshold:0}).observe(stage);
+}
+prepare();
+let measuredWidth=0;
+new ResizeObserver(()=>{const width=screen.clientWidth;if(width!==measuredWidth){measuredWidth=width;reserveHeight();}else measure();}).observe(stage);
+document.fonts.ready.then(reserveHeight);
+document.querySelector('.bench-controls').hidden=false;
+document.querySelector('.screen-tabs').hidden=false;
+reserveHeight();

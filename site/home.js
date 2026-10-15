@@ -20,30 +20,30 @@ for (const specimenFrame of document.querySelectorAll('[data-specimen-frame]')) 
 const loopSteps = {
   measure: {
     owner: 'Your agent + local checks',
-    title: 'Find the system work that matters.',
-    copy: 'Your agent reads the product code and existing decisions, then uses supported checks to establish facts. The assessment explains the problem, its evidence, and what still needs inspection.',
+    title: 'Find what needs to change.',
+    copy: 'Your agent reads your code and project notes. Local checks flag supported token and styling issues. Together, they give you a starting point and show what still needs a closer look.',
     link: 'See the evidence',
     href: '#delivery-report',
   },
   decide: {
     owner: 'Your team + agent',
-    title: 'Agree on a useful, bounded change.',
-    copy: 'Your agent recommends what to reuse, what to improve, and what to preserve. Agree on the affected workflows and how you will know the result works before implementation begins.',
+    title: 'Choose what to change and what to keep.',
+    copy: 'Your agent proposes a plan. Choose the screens to work on, keep the design choices that still fit, and agree on what to test.',
     link: 'Read the example decision',
     href: 'worked-example.html#picture-title',
   },
   verify: {
     owner: 'Your coding agent',
-    title: 'Put the decision into product code.',
-    copy: 'Build missing foundations or adopt the components you already have. Your agent carries the authorized changes into the agreed workflows and updates the guidance alongside the code.',
+    title: 'Use the shared components in your screens.',
+    copy: 'Your agent builds what is missing or connects the components you already have. It changes the screens you agreed on and updates the examples with the code.',
     link: 'Inspect the applied change',
     href: 'worked-example.html#source',
   },
   retain: {
     owner: 'Your agent + team review',
-    title: 'Check the result. Leave a usable handoff.',
-    copy: 'Rerun relevant checks and inspect the affected states, themes, and behavior. Retain the decision, usage guidance, and remaining limits where the next contributor can find them.',
-    link: 'Inspect the checks and handoff',
+    title: 'Test the change and leave useful notes.',
+    copy: 'Run the relevant checks and try the changed screens. Save what changed, why, how to use it, and what still needs testing.',
+    link: 'Read the tests and notes',
     href: 'worked-example.html#checks',
   },
 };
@@ -74,12 +74,12 @@ const loopRecords = [
     valueB: 'Existing theme palette',
   },
   {
-    stage: '04 / VERIFY & RETAIN',
+    stage: '04 / CHECK & DOCUMENT',
     title: 'Check it. Keep the decision.',
     labelA: 'Review',
     valueA: 'Themes + keyboard',
-    labelB: 'Handoff',
-    valueB: 'Decision + check limits',
+    labelB: 'Notes',
+    valueB: 'Why + what was tested',
   },
 ];
 

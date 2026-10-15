@@ -1,0 +1,90 @@
+/* Ember glass: an opt-in website variant and the shared report presentation. */
+.ember-theme {
+  --paper: var(--ember-aubergine); --white: var(--ember-surface); --deep:#261330;
+  --ink:var(--ember-ink); --muted:var(--ember-muted); --line:var(--ember-line);
+  --line-strong:#8e749b; --accent:var(--ember-lilac); --focus:var(--ember-focus);
+  --surface-hover:#3b2449; --frame-line:#c5b3cd30; --frame-mark:#c5b3cd65;
+  background-color:var(--ember-aubergine);
+  background-image:radial-gradient(ellipse 70% 600px at 75% -180px,#ff743d17,transparent);
+}
+.visual-home .button.button-ember,
+.visual-home .nav .nav-start.button-ember,
+.ember-theme .button,
+.ember-theme .nav .nav-start,
+.practice-home.ember-theme .button {
+  color:var(--ember-action-text); background:var(--ember-action);
+  border:1px solid var(--ember-lilac); border-radius:8px;
+  box-shadow:inset 0 1px 0 #ffffff70,inset 0 -1px 0 #24102b30,0 6px 20px -12px #ff743d80;
+  text-shadow:none; transition:filter 160ms ease,box-shadow 160ms ease;
+}
+.visual-home .button.button-ember:hover,
+.visual-home .nav .nav-start.button-ember:hover,
+.ember-theme .button:hover,
+.ember-theme .nav .nav-start:hover { background:var(--ember-action); color:var(--ember-action-text); filter:brightness(1.07); box-shadow:inset 0 1px 0 #ffffff80,0 8px 24px -12px #ff743d90; }
+.ember-theme .hero-intro h1 em { color:var(--ember-lilac); }
+.ember-theme .restored-loop-stop,
+.ember-theme .restored-loop-record { background:var(--ember-glass),#2c1835ed; border-color:#b9a0ff70; box-shadow:var(--ember-glass-shadow); backdrop-filter:blur(16px); }
+.ember-theme .restored-loop-stop[aria-pressed=true] { background:var(--ember-glass),#50315aed; border-color:var(--ember-lilac); }
+.ember-theme .restored-loop-stop small { color:var(--ember-muted); }
+.ember-theme .home-close { background:radial-gradient(ellipse at 85% 100%,#ff743d15,transparent 55%),var(--ember-aubergine); }
+/* Reports use the same palette whether or not the homepage variant is selected. */
+.report-workbench {
+  --paper:var(--ember-aubergine); --white:var(--ember-surface); --ink:var(--ember-ink);
+  --muted:var(--ember-muted); --line:var(--ember-line); --accent:var(--ember-lilac);
+  --focus:var(--ember-focus); background:var(--ember-aubergine);
+  border-color:var(--ember-line); box-shadow:var(--ember-glass-shadow);
+}
+.report-workbench .report-navigation { background:var(--ember-aubergine); }
+.report-workbench .report-navigation button[aria-pressed=true] { background:var(--ember-glass),#ffffff06; border-color:#b9a0ff66; }
+.report-workbench .report-document-preview { background:var(--ember-glass),var(--ember-surface); }
+.report-workbench .report-document-head p,.report-workbench .report-caption p { color:var(--ember-muted); }
+.report-workbench .report-document-head h3,.report-workbench .report-finding-strip strong { color:var(--ember-ink); }
+.report-workbench .report-progress { background:var(--ember-action); }
+.report-workbench .report-source-preview { background:#20102a; border-color:var(--ember-line); }
+.report-workbench .report-source-preview>div { background:#37213f; }
+.report-workbench .report-caption { background:#24112e; border-color:var(--ember-line); }
+.report-workbench .report-next-step>a { color:var(--ember-ink); }
+.practice-home.ember-theme .report-shell,
+.practice-home.ember-theme .report-preview { background:var(--ember-glass),var(--ember-surface); border-color:var(--ember-line); box-shadow:var(--ember-glass-shadow); }
+.practice-home.ember-theme .report-preview { color:var(--ember-ink); color-scheme:dark; }
+.practice-home.ember-theme .report-topline,
+.practice-home.ember-theme .report-kicker,
+.practice-home.ember-theme .report-flow small { color:var(--ember-muted); font-size:12px; letter-spacing:.04em; }
+.practice-home.ember-theme .report-topline { border-color:var(--ember-line); flex-wrap:wrap; gap:12px; }
+.practice-home.ember-theme .report-flow p { color:var(--ember-muted); font-size:14px; line-height:1.7; }
+.practice-home.ember-theme .report-link { color:var(--ember-lilac); font-size:14px; }
+.practice-home.ember-theme .flow-number,
+.practice-home.ember-theme .flow-number i { color:var(--ember-lilac); }
+.practice-home.ember-theme .evidence-table { color:var(--ember-ink); }
+/* The study is a bounded preview, including when the surrounding page is Violet orbit. */
+.style-guide main>.wrap>.ember-study { padding-block:64px; background:var(--ember-aubergine); color:var(--ember-ink); }
+.ember-study .sg-section-heading>p { color:var(--ember-muted); }
+.ember-study .sg-kicker { color:var(--ember-lilac); }
+.ember-study-layout { display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:center; }
+.ember-palette { display:flex; gap:12px; margin:24px 0; }
+.ember-palette>div { flex:1; min-width:0; }
+.ember-palette i { display:block; height:56px; border:1px solid #ffffff30; border-radius:8px; }
+.ember-palette span,.ember-palette code { display:block; font-size:12px; color:var(--ember-muted); margin-top:8px; }
+.ember-study-copy p { color:var(--ember-muted); font-size:14px; }
+.ember-study-copy a { color:var(--ember-lilac); }
+.ember-stage { position:relative; isolation:isolate; padding:40px 24px; border-radius:16px; border:1px solid #b9a0ff30; background:radial-gradient(ellipse at 95% 85%,#ff743d55,transparent 55%),radial-gradient(ellipse at 0 10%,#9a74ed66,transparent 60%),#1e0e26; overflow:hidden; }
+.ember-glass-card { position:relative; padding:30px; border:1px solid #d7b9f067; border-radius:14px; background:var(--ember-glass),#2c1835b8; backdrop-filter:blur(16px); box-shadow:var(--ember-glass-shadow); }
+.ember-glass-card::before { content:''; position:absolute; inset:0 15% auto;height:1px;background:linear-gradient(90deg,transparent,#ffffffb0,transparent); }
+.ember-glass-card>span { font:12px/1.6 var(--mono); color:var(--ember-muted); }
+.ember-glass-card h3 { font:500 36px/1.15 var(--display); letter-spacing:-.035em; margin:22px 0 14px; }
+.ember-glass-card p { font-size:14px; color:var(--ember-muted); margin-bottom:28px; max-width:36ch; }
+.ember-comparison { display:flex; flex-wrap:wrap; gap:20px 32px; align-items:end; padding-top:28px; }
+.ember-comparison>div>span { display:block; font-size:12px; color:var(--ember-muted); margin-bottom:12px; }
+.ember-study .sg-note { color:var(--ember-muted); }
+.ember-study .sg-note a { color:var(--ember-lilac); }
+.ember-study .sg-section-heading h2 { color:var(--ember-ink); }
+@media(max-width:760px) {
+  .ember-study-layout { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .style-guide main>.wrap>.ember-study { padding-block:48px; }
+  .ember-stage { padding:24px 16px; }
+  .ember-glass-card { padding:24px 20px; }
+  .ember-glass-card h3 { font-size:28px; }
+  .ember-palette { flex-wrap:wrap; }
+  .ember-palette>div { flex-basis:calc(50% - 12px); }
+}
+@media(prefers-reduced-motion:reduce) { .visual-home .button.button-ember,.ember-theme .button,.ember-theme .nav .nav-start { transition:none; } }

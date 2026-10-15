@@ -1,0 +1,46 @@
+/* Approved six-section homepage; retains the established visual styles. */
+.visual-home .hero-intro h1 { max-width: 1000px; text-wrap: balance; }
+.visual-home .hero-summary .lead { max-width: 61ch; }
+.visual-home .copy-trust-detail { margin: 18px auto 0; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.copy-label { display: inline-block; font-size: 10px; line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--frame-mark); padding: 3px 7px; margin-inline-end: 7px; vertical-align: baseline; }
+.copy-reuse { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--frame-line); }
+.copy-reuse-heading { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; }
+.copy-reuse-heading h3 { font-size: 20px; font-weight: 500; line-height: 1.4; margin: 0; text-wrap: balance; }
+.copy-reuse-heading p { font-size: 12px; line-height: 1.7; color: var(--muted); max-width: 40ch; margin: 0; }
+.copy-reuse-tabs { display: flex; gap: 6px; margin: 24px 0; }
+.copy-reuse-tabs[hidden] { display: none; }
+.copy-reuse-tabs button { font: inherit; font-size: 13px; padding: 10px 16px; color: var(--muted); border: 1px solid var(--frame-mark); background: transparent; border-radius: 4px; cursor: pointer; }
+.copy-reuse-tabs button[aria-selected="true"] { color: #f1eaff; background: #6940ae; border-color: #a787ce; }
+.copy-reuse-tabs button:focus-visible { outline: 2px solid #dfc8ff; outline-offset: 3px; }
+.visual-home .copy-reuse :is(.system-showcase,.new-screens-section) { margin: 0; padding: 0; border: 0; }
+.copy-reuse [role="tabpanel"][hidden] { display: none; }
+.visual-home .copy-reuse .build-showcase { margin: 0; }
+.visual-home main > .wrap > .home-close { display: block; text-align: left; }
+.visual-home .home-close > h2 { max-width: 22ch; margin: 0 0 24px; text-align: left; text-wrap: balance; }
+.visual-home .home-close .copy-start-intro { max-width: 65ch; }
+.visual-home .home-close .actions { justify-content: flex-start; }
+.visual-home .home-close .restore-command { margin-inline: 0; justify-content: flex-start; flex-wrap: wrap; gap: 12px 24px; }
+.visual-home .home-close .adoption-sequence { margin: 40px 0 0; text-align: left; }
+.visual-home .home-close .home-faq { margin: 48px 0 0; padding: 40px 0 0; border-top: 1px solid var(--frame-line); text-align: left; }
+.visual-home .home-close .home-faq h2 { font-size: 28px; line-height: 1.25; text-align: left; margin: 0; }
+.visual-home .report-caption { align-items: start; }
+@media(max-width:760px) {
+  .copy-reuse-heading { display: grid; gap: 12px; }
+  .copy-reuse { margin-top: 32px; }
+  .visual-home .hero-intro h1 { font-size: clamp(28px, 6.7vw, 48px); }
+  .visual-home .hero-summary .hero-descriptor { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .visual-home .hero-summary .hero-descriptor .descriptor-divider { display: inline; }
+  .visual-home .home-close .home-faq { padding-top: 32px; }
+  .visual-home .home-close .actions { align-items: flex-start; }
+}
+.visual-home .home-close .copy-start-intro { margin-top: 32px; }
+.copy-phrase { white-space: nowrap; }
+
+/* The merged start/FAQ section must not inherit the old centered CTA layout. */
+.visual-home .home-close p { margin-inline: 0; text-align: left; }
+.visual-home .home-close .close-note { margin-inline: 0; }
+.visual-home .home-close .restore-copy-status { min-height: 0; margin-block: 8px; }
+.visual-home .home-close .home-faq { align-items: start; }
+.visual-home .home-close .home-faq > div { min-width: 0; }
+.visual-home .home-close .home-faq details:first-child { padding-top: 0; }
+.visual-home .home-close .home-faq details p { max-width: none; }

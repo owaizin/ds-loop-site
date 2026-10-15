@@ -1,0 +1,13 @@
+/* The approved study, without its exploration navigation or duplicate heading. */
+html { overflow:hidden; }
+body.loop-embed { background:transparent; --study-bg:#080512; }
+.loop-embed main { padding:6px 8px 10px; }
+.loop-embed .category-tabs { margin:0 auto 22px; }
+.loop-embed .loop-panel { width:100%; max-width:880px; margin:0 auto; }
+.loop-embed .feedback-route { height:50px; }
+@media(max-width:760px) {
+ .loop-embed .category-tabs { max-width:100%; width:100%; margin-bottom:20px; }
+ .loop-embed .loop-panel { width:100%; }
+ /* Hold the page geometry while different screen types cycle. */
+ .loop-embed #before-screen>.specimen:not(.study-measure),.loop-embed #after-screen>.specimen:not(.study-measure) { min-height:var(--scene-height,700px); }
+}

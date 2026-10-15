@@ -41,9 +41,12 @@
 .visual-home .hero-summary .actions {
   margin-block-start: 28px;
 }
+.visual-home .hero-loop .restored-loop-instrument {
+  transform-origin: 50% 0;
+}
 .visual-home .hero-loop {
   padding-inline: 0;
-  margin-block-start: 48px;
+  margin-block-start: 0;
 }
 .visual-home :is(.customer-problem, .entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div, .home-faq) {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -153,7 +156,7 @@
   }
   .visual-home .site-header { padding-block: 20px; }
   .visual-home main > .wrap > .system-hero { padding-block: 40px 32px; }
-  .visual-home .hero-loop { margin-block-start: 32px; }
+  .visual-home .hero-loop { margin-block-start: 0; }
   .visual-home :is(.customer-problem, .entry-heading, .scope-intro, .new-screens-heading, .report-story-heading, .adoption-section > div, .home-faq, .adoption-sequence) {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;

@@ -1,0 +1,84 @@
+/* Homepage palette: cool graphite-violet surfaces, one lilac accent, orange only as a small signal. */
+.homepage-polish {
+  --hp-ground:#0b0913; --hp-surface:#110e19; --hp-raised:#181422; --hp-line:#262131; --hp-line-strong:#3a334a;
+  --hp-tint:#c9bcf5; --hp-signal:#ff8a5c;
+  --ember-glass:linear-gradient(160deg,#ffffff0a,#ffffff00 55%);
+}
+/* Nav action stays quiet so the orange CTA appears only where it leads somewhere. */
+.homepage-polish .nav .nav-start.button-ember {
+  color:#110c1c; background:#ece7fb; border:1px solid #fff;
+  box-shadow:inset 0 -1px 0 #110c1c1f,0 1px 2px #0006;
+}
+.homepage-polish .nav .nav-start.button-ember:hover { color:#110c1c; background:#fff; filter:none; }
+/* Primary CTA: lilac warming into orange. A coral stop bridges the two so the middle never turns muddy mauve. */
+.homepage-polish {
+  --hp-cta:linear-gradient(138deg,#cdbbff 5%,#a98cff 31%,#e97a97 66%,#f2682c 86%); --hp-cta-glow:#f2682c96;
+}
+.homepage-polish .button.button-ember,
+.homepage-polish .button.button-ember:hover {
+  color:#1a0f1f; border:1px solid #ffffff4d; background:var(--hp-cta);
+  box-shadow:inset 0 1px 0 #ffffff8c,inset 0 -1px 0 #1a0f1f2e,0 1px 2px #0007,0 10px 28px -16px var(--hp-cta-glow);
+  transition:filter 200ms ease,box-shadow 200ms ease;
+}
+.homepage-polish .button.button-ember:hover {
+  filter:brightness(1.06) saturate(1.05);
+  box-shadow:inset 0 1px 0 #ffffffa6,inset 0 -1px 0 #1a0f1f2e,0 1px 2px #0007,0 14px 34px -16px var(--hp-cta-glow);
+}
+.homepage-polish .hero-intro h1 em { color:var(--hp-tint); }
+
+/* Report preview: same structure, without the aubergine and orange wash. */
+.homepage-polish .report-workbench {
+  --paper:var(--hp-ground); --white:var(--hp-surface); --line:var(--hp-line); --accent:var(--hp-tint);
+  background:var(--hp-ground); border-color:var(--hp-line); box-shadow:0 30px 80px -40px #000c;
+}
+.homepage-polish .report-workbench .report-windowbar { background:var(--hp-surface); }
+.homepage-polish .report-workbench .report-navigation { background:var(--hp-ground); }
+.homepage-polish .report-workbench .report-navigation button[aria-pressed=true] { background:var(--hp-raised); border-color:var(--hp-line-strong); }
+.homepage-polish .report-workbench .report-document-preview { background:var(--ember-glass),var(--hp-surface); }
+.homepage-polish .report-workbench .report-source-preview { background:var(--hp-ground); border-color:var(--hp-line); }
+.homepage-polish .report-workbench .report-source-preview>div { background:var(--hp-raised); }
+.homepage-polish .report-workbench .report-caption { background:var(--hp-surface); border-color:var(--hp-line); }
+.homepage-polish .report-workbench .report-progress { background:var(--hp-line-strong); }
+.homepage-polish .report-workbench .finding-marker { border-color:var(--hp-signal); }
+
+/* Bento: neutral cards, a single cool ramp for the token specimen. */
+.homepage-polish .restored-bento .scope-panel { background:radial-gradient(ellipse at 50% 85%,#1f1b2b80,transparent 75%),var(--hp-surface); border-color:var(--hp-line); }
+.homepage-polish .token-sheet { background:linear-gradient(150deg,#211c2e,#14111c 70%); border-color:var(--hp-line-strong); box-shadow:0 24px 48px -20px #000c; }
+.homepage-polish .sheet-shadow { background:#131019; border-color:var(--hp-line); }
+.homepage-polish .art-label,.homepage-polish .type-specimen span { color:#b3a9c9; }
+.homepage-polish .swatch-strip i { background:#221d31; }
+.homepage-polish .swatch-strip i:nth-child(2) { background:#3b3360; }
+.homepage-polish .swatch-strip i:nth-child(3) { background:#6658a8; }
+.homepage-polish .swatch-strip i:nth-child(4) { background:#a294e6; }
+.homepage-polish .swatch-strip i:last-child { background:#ddd6fb; }
+.homepage-polish .ruler-bars i { background:#453d5e; }
+.homepage-polish .ruler-bars i:nth-child(5) { background:var(--hp-tint); }
+.homepage-polish .token-caption { border-color:var(--hp-line-strong); color:#b3a9c9; }
+.homepage-polish .shared-control { background:var(--hp-raised); border-color:#6b5fa0; color:#ddd6f7; }
+.homepage-polish .exception-note { background:var(--hp-raised); border-color:var(--hp-line-strong); }
+.homepage-polish .review-record { background:linear-gradient(150deg,#211c2e,#14111c); border-color:var(--hp-line-strong); }
+.homepage-polish .review-line { border-color:var(--hp-line); }
+.homepage-polish .review-line span { color:#a9a0bd; }
+.homepage-polish .review-check { color:var(--hp-tint); }
+.homepage-polish .record-trail { color:#a9a0bd; }
+.homepage-polish .record-trail i { background:var(--hp-line-strong); }
+.homepage-polish .density-table { background:var(--hp-raised); border-color:var(--hp-line-strong); }
+.homepage-polish .density-table > div { border-color:var(--hp-line); }
+.homepage-polish .density-table > div:first-child { color:#a9a0bd; }
+.homepage-polish .density-table i { background:#4a4263; }
+.homepage-polish .density-table b { background:#302a42; }
+.homepage-polish .source-labels span { background:var(--hp-raised); border-color:var(--hp-line-strong); color:#b3a9c9; }
+
+/* Closing section sits on the page ground; the horizon stays, cooler and quieter. */
+.homepage-polish main > .wrap > .home-close { background:var(--hp-ground); border-color:var(--hp-line); }
+.homepage-polish .close-horizon::before {
+  background:
+    radial-gradient(ellipse 30% 62% at 34% 100%,#a98cff70,transparent),
+    radial-gradient(ellipse 30% 62% at 66% 100%,#f2682c66,transparent),
+    radial-gradient(ellipse 48% 92% at 50% 100%,#f1e9ff,#cdbbffb8 22%,#e97a9766 50%,#f2682c26 68%,transparent 84%);
+}
+.homepage-polish .close-horizon::after { background:var(--hp-ground); box-shadow:0 -22px 0 #0b09135c,0 -44px 0 #0b09135c,0 -66px 0 #0b09135c,0 -88px 0 #0b09135c,0 -92px 60px #e97a974d; }
+@media (max-width:760px) {
+  .homepage-polish .close-horizon::after { box-shadow:0 -14px 0 #0b09135c,0 -28px 0 #0b09135c,0 -42px 0 #0b09135c,0 -56px 0 #0b09135c,0 -60px 40px #e97a9740; }
+}
+.homepage-polish .restored-record-light { background:radial-gradient(ellipse at 30% 65%,#a98cff24,transparent 60%),radial-gradient(ellipse at 70% 40%,#f2682c1f,transparent 65%); }

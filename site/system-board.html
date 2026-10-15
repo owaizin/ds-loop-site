@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System board · Design System Loop</title>
+<meta name="description" content="Study: how the parts of Design System Loop work together, drawn as a circuit board.">
+<link rel="icon" href="assets/mark.svg">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="ember-tokens.css">
+<link rel="stylesheet" href="system-board.css">
+<script src="system-board.js" defer></script>
+</head>
+<body class="sb-page">
+<main>
+  <section class="sb" aria-labelledby="sb-title">
+    <header class="sb-head">
+      <p class="sb-kicker">Under the hood</p>
+      <h2 id="sb-title">Your agent edits. The engine checks.<br>Your team decides.</h2>
+      <p>DS Loop connects the parts you already use. Every change is measured against your code, chosen by people, and checked again after.</p>
+    </header>
+
+    <div class="sb-scenarios" role="group" aria-label="Example requests">
+      <button type="button" class="sb-scenario" aria-pressed="true">Fix colors</button>
+      <button type="button" class="sb-scenario" aria-pressed="false">Storybook</button>
+      <button type="button" class="sb-scenario" aria-pressed="false">New screen</button>
+      <button type="button" class="sb-scenario" aria-pressed="false">Type scale</button>
+    </div>
+
+    <div class="sb-viewport">
+      <div class="sb-board" id="sb-board" data-step="0" role="img" aria-label="Circuit diagram. A request goes to the coding agent, which runs the ds-loop engine, which reads your code and produces a report. Your team records a decision, the agent edits your code within it, and the guard hook and CI send the edited file back to the engine.">
+        <svg class="sb-layer sb-debris" id="sb-debris" viewBox="0 0 1200 760" aria-hidden="true"></svg>
+        <div class="sb-ask" aria-hidden="true">
+          <span class="sb-ask-icon"><svg viewBox="0 0 16 16"><path d="M5 4l4 4-4 4"/></svg></span>
+          <span class="sb-ask-text" id="sb-ask-text"></span>
+          <code class="sb-ask-cmd" id="sb-ask-cmd"></code>
+          <span class="sb-ask-key"><svg viewBox="0 0 16 16"><path d="M12 4v4.5H4.5M7 6L4.5 8.5 7 11"/></svg></span>
+        </div>
+        <svg class="sb-layer sb-traces" id="sb-traces" viewBox="0 0 1200 760" aria-hidden="true"></svg>
+
+        <!-- Coding agent -->
+        <div class="sb-chip" data-chip="agent" style="left:270px;top:225px;width:150px;height:150px" aria-hidden="true">
+          <div class="sb-die">
+            <div class="sb-term">
+              <span class="sb-term-bar"><i></i><i></i></span>
+              <span class="sb-prompt"><b>$</b><span class="sb-cmd" data-cmd="run" id="sb-run"></span><span class="sb-cmd" data-cmd="edit" id="sb-edit"></span><span class="sb-caret"></span></span>
+              <span class="sb-arg" id="sb-arg"></span>
+              <span class="sb-term-line" style="width:62%"></span>
+              <span class="sb-term-line" style="width:44%"></span>
+            </div>
+          </div>
+        </div>
+        <span class="sb-tag" data-tag="agent" style="left:345px;top:392px">Coding agent</span>
+
+        <!-- Engine -->
+        <div class="sb-chip sb-chip--core" data-chip="engine" style="left:465px;top:145px;width:270px;height:270px" aria-hidden="true">
+          <div class="sb-pins"><i></i><i></i><i></i><i></i></div>
+          <div class="sb-die">
+            <span class="sb-etch sb-etch--a"></span>
+            <span class="sb-etch sb-etch--b"></span>
+            <span class="sb-etch sb-etch--c"></span>
+            <span class="sb-etch sb-etch--d"></span>
+            <div class="sb-plate">
+              <svg viewBox="0 0 100 100" fill="none" class="sb-mark">
+                <defs><linearGradient id="sb-spectrum" x1="8" y1="10" x2="90" y2="91" gradientUnits="userSpaceOnUse"><stop stop-color="#9fe9ed"/><stop offset=".35" stop-color="#a6b9ff"/><stop offset=".68" stop-color="#d0b4f6"/><stop offset="1" stop-color="#f2c6cf"/></linearGradient></defs>
+                <path d="M17 72V15H49C70 15 85 29 85 50S70 85 49 85H17" stroke="url(#sb-spectrum)" stroke-width="10" stroke-linejoin="round"/>
+                <path d="M64 31H45C29 31 29 49 45 49H53C69 49 69 68 53 68H32" stroke="url(#sb-spectrum)" stroke-width="10" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <span class="sb-tag" data-tag="engine" style="left:600px;top:432px">ds-loop engine</span>
+
+        <!-- Report -->
+        <div class="sb-chip" data-chip="report" style="left:785px;top:225px;width:150px;height:150px" aria-hidden="true">
+          <div class="sb-die">
+            <svg class="sb-ring" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="24" class="sb-ring-track"/>
+              <circle cx="32" cy="32" r="24" class="sb-ring-arc" pathLength="100"/>
+              <circle cx="32" cy="32" r="9" class="sb-ring-core"/>
+              <path d="M27.5 32.2l3.2 3.2 6-6.4" class="sb-ring-check"/>
+            </svg>
+            <span class="sb-ref" id="sb-ref"></span>
+          </div>
+        </div>
+        <span class="sb-tag" data-tag="report" style="left:860px;top:392px">Report</span>
+
+        <!-- Your code -->
+        <div class="sb-chip sb-chip--wide" data-chip="code" style="left:225px;top:480px;width:310px;height:160px" aria-hidden="true">
+          <div class="sb-die">
+            <span class="sb-dots"><i></i><i></i><i></i></span>
+            <span class="sb-file" id="sb-file"></span>
+            <span class="sb-code" id="sb-code"></span>
+          </div>
+        </div>
+        <span class="sb-tag" data-tag="code" style="left:380px;top:656px">Your code</span>
+
+        <!-- Guard hook + CI -->
+        <div class="sb-chip" data-chip="guard" style="left:575px;top:485px;width:150px;height:150px" aria-hidden="true">
+          <div class="sb-die">
+            <span class="sb-switch"><span class="sb-knob"></span></span>
+            <span class="sb-mini"><i></i><i></i><i></i><i></i><i></i></span>
+          </div>
+        </div>
+        <span class="sb-tag" data-tag="guard" style="left:650px;top:656px">Guard hook · CI</span>
+
+        <!-- Decisions -->
+        <div class="sb-chip" data-chip="decisions" style="left:795px;top:485px;width:150px;height:150px" aria-hidden="true">
+          <div class="sb-die">
+            <span class="sb-rows">
+              <span class="sb-row"><i></i><b style="width:70%"></b></span>
+              <span class="sb-row"><i></i><b style="width:52%"></b></span>
+              <span class="sb-row"><i></i><b style="width:62%"></b></span>
+              <span class="sb-row sb-row--new"><i></i><em id="sb-decision"></em></span>
+            </span>
+          </div>
+        </div>
+        <span class="sb-tag" data-tag="decisions" style="left:870px;top:656px">Team decisions</span>
+      </div>
+    </div>
+
+    <div class="sb-rail" role="group" aria-label="Steps in the loop">
+      <button type="button" class="sb-step" aria-pressed="true"><span>01</span>Run</button>
+      <button type="button" class="sb-step" aria-pressed="false"><span>02</span>Read</button>
+      <button type="button" class="sb-step" aria-pressed="false"><span>03</span>Report</button>
+      <button type="button" class="sb-step" aria-pressed="false"><span>04</span>Decide</button>
+      <button type="button" class="sb-step" aria-pressed="false"><span>05</span>Implement</button>
+      <button type="button" class="sb-step" aria-pressed="false"><span>06</span>Verify</button>
+    </div>
+    <div class="sb-caption">
+      <p id="sb-caption"></p>
+      <button type="button" class="sb-toggle" id="sb-toggle" aria-pressed="false">Pause</button>
+    </div>
+    <p class="sb-note">Illustration. Requests, code and references are sample data; commands are real.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,84 @@
+/* Dark study surfaces. The homepage embed keeps its approved theme until integration. */
+body { background:radial-gradient(ellipse at 65% 55%,#38204525,transparent 65%),#0c0913; }
+.category-tabs button[aria-selected=true] { background:#382446; border-color:#715085; color:#eadcf4; box-shadow:inset 0 1px 0 #ffffff08; }
+body[data-layout=scene] .side-heading { position:relative; z-index:4; }
+body[data-layout=scene] .side-heading small { background:#0c0913; padding-left:8px; }
+.screen-frame .specimen {
+ color-scheme:dark; --ink:#efe8f4; --muted:#b1a3bc; --line:#3c3048;
+ --accent:#b9a0ff; --surface:#191320; background:var(--surface); color:var(--ink);
+}
+.screen-frame .spec-top { background:#21192a; color:var(--muted); border-color:var(--line); }
+.screen-frame .spec-top b,.screen-frame .spec-mark { color:var(--ink); }
+.screen-frame .spec-top>i { background:#3b2b4b; color:#ddc9f2; }
+.screen-frame .eyebrow,.screen-frame .project-description { color:var(--muted); }
+.screen-frame .spec-filter { background:#241b2e; color:#c6b6d2; border-color:#483852; }
+.screen-frame .tiny-avatar,.screen-frame .avatar-stack i,.screen-frame .task-card>div i { background:#3b2c48; color:#ddc9ef; border-color:#21192a; }
+.screen-frame .insight-metrics small,.screen-frame .task-done,.screen-frame .resolved-note { color:#9ac8b2; }
+.screen-frame .spec-field>div { background:#241c2d; color:var(--ink); border-color:#493956; box-shadow:inset 0 1px 0 #ffffff04; }
+.screen-frame .spec-field .spec-textarea { color:var(--muted); }
+.screen-frame .spec-field i { color:#9ac8b2; }
+.screen-frame .access-choice { background:#2d2039; border-color:#5a446e; }
+.screen-frame .radio-dot { background:#1b1324; border-color:#b9a0ff; }
+.screen-frame .spec-action { background:linear-gradient(180deg,#a088cd,#8b70b8); border-color:#af94d6; color:#190e25; box-shadow:inset 0 1px 0 #ffffff30; }
+.screen-frame .view-pill { background:#392947; color:#d9bff3; }
+.screen-frame .board-column { background:#211a29; }
+.screen-frame .column-name { color:#cabed4; }
+.screen-frame .column-name>span { color:#ab9bb8; }
+.screen-frame .task-card { background:#2b2135; border-color:#45334f; box-shadow:0 3px 8px #0002; }
+.screen-frame .task-card>small { color:#c3a1d9; }
+.screen-frame .task-card .task-cover { background:#3d2c4e; color:#dfc5f5; }
+.screen-frame .task-card .cover-icons { background:#483027; color:#e6b58f; }
+.screen-frame .task-progress { background:linear-gradient(90deg,#b69ad5 66%,#4a385a 66%); }
+.screen-frame .art-preview { background:radial-gradient(ellipse at 85% 25%,#b16c4433,transparent 55%),#382447; color:#efdcff; }
+.screen-frame .art-orbit i { border-color:#a779c480; }
+.screen-frame .review-note p { color:#bdb0c8; }
+.screen-frame .review-status { background:#463821; color:#e1c28c; }
+.screen-frame .comment-draft { background:#241b2d; }
+/* Keep the old UI visibly inconsistent: dull mixed palettes, hard borders, uneven type. */
+.screen-frame .before { --ink:#e1e1df; --muted:#b1b3b6; --line:#505259; --accent:#85a9d0; color:var(--ink); background:#25272b; }
+.screen-frame .before .spec-top { background:#233b4d; color:#d5dfe6; }
+.screen-frame .before .spec-top>i { background:#405566; color:#d3e2ee; }
+.screen-frame .before .eyebrow,.screen-frame .before .project-description { color:#b3b5b8; }
+.screen-frame .before .spec-filter { background:#393b40; border-color:#66686e; color:#ddd; }
+.screen-frame .before .insight-metrics>div { background:#34414e; border-color:#657180; }
+.screen-frame .before .insight-metrics>div+div { background:#454233; }
+.screen-frame .before .insight-metrics small { color:#d2d3cf; }
+.screen-frame .before .insight-chart { background:#202226; border-color:#606267; }
+.screen-frame .before .chart-grid { stroke:#50535a; }
+.screen-frame .before .traffic-list { background:#292b30; border-color:#64666b; }
+.screen-frame .before .traffic-list>div:nth-child(even) { background:#37393f; }
+.screen-frame .before.specimen-form { background:#292c27; }
+.screen-frame .before.specimen-form .spec-top { background:#3d4938; color:#dee4d8; border-color:#697761; }
+.screen-frame .before.specimen-form .spec-top b,.screen-frame .before.specimen-form .spec-mark { color:#e0e5db; }
+.screen-frame .before .spec-field>span { color:#d3d6cc; }
+.screen-frame .before .spec-field>div { background:#20251f; color:#e2e5dd; border-color:#72786c; }
+.screen-frame .before .spec-field .spec-textarea { background:#323327; border-color:#747563; color:#d8d6c6; }
+.screen-frame .before .access-choice { background:#3b4435; border-color:#77816b; }
+.screen-frame .before .access-choice small,.screen-frame .before .form-foot>span { color:#c0c6b9; }
+.screen-frame .before .spec-action { background:#285579; color:#eee; border-color:#6287a4; }
+.screen-frame .before.specimen-board { background:#28282c; }
+.screen-frame .before.specimen-board .spec-top { background:#59472b; color:#eee0c3; border-color:#876c40; }
+.screen-frame .before.specimen-board .spec-top b,.screen-frame .before.specimen-board .spec-mark { color:#eee0c3; }
+.screen-frame .before .board-column { background:#393b43; }
+.screen-frame .before .board-column:nth-child(2) { background:#414034; }
+.screen-frame .before .column-name { color:#d7d8d4; }
+.screen-frame .before .task-card { background:#333326; border-color:#74715b; }
+.screen-frame .before .task-card>small { background:#69532d; color:#f0d7aa; }
+.screen-frame .before .task-card p { color:#c6c5b8; }
+.screen-frame .before .task-card .task-cover { background:#4c4455; color:#e0d4eb; }
+.screen-frame .before .task-card .cover-icons { background:#544b32; color:#e0cb93; }
+.screen-frame .before.specimen-review { background:#2b2b2d; }
+.screen-frame .before.specimen-review .spec-top { background:#414143; }
+.screen-frame .before .review-notes { background:#242426; border-color:#646467; }
+.screen-frame .before .art-preview { background:#44354f; color:#e4d3ee; }
+.screen-frame .before .review-note p { color:#d0ccd3; }
+.screen-frame .before .review-status { background:#655622; color:#f1df9b; border-color:#a18a3d; }
+/* The original build's quiet wireframe and discrete source-to-screen signals. */
+.loop-panel[data-phase=forming] #after-screen>.specimen { background-image:linear-gradient(#9c7db312 1px,transparent 1px),linear-gradient(90deg,#9c7db312 1px,transparent 1px); }
+#after-screen [data-state=draft] { background:transparent; border-color:transparent; }
+.study-wire { border-color:#76618780; }
+.study-wire i { background:#8c749c50; }
+#after-screen .study-outline rect { stroke:#b99ad5; }
+body[data-layout=scene] .study-route { stroke:#655173; opacity:.65; }
+body[data-layout=scene] .study-route-signal { stroke:#d4bdf0; stroke-width:2; filter:none; }
+body[data-layout=scene] .inspection-line { box-shadow:none; }

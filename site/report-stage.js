@@ -24,9 +24,9 @@ if (reportStage) {
     fitResult();
   });
   const scenes = [
-    { name:'System report', copy:'Preview of the real 0.4.0 report: measured findings, source evidence, and an authored recommendation.', label:'Open the full report', href:'samples/theme-delivery/report.html' },
-    { name:'Applied change', copy:'The implemented change uses the existing palette in each theme. The source and verification are available together.', label:'Inspect the source change', href:'worked-example.html#source' },
-    { name:'Verified result', copy:'The dark action follows its palette; light appearance and button dimensions are preserved. The handoff records what was checked.', label:'Open the checks and handoff', href:'worked-example.html#checks' },
+    { name:'System report', copy:'A 0.4.0 report from the demo project, with code findings and an agent-written recommendation.', label:'Open the full report', href:'samples/theme-delivery/report.html' },
+    { name:'Applied change', copy:'Two CSS declarations now use the existing theme colors. Open the diff to see the change.', label:'See the code change', href:'worked-example.html#source' },
+    { name:'Verified result', copy:'The dark-mode button uses its theme color. Its size and light-mode color stayed the same. The notes list the browser checks.', label:'Read the tests and notes', href:'worked-example.html#checks' },
   ];
   let current = 0;
   let userPaused = reduced.matches;

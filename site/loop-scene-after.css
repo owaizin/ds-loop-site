@@ -1,0 +1,78 @@
+/* After-only component polish; the authored before examples retain their rough edges. */
+body[data-layout=scene] .after {
+ --surface:#191320; --surface-raised:#251d2e; --surface-inset:#15101b;
+ --line:#3c3048; --control-line:#85738f; --radius:8px;
+ --surface-edge:0 0 0 1px oklch(1 0 0 / .08);
+ background:var(--surface); color:var(--ink);
+}
+body[data-layout=scene] .after-side .screen-frame {
+ border:1px solid transparent; border-radius:14px; /* 8px inner + 5px inset + 1px border */
+ background:#211929; box-shadow:0 0 0 1px oklch(1 0 0 / .13),0 16px 40px #0003;
+}
+body[data-layout=scene] .after .spec-top { background:linear-gradient(#ffffff04,#ffffff00),#211929; }
+body[data-layout=scene] .after .spec-top>i { border:1px solid transparent; box-shadow:inset 0 0 0 1px #ffffff0d; }
+body[data-layout=scene] .after .spec-icon { display:inline-block; width:14px; height:14px; flex:none; vertical-align:-2px; }
+body[data-layout=scene] .after .spec-icon :is(path,rect,circle) { vector-effect:non-scaling-stroke; }
+body[data-layout=scene] .after .spec-filter { display:inline-flex; align-items:center; gap:8px; background:var(--surface-raised); border-color:var(--control-line); border-radius:var(--radius); padding:7px 9px 7px 11px; }
+/* Separate the metrics and chart with depth, keeping data dividers structural. */
+body[data-layout=scene] .after .insight-metrics { gap:16px; margin-bottom:20px; }
+body[data-layout=scene] .after .insight-metrics>div { border:1px solid transparent; border-radius:var(--radius); background:linear-gradient(135deg,#ffffff04,transparent),var(--surface-raised); box-shadow:var(--surface-edge); padding:18px 20px; }
+body[data-layout=scene] .after .insight-metrics strong { margin:7px 0 10px; }
+body[data-layout=scene] .after .insight-metrics small { display:inline-flex; align-items:center; gap:4px; }
+body[data-layout=scene] .after .insight-metrics small i { margin-left:4px; }
+body[data-layout=scene] .after .insight-chart { padding:18px 20px 14px; background:var(--surface-inset); border:1px solid transparent; border-radius:var(--radius); box-shadow:var(--surface-edge); }
+body[data-layout=scene] .after .insight-chart svg { height:130px; }
+body[data-layout=scene] .after .chart-key { margin-bottom:16px; }
+body[data-layout=scene] .after .traffic-list { padding:0 4px; }
+body[data-layout=scene] .after .traffic-list>div { padding-block:10px; }
+/* Input boundaries remain real borders; selected access retains a visible state. */
+body[data-layout=scene] .after .spec-field>div { min-height:44px; background:var(--surface-inset); border-color:var(--control-line); border-radius:var(--radius); box-shadow:inset 0 1px 2px #0002; }
+body[data-layout=scene] .after .spec-field .spec-textarea { min-height:100px; }
+body[data-layout=scene] .after .spec-field i { display:inline-flex; }
+body[data-layout=scene] .after .access-choice { padding:16px; border-radius:var(--radius); background:#2a2036; border-color:#a38bbb; }
+body[data-layout=scene] .after .radio-dot { width:16px; height:16px; border:4px solid #b9a0ff; box-shadow:0 0 0 3px #b9a0ff10; }
+body[data-layout=scene] .after .spec-action { display:inline-flex; align-items:center; padding:11px 14px 11px 16px; border-radius:var(--radius); border:1px solid transparent; background:linear-gradient(#d3bdeb,#b9a0d8); color:#24132e; box-shadow:inset 0 1px 0 #ffffff50,0 0 0 1px #c2a8df,0 3px 8px #0003; }
+body[data-layout=scene] .after .spec-action .spec-icon { stroke-width:2; }
+body[data-layout=scene] .after .form-foot { padding-top:22px; border-top:1px solid var(--line); }
+/* The tray and its cards use concentric radii: 8 + 10 = 18. */
+body[data-layout=scene] .after .board-column { padding:10px; border-radius:18px; background:#130f19; }
+body[data-layout=scene] .after .column-name { padding:2px 4px 10px; margin-bottom:8px; border-bottom:1px solid var(--line); }
+body[data-layout=scene] .after .column-name>span { display:grid; place-items:center; min-width:18px; height:18px; border-radius:5px; background:#2b2233; }
+body[data-layout=scene] .after .task-card { padding:12px; border:1px solid transparent; border-radius:var(--radius); background:linear-gradient(#ffffff03,transparent),var(--surface-raised); box-shadow:var(--surface-edge); margin-bottom:12px; }
+body[data-layout=scene] .after .task-card:last-child { margin-bottom:0; }
+body[data-layout=scene] .after .task-card>small { padding:3px 7px; border-radius:4px; background:#bd9cde12; color:#d0b7e7; }
+body[data-layout=scene] .after .task-card>div:not(.task-cover) { padding-top:10px; border-top:1px solid var(--line); }
+body[data-layout=scene] .after .task-card .task-cover { margin: -6px -6px 14px; border-radius:1px; min-height:110px; }
+body[data-layout=scene] .after .task-cover .spec-icon { width:24px; height:24px; }
+body[data-layout=scene] .after .view-pill { display:inline-flex; align-items:center; gap:6px; border:1px solid transparent; border-radius:var(--radius); padding:7px 10px; box-shadow:inset 0 0 0 1px #c5a9e62b; }
+/* The discussion is its own surface; avatars and status stay quiet. */
+body[data-layout=scene] .after .art-preview { border-radius:var(--radius); box-shadow:inset 0 1px 0 #ffffff0a; }
+body[data-layout=scene] .after .review-notes { padding:18px; border:1px solid transparent; border-radius:var(--radius); background:#211929; box-shadow:var(--surface-edge); }
+body[data-layout=scene] .after .review-note { margin:18px 0; }
+body[data-layout=scene] .after .review-note+.review-note { padding-top:16px; border-top:1px solid var(--line); }
+body[data-layout=scene] .after .review-status { background:#e4b45f12; color:#e3c28f; border:1px solid #d9b16e30; padding:5px 9px; }
+body[data-layout=scene] .after .comment-draft { align-items:center; padding:12px; border-color:var(--control-line); border-radius:var(--radius); background:var(--surface-inset); }
+body[data-layout=scene] .after .resolved-note { display:flex; align-items:center; gap:5px; }
+/* Don't let surface paint appear ahead of its wireframe phase. */
+body[data-layout=scene] .after [data-state=draft] { background:transparent; border-color:transparent; box-shadow:none; }
+@container(max-width:440px) {
+ body[data-layout=scene] .after .insight-metrics { gap:12px; }
+ body[data-layout=scene] .after .insight-metrics>div { padding:12px; }
+ body[data-layout=scene] .after .insight-metrics small { flex-wrap:wrap; }
+ body[data-layout=scene] .after .insight-metrics small i { margin-left:0; }
+ body[data-layout=scene] .after .board-column { padding:6px; border-radius:14px; }
+ body[data-layout=scene] .after .task-card { padding:8px; }
+ body[data-layout=scene] .after .task-card .task-cover { margin:-2px -2px 12px; padding:8px; min-height:90px; }
+ body[data-layout=scene] .after .task-cover .spec-icon { width:17px; height:17px; }
+ body[data-layout=scene] .after .review-notes { padding:14px; }
+}
+/* At 320px the two metric figures can't share a row without clipping. */
+@container(max-width:320px) { body[data-layout=scene] .after .insight-metrics { grid-template-columns:minmax(0,1fr); } }
+/* Fill the shared window: every screen's main region takes the height the tallest screen reserves. */
+body[data-layout=scene] .after.specimen { display:flex; flex-direction:column; }
+body[data-layout=scene] .after :is(.launch-board,.review-workspace,.project-options) { flex:1; }
+body[data-layout=scene] .after :is(.project-options,.review-notes) { display:flex; flex-direction:column; }
+body[data-layout=scene] .after :is(.form-foot,.comment-draft) { margin-top:auto; }
+body[data-layout=scene] .after .spec-heading { padding-block:24px 18px; }
+body[data-layout=scene] .after .insight-metrics { margin-bottom:16px; }
+body[data-layout=scene] .after .insight-chart svg { height:104px; }

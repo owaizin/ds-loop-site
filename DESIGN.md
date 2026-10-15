@@ -94,13 +94,16 @@ rounded:
   action: 8px
   frame: 12px
 spacing:
-  page-gutter: clamp(24px, 5vw, 80px)
+  page-gutter: 64px
+  page-gutter-tablet: 32px
+  page-gutter-mobile: 8px
   small: 12px
   medium: 24px
   section-inset: 32px
   section-gap: 40px
-  section: 76px
-  section-narrow: 44px
+  section: 96px
+  section-tablet: 72px
+  section-narrow: 48px
 components:
   button-primary:
     backgroundColor: '{colors.action-base}'
@@ -136,7 +139,7 @@ components:
 
 Design System Loop uses a violet-black ground, pale lilac text, restrained Manrope headings and spectral process artwork. Ruled editorial sections make the information easy to scan; shallow perspective and sculptural material concentrate attention on the maintenance loop.
 
-The user-selected violet identity remains established. Current homepage refinements use compact actions and open navigation, while supporting pages retain some earlier rounded treatments. `site/styles.css` owns shared primitives; homepage cascade order is `styles.css`, `home.css`, `theme.css`, `craft.css`, `refinements.css`, then `restored-loop.css`. The surface brief owns composition and demonstration timing. This document records the implemented local source, not a deployment or visual-quality certification.
+The user-selected violet identity remains established. Current homepage refinements use compact actions and open navigation, while supporting pages retain some earlier rounded treatments. `site/styles.css` owns shared primitives; homepage cascade order is `styles.css`, `home.css`, `theme.css`, `craft.css`, `refinements.css`, then `restored-loop.css`. The current visual reference is `site/style-guide.html`, linked from the homepage footer and README. Later homepage layers are `report-stage.css`, `positioning.css`, `layout-frame.css`, and `system-drift.css`; inspect the full cascade before changing shared styles. The surface brief owns composition and demonstration timing. This document records the implemented local source, not a deployment or visual-quality certification.
 
 **Key Characteristics:**
 
@@ -155,7 +158,7 @@ The action palette supplies the purple gradient and its lighter border; `accent`
 
 Preserve the incumbent CSS names: `paper` is the violet-black page, `white` a raised dark surface, and `ink` the pale reading text. Muted text, boundaries and code grounds use their shared properties. Inherited loop properties remain available to supporting styles; the current hero has more specific local paints.
 
-The hero's cyan, blue, lilac, rose and warm-white spectrum is a protected illustration treatment. The cool-blue after interface and deliberately inconsistent before palettes are specimen-local, outside the website token system. Generated sidecar ramps are previews only.
+The hero's cyan, blue, lilac, rose and warm-white spectrum is a protected illustration treatment. The warm-white/plum after interface and deliberately inconsistent before palettes are specimen-local, outside the website token system. Generated sidecar ramps are previews only.
 
 **The Scoped Color Rule.** Preserve the main loop spectrum without promoting illustration or demonstration paints into global brand tokens.
 
@@ -163,13 +166,13 @@ The hero's cyan, blue, lilac, rose and warm-white spectrum is a protected illust
 
 Self-hosted variable Manrope supplies headings; its license remains `site/assets/OFL.txt`. System UI handles public reading text and the monospace stack handles commands, source and evidence. Base documentation display roles remain in the frontmatter because supporting pages still consume the shared styles; the homepage uses the hero and section roles.
 
-Homepage titles use restrained weight and tight tracking. Meaningful section headings and introductions align left; the hero and closing action align center. Panel body copy uses 14px or larger; current compact specimens, hero labels and record text use a 12px floor. The larger letter specimens are illustrations. Existing 11px metadata in older supporting styles is not a recommendation for new content.
+Homepage titles use restrained weight and tight tracking. Meaningful section headings and introductions align left; the hero and closing action align center. Panel body copy uses 14px or larger; new website labels should use a 12px floor. Existing scaled product specimens and some hero/record metadata have smaller local labels; they are explicit illustration exceptions, not website reading sizes. The larger letter specimens are illustrations. Existing 11px metadata in older supporting styles is not a recommendation for new content.
 
 **The Three Voices Rule.** Use Manrope for hierarchy, the system stack for reading, and monospace for commands, source and technical labels.
 
 ## Layout
 
-The shared container is `min(1280px, calc(100% - 2 * var(--gap)))`. Homepage sections use thin vertical rails, horizontal rules and small crosshair intersections. Two-column heading/description layouts collapse at 760px. Most substantial sections use the recorded section spacing; the problem and comparison have local spacing.
+The base container used by older supporting pages is `min(1280px, calc(100% - 2 * var(--gap)))`. The homepage overrides it with a 1216px maximum frame, 64px minimum outer margins, 32px insets, and 96px section spacing. At 1100px and below these become 32/24/72px; at 760px and below they become 8/16/48px. Thin vertical rails, horizontal rules and paired square junctions establish the frame. Two-column introductions collapse at 760px; the hero retains its local spacing.
 
 Entry paths form three ruled columns. Maintenance specimens share a two-by-two frame and stack on narrow screens. Adoption is a three-step ruled sequence, then a vertical sequence. The footer combines an introduction, two link columns and a typographic signature. These are homepage compositions, not mandatory layouts for every screen.
 
@@ -185,7 +188,7 @@ Use thin boundaries and tonal separation for ordinary frames. The comparison and
 
 The current homepage uses compact 4–12px corners for controls, specimens and frames. Main actions are 8px; the header action is 7px and secondary text actions are 6px. Older supporting-page pill navigation and controls remain an inherited implementation detail, not the default for new homepage work.
 
-The loop uses concentric SVG geometry and five generated transparent PNG assets: a ribbon-loop brand mark and four process sculptures. The stage controls are unboxed. Small interface arrows, checks and row symbols use authored SVG. Text initials and numeric record identifiers remain data. Raster provenance is recorded in `.impeccable/review/workbench/artwork.md`.
+The loop uses concentric SVG geometry and five generated transparent PNG assets: a ribbon-loop brand mark and four process sculptures. The current stage controls use compact glass-backed surfaces. Small interface arrows, checks and row symbols use authored SVG. Text initials and numeric record identifiers remain data. Raster provenance is recorded in `.impeccable/review/workbench/artwork.md`.
 
 ## Components
 
@@ -195,7 +198,7 @@ Primary actions retain the purple gradient, white text and thin violet border wi
 
 ### Maintenance loop
 
-Four native pressed-state buttons select Measure, Decide, Verify and Retain. Sculptures, a circular progress trace and text color show selection; there is no stage card or Active badge. A central illustrative record and explanation change with selection. The continuous 24-second clock allocates six seconds per stage. Pause/Play, manual seeking, offscreen and hidden-tab pause, and reduced-motion behavior remain. Automatic text changes are not live-announced; manual changes are polite. Without JavaScript the initial record and explanation remain readable.
+Four native pressed-state buttons select Investigate, Decide, Implement, and Check & document. The four spectral sculptures sit in glass-backed controls, with a central illustrative record and explanation. The process clock uses six seconds per stage. Pause/Play, manual selection, offscreen and hidden-tab pause, and reduced-motion behavior remain. Automatic text changes are not live-announced; manual changes are polite. Without JavaScript the initial record and explanation remain readable. The background uses three stationary outer ellipses; they are independent of process playback.
 
 ### Maintenance specimens and evidence
 
@@ -205,9 +208,11 @@ Four authored diagrams explain tokens, shared components, intentional density di
 
 ### Comparison and workbench
 
-The compact overview has one full-canvas divider and one native keyboard range. Before and after preserve the same four product areas and data. Obsolete focus/strip review queries no longer select variants. Before remains structurally inconsistent with calmer color; after uses one polished cool-blue interface language.
+The compact overview has one full-canvas divider and one native keyboard range. Before and after preserve the same data across four tasks: analytics dashboard, project creation form, launch planning board, and creative review. The after state uses warm white, plum and Manrope in task-specific layouts. Its colors are local to `site/demo/product-specimens.css`.
 
-“Your next feature starts here” introduces a separate finite workbench. Billing and Members reuse the same canvas and source library. Four DOM assembly phases show shell, type, controls and rows; Replay and Pause remain available. Reduced motion and no-JavaScript show a completed result. Component colors and timings belong to this demonstration, not shared website primitives.
+On entering view, the comparison holds for one second, reveals over 2.8 seconds, and stays on the after result. Manual interaction takes over immediately; replay and pause remain available. Reduced motion and no-JavaScript show the completed result.
+
+The assembly demo reuses these four specimens, defaults to Form, and offers Dashboard/Form/Board/Review selection. Four DOM phases show layout, typography, controls, and patterns over 5.7 seconds. Its source is `content/product-demos.mjs`, generated by `scripts/build-product-demos.mjs`; colors and timings belong to the demonstration, not shared website primitives.
 
 ## Do's and Don'ts
 
@@ -216,13 +221,13 @@ The compact overview has one full-canvas divider and one native keyboard range. 
 - **Do** preserve the established violet identity and main loop spectrum.
 - **Do** use shared properties for reading surfaces, text, actions and focus.
 - **Do** preserve native controls, keyboard range access, visible focus and motion fallbacks.
-- **Do** keep panel copy at least 14px and current specimen text at least 12px.
+- **Do** keep website panel copy at least 14px and new labels at least 12px; do not copy scaled illustration text sizes into reading content.
 - **Do** retain synthetic-example disclosures and the artwork and font provenance.
 
 ### Don't:
 
 - **Don't** promote local specimen paints or intentional before-screen inconsistencies into brand tokens.
-- **Don't** restore boxed loop stages, an Active badge or pill-shaped main homepage actions.
+- **Don't** add new Active badges or pill-shaped main homepage actions; preserve the current glass-backed loop controls.
 - **Don't** use decorative eyebrows or Unicode glyphs as the small icon system.
 - **Don't** imply automatic repair, measured customer outcomes or automatic agent memory through illustration.
 - **Don't** treat local source checks as proof of live deployment, measured contrast or visual-reference equivalence.
@@ -231,4 +236,15 @@ The compact overview has one full-canvas divider and one native keyboard range. 
 
 The current homepage uses AlignUI's spacing and ruler-gutter treatment as a reference, adapted to Violet orbit. `layout-frame.css` follows `positioning.css` and owns the homepage frame: 1216px maximum width, 32px desktop inset, 96px section spacing, fine outer rails, and paired square junctions. Numbered decorative scales appear only at 1200px and above. Tablet insets are 24px; mobile insets are 16px with 48px section spacing. All ruler markup is hidden from assistive technology and cannot receive input. Content and controls stay within the shared edges; spectral artwork may bleed to the viewport boundary.
 
-Current loop content is Investigate → Decide → Implement → Verify & retain. Its existing spectral sculptures, glass-backed controls, orbit, and playback behavior are retained. This supersedes the older unboxed-stage and maintenance-only descriptions above; the current positioning is documented in POSITIONING-REFRESH.md.
+Current loop content is Investigate → Decide → Implement → Check & document. Its existing spectral sculptures, glass-backed controls, orbit, and playback behavior are retained. The current positioning is documented in POSITIONING-REFRESH.md; the October 15 edited copy and product-example changes are recorded in IMPLEMENTATION-REVIEW.md.
+
+
+## Working reference — 15 October 2026
+
+`site/style-guide.html` is the browsable website reference for foundations, shared components, illustration and motion. It uses the production stylesheet cascade and native component markup. Its own stylesheet changes only reference-page composition. Live token labels read computed custom properties; the underlying CSS remains the value source. Update usage guidance here and on that page when a shared decision changes. README documents the refresh path. This reference does not migrate older support-page treatments, establish a packaged component library, or certify scanner findings.
+
+## Ember glass study — 15 October 2026
+
+The requested Devloopy reference (https://www.behance.net/gallery/239537691/Devloopy) informs a new palette: aubergine `#1e0e26`, purple `#9a74ed`, lilac `#b9a0ff`, and orange `#ff743d`. This is an original CSS adaptation; no reference artwork is reused. The homepage remains Violet orbit by default, with `?theme=ember` for comparison. The style guide shows both action treatments.
+
+Ember actions use a 115-degree lilac → purple → orange gradient, aubergine text, an 8px corner, and a fine inner highlight. Glass combines a translucent white veil, warm edge light, and a quiet shadow. Reports and the website report walkthrough share these foundations. Reading surfaces use pale text on aubergine; light-mode reports use warm cream and dark aubergine text. Decorative brand colors never replace severity or evidence semantics. Keep product-fixture colors local to their examples. See README for the explicit cross-repository refresh command.

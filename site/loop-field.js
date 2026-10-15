@@ -1,6 +1,6 @@
 // Shared geometry keeps the selected homepage loop identical to its playground preview.
 export const selectedLoopSettings = Object.freeze({
-  count: 24,
+  count: 3,
   width: 125,
   height: 84,
   depth: 88,
@@ -9,7 +9,7 @@ export const selectedLoopSettings = Object.freeze({
   opacity: 48,
   thickness: 1,
   glow: 100,
-  motion: 'inward',
+  motion: 'still',
   duration: 12,
 });
 
@@ -66,7 +66,8 @@ export function createLoopField(field, initial) {
       if (!originalMode) {
         const travel = state.motion === 'outward' ? -phase : phase;
         const position = flowing ? (((index + travel) % state.count) + state.count) % state.count : index;
-        const t = position / state.count;
+        // A sparse still field keeps the outer rings of the original 24-ring composition.
+        const t = position / (flowing ? state.count : Math.max(24, state.count));
         // Preserve generous outer spacing, then compress rings toward a vanishing point.
         const depth = state.depth / 100;
         const flatScale = Math.max(0.04, 1 - position * Math.min(30 / 535, 0.94 / state.count));

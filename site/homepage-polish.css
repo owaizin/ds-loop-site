@@ -1,0 +1,19 @@
+/* Approved Ember accents, applied to the homepage without changing its type or grid. */
+.homepage-polish { --accent:var(--ember-lilac); --focus:var(--ember-focus); }
+/* Keep the reusable measurement rulers in layout-frame.css; the homepage uses only the grid. */
+.homepage-polish .layout-ruler { display:none; }
+.homepage-polish .hero-intro h1 em { color:var(--ember-lilac); }
+.homepage-polish .copy-reuse-heading h3 { color:var(--ember-ink); }
+.homepage-polish .system-scope { grid-template-columns:minmax(0,1fr); }
+.homepage-polish .connected-reuse { width:100%; min-width:0; position:relative; margin-top:56px; padding-top:36px; }
+.homepage-polish .connected-reuse .copy-reuse-heading { width:min(1150px,100%); margin:0 auto 32px; }
+.homepage-polish .connected-reuse .copy-reuse-heading p { max-width:43ch; }
+.connected-showcase { max-width:1040px; margin:0 auto; }
+.connected-showcase iframe { display:block; width:100%; height:850px; border:0; background:transparent; }
+.reuse-anchor { position:absolute; top:0; left:0; }
+@media(max-width:760px) {
+ .homepage-polish .connected-reuse { margin-top:36px; padding-top:28px; }
+ .homepage-polish .connected-reuse .copy-reuse-heading { margin-bottom:24px; }
+ .connected-showcase iframe { height:1900px; }
+}
+
