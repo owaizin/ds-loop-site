@@ -8,13 +8,13 @@
   },
   "scripts": {
     "dev": "node scripts/serve-site.mjs",
-    "build": "node scripts/build-docs.mjs && node scripts/build-product-demos.mjs && node scripts/build-loop-study.mjs",
+    "build": "node scripts/build-site-shell.mjs && node scripts/build-docs.mjs && node scripts/build-product-demos.mjs && node scripts/build-loop-study.mjs",
     "sync": "node scripts/sync-release.mjs",
     "check": "node scripts/check-site.mjs",
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "ds-loop": "0.2.1",
+    "ds-loop": "0.4.0",
     "marked": "15.0.12",
     "sanitize-html": "2.18.0"
   }

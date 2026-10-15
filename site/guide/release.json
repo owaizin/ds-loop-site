@@ -1,13 +1,15 @@
 {
-  "version": "0.2.1",
-  "integrity": "sha512-/zs9DRD8vj9GUwdqFtc9YvxHB1eqm4PnfR4HBnAACJIkpYb2k0Q8FBd07MIgCIxQyNX++GeOCao/PWeq/gFt4Q==",
+  "version": "0.4.0",
+  "integrity": "sha512-0mbhojTRM7lhIQyCylwX1E3n8M6XZ/4QbOEXvtNa4xILHqITHkaOpOUfSb63SyMnBgLnUzAklmv5ZzyHU4ibNA==",
   "documentation": {
-    "README.md": "0a0749f2b4271c9f1c082b3b27a445e702424e4a46c0c0d7adb03381e2c9d17c",
+    "README.md": "13c519412c7a4bd18fc3d4c44fb44b9ad4006e07c31e130cd4ab3fbfdb0a0e00",
+    "benchmark.md": "1da7badc26d4a9b89b90d6cc92494fc28e54a5f3f906b5f7e0912610aeef1b0d",
     "example.md": "21d16553acd4291ab5bd68f0f8c0e22bc237aafeab65dae1d824e21300772662",
-    "install.md": "8723c6752c72569cd52b8e6f045365ebe5187ab70de9c902597f643adfe35b43",
-    "output.md": "74db581e3fa5f40cb8a4a868387efec36347a3770e47a725ec78eb3687f6eaac",
-    "reference.md": "6f4ac657d91f9fbe10bf817c4e9fed972b7de01efd68ba08b3e995a50a24ada0",
-    "release-0.2.0.md": "5145b9e3fc2b0de7111869b65903239ff584749b62ce145ecd0fc92e1994ce76",
-    "workflow.md": "83b97ca33f420220bd95fac2fea576349e60ce1c38d561cef186efa6698610ec"
+    "install.md": "d90ae569d2cf96b26fe87e768672dc6078c48a8509b7c8fb954e7d0c50bf64dd",
+    "output.md": "23273f46eb67841def799f599e69a428a9db766f493a9486e557215e660837ce",
+    "reference.md": "1b7a55d9e9b45d88754c5f226a1175f4e61ef6c4da74a5d9de71f5a3e155d685",
+    "release-0.2.0.md": "4b088688801171dd685c1df55c968b5a3a686c794592dcef37ff651cf4a794fe",
+    "release-0.4.0.md": "3aec056c93833a247ad4b0828952dcf811a28378bf431a51eea178170956bebb",
+    "workflow.md": "212e0ce7335e6334be52f6bbff78663bf57913e0620a876f20bff2365bd8ce01"
   }
 }

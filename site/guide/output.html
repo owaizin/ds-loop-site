@@ -1,62 +1,86 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reading an audit | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
-<a href="example.html">Worked example: fix a button’s dark theme</a>
-<a href="install.html">Set up Design System Loop</a>
-<a href="output.html">Reading an audit</a>
-<a href="reference.html">Commands and coverage</a>
-<a href="release-0.2.0.html">0.2.0 release notes</a>
-<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="reading-an-audit">Reading an audit</h1>
-<p>These excerpts are checked against the engine by <code>test/readme.test.ts</code>. Line wrapping and marked truncation are permitted; the output vocabulary is unchanged.</p>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Read findings and saved reports | DS Loop</title><meta name="description" content="Find the source of a finding before changing your code:"><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html">Overview</a><a href="install.html">Installation</a><a href="workflow.html">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html" aria-current="page">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Guide</a><span aria-hidden="true">/</span><span aria-current="page">Reports &amp; findings</span></nav><div class="doc-title"><div class="guide-title-copy"><h1 id="read-findings-and-saved-reports">Read findings and saved reports</h1>
+<p>Find the source of a finding before changing your code:</p></div></div><div class="doc-body-layout"><div class="doc-reading">
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-1">npx ds-loop audit .
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div>
+<p>These excerpts are checked against the engine by <code>test/readme.test.ts</code>. Line wrapping and marked truncation are permitted. Summaries use clear words; <code>--all</code> and JSON preserve the engine vocabulary.</p>
+<p>The <code>│</code> gutter groups the lines of one finding and is always emitted. In a terminal, long <code>where:</code>, <code>risk:</code> and <code>fix:</code> lines wrap to the window width and continue under their label; piped or redirected output keeps each on one line, so a captured log and these excerpts stay comparable. Colour follows the same rule — severity tags are coloured only on a terminal, and <code>NO_COLOR</code> turns that off.</p>
+<p>Use these examples to read <a href="#ordinary-css-inventory">CSS inventory</a>,
+<a href="#a-token-suggestion">token suggestions</a>, <a href="#public-fixture-radix-colors">coverage gaps</a>,
+<a href="#unsupported-source">unsupported sources</a>, and <a href="#comparing-runs">changes over time</a>.
+All marked output is checked against a real command run.</p>
+<h2 id="ordinary-css-inventory">Ordinary CSS inventory</h2>
+<p>From the repository root, run:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-2">npm run ds-loop -- audit fixtures/css-audit-example
+</code></pre><button type="button" data-copy="guide-code-2" data-copy-kind="Example" aria-label="Copy code example 2" aria-describedby="guide-code-2-status" hidden>Copy</button><p class="sr-only" id="guide-code-2-status" role="status"></p></div>
+<p>This independently written Example DS fixture contains a colour literal, a spacing
+literal and two references. The inventory precedes severity and exception filters;
+its ratio does not prove the references resolve.</p>
+
+<div class="doc-code"><pre><code class="language-text" id="guide-code-3">  CSS property inventory — extracted, before exceptions and severity filtering
+    tokenization = reference-only / (literal + reference + mixed); not reference resolution
+    color: 2 occurrences · 2 distinct · 1 literal · 1 reference · 0 mixed · 0 unclassified · 0 excluded · tokenization 50.0%
+    spacing: 2 occurrences · 2 distinct · 1 literal · 1 reference · 0 mixed · 0 unclassified · 0 excluded · tokenization 50.0%
+</code></pre><button type="button" data-copy="guide-code-3" data-copy-kind="Example" aria-label="Copy code example 3" aria-describedby="guide-code-3-status" hidden>Copy</button><p class="sr-only" id="guide-code-3-status" role="status"></p></div>
+<h3 id="a-token-suggestion">A token suggestion</h3>
+<p>The same run finds an exact colour candidate through a project alias. This is a
+review candidate, not permission to replace the value. JSON retains the primitive
+candidate too, plus alias provenance and resolution limits.</p>
+
+<div class="doc-code"><pre><code class="language-text" id="guide-code-4">  │ suggest:#333: ambiguous — --ds-color-text, --ds-palette-gray-700. Value candidates only; cascade, mode, semantic role and replacement safety are not established. No automatic replacement. Full candidates, alias provenance and resolution limits in --json.
+</code></pre><button type="button" data-copy="guide-code-4" data-copy-kind="Example" aria-label="Copy code example 4" aria-describedby="guide-code-4-status" hidden>Copy</button><p class="sr-only" id="guide-code-4-status" role="status"></p></div>
+<h2 id="markup-use-sites">Markup use sites</h2>
+<p>This independently written JSX example contains three literals.</p>
+
+<div class="doc-code"><pre><code id="guide-code-5">  [HIGH] Hard-coded component styles · token/raw-value-in-markup · 3 hits · Card.tsx:2, Card.tsx:3
+</code></pre><button type="button" data-copy="guide-code-5" data-copy-kind="Example" aria-label="Copy code example 5" aria-describedby="guide-code-5-status" hidden>Copy</button><p class="sr-only" id="guide-code-5-status" role="status"></p></div>
 <h2 id="public-fixture-radix-colors">Public fixture: Radix Colors</h2>
 <p>From the repository root, run <code>npm run ds-loop -- audit fixtures/radix-colors</code>. The frozen source and provenance are in <code>fixtures/radix-colors/SOURCE.json</code>. Findings need investigation: proximity between two palette steps does not prove one should be deleted.</p>
 
-<pre><code>  ds-loop audit — Radix Colors  ·  target: all  ·  fixture
-  version npm:@radix-ui/colors@3.0.0   adapter css-custom-props@0.3.0   config 4cdd7f44
-  12 rules run
-
-  [LOW] color/near-duplicate-primitives
-    20 pair(s) of palette primitives are within ΔE 2.3 — below a reliable
-    just-noticeable difference
-    where: --amber-1 ≈ --blue-1 (ΔE 2.252285); --amber-1 ≈ --green-1 (ΔE 1.956419);
-           --amber-1 ≈ --red-1 (ΔE 1.652821); --amber-1 ≈ --slate-1 (ΔE 1.563758) …
-    risk:  Nobody can tell these steps apart on screen, so authors pick between them
-           at random and the ramp stops meaning anything.
-    fix:   Confirm each pair is a deliberate ramp step. Collapse the ones that are not.
-
-  [LOW] color/no-intent-plateau
-    no ΔE band holds a cluster count within 15% of the 72 shipped primitives
-    where: swept ΔE 0.5–12
-
+<div class="doc-code"><pre><code id="guide-code-6">  ds-loop audit — Radix Colors · target: all
   2 findings — 0 blocking · 0 high · 0 medium · 2 low
+  These checks found possible problems. Their counts are not a quality grade.
+  version npm:@radix-ui/colors@3.0.0   adapter css-custom-props@0.6.0   config 1fc1f13c
+  15 rules run
 
   scope — what this audit read
-    css-custom-props@0.3.0
-      reads .css — custom-property declarations (--token: value) — not rule bodies
-    72 colour value(s) this version cannot convert:
-      color(display-p3 0.995 0.992 0.985), color(display-p3 0.994 0.986 0.921) …
-      excluded from every colour rule — a gap in the engine, not in your code
+    What we read: .css — custom-property declarations (--token: value) — not rule bodies, not at-rules
+    Colours we cannot compare: 72 — color(display-p3 0.995 0.992 0.985), color(display-p3 0.994 0.986 0.921), color(display-p3 0.994 0.969 0.782), color(display-p3 0.989 0.937 0.65)
+    Some checks are incomplete. Read the limits before relying on this result.
+    Component documentation: not checked — no shared component inventory in scope.
+    Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.
+    Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.
+    Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.
 
-  scorecard ratios
-    literal-colors-per-distinct  1
-    colors-per-distinct-in-scope 1
-    ambiguous-share              0.5
-</code></pre>
+  findings — one row per finding group; up to 3 recorded locations (not ranked by frequency)
+  [LOW] Very similar palette colours · color/near-duplicate-primitives · 1 finding · no file:line recorded
+  [LOW] Palette structure needs review · color/no-intent-plateau · 1 finding · no file:line recorded
+
+  next
+    ds-loop audit fixtures/radix-colors --all   full findings, risks, fixes and token suggestions
+    ds-loop report fixtures/radix-colors        save a consulting report with evidence and next steps
+    decide on the rest                          nothing here is mechanically provable — all 2 findings state their choice on the fix line
+    ds-loop scorecard fixtures/radix-colors     pin these ratios as run 1 — a ratio only says something against a previous row
+    ds-loop guard on                            report high-severity findings after each Claude Code edit (never blocks)
+</code></pre><button type="button" data-copy="guide-code-6" data-copy-kind="Example" aria-label="Copy code example 6" aria-describedby="guide-code-6-status" hidden>Copy</button><p class="sr-only" id="guide-code-6-status" role="status"></p></div>
 <p>The report includes the display-p3 values the color rules could not convert. A reported finding does not imply full coverage.</p>
 <h2 id="unsupported-source">Unsupported source</h2>
-<p>This example contains a Vue template and an SCSS variable. Neither adapter reads them.</p>
+<p>This example contains a Vue template and a Less variable. No adapter reads either format.</p>
 
-<pre><code>  ✗ not checked — no adapter reads any styling format found here.
+<div class="doc-code"><pre><code id="guide-code-7">  ✗ not checked — no adapter reads any styling format found here.
 
   scope — what this audit read
-    not read at all: 1× .vue, 1× .scss — no adapter handles these
-    formats present: 1× .vue, 1× .scss
+    not read at all: 1× .vue, 1× .less — no adapter handles these
+    formats present: 1× .vue, 1× .less
 
   This is not a clean result. Nothing was judged.
-</code></pre>
+</code></pre><button type="button" data-copy="guide-code-7" data-copy-kind="Example" aria-label="Copy code example 7" aria-describedby="guide-code-7-status" hidden>Copy</button><p class="sr-only" id="guide-code-7-status" role="status"></p></div>
 <p>Without <code>--require-coverage</code>, a not-checked report can exit 0. Read the verdict and coverage.</p>
 <h2 id="comparing-runs">Comparing runs</h2>
 <p>This synthetic example replaces duplicate declarations with references, then runs <code>scorecard</code> again. The date identifies the recorded run. Adapter versions and configuration must match before a delta is reported.</p>
 
-<pre><code>  since 2026-09-17
+<div class="doc-code"><pre><code id="guide-code-8">  since 2026-09-17
 
     literal-colors-per-distinct    2 → 1  ▼ 1
     colors-per-distinct-in-scope   2 → 1  ▼ 1
@@ -66,7 +90,34 @@
     color/literal-duplicate-tokens               1 → 0  ▼ 1
     color/semantic-holds-literal                 4 → 0  ▼ 4
     token/tier-model-undetectable                0 → 1  ▲ +1
-</code></pre>
+</code></pre><button type="button" data-copy="guide-code-8" data-copy-kind="Example" aria-label="Copy code example 8" aria-describedby="guide-code-8-status" hidden>Copy</button><p class="sr-only" id="guide-code-8-status" role="status"></p></div>
 <p>The new references use names the configured taxonomy cannot classify. The lower duplicate ratio does not establish a better system: the tier check now cannot judge. A scorecard describes the extracted source; it is not a maturity score or a CI gate.</p>
 <p><a href="index.html">Back to the guide</a></p>
-</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>
+<h2 id="consulting-report-generation">Consulting report generation</h2>
+<p>From the source checkout, run:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-9">npm run ds-loop -- report fixtures/css-audit-example --out scratch/phase-1/css-report.html
+</code></pre><button type="button" data-copy="guide-code-9" data-copy-kind="Example" aria-label="Copy code example 9" aria-describedby="guide-code-9-status" hidden>Copy</button><p class="sr-only" id="guide-code-9-status" role="status"></p></div>
+
+<div class="doc-code"><pre><code class="language-text" id="guide-code-10">  ds-loop report — ds-loop
+  wrote scratch/phase-1/css-report.html
+</code></pre><button type="button" data-copy="guide-code-10" data-copy-kind="Example" aria-label="Copy code example 10" aria-describedby="guide-code-10-status" hidden>Copy</button><p class="sr-only" id="guide-code-10-status" role="status"></p></div>
+<p>Open the written HTML for findings, architecture and coverage. Without
+<code>--consult consult.json</code>, the assessment and plan are labelled as not written yet.
+The banner uses the source label; this fixture resolves to <code>ds-loop</code>.</p>
+<h2 id="dashboard-generation">Dashboard generation</h2>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-11">npm run ds-loop -- dashboard fixtures/css-audit-example --out scratch/phase-2/dashboard-empty.html
+</code></pre><button type="button" data-copy="guide-code-11" data-copy-kind="Example" aria-label="Copy code example 11" aria-describedby="guide-code-11-status" hidden>Copy</button><p class="sr-only" id="guide-code-11-status" role="status"></p></div>
+<p>The following is captured command output; dates and ratios are in the generated
+HTML. With no saved history, the dashboard shows today's measured state and the
+baseline command.</p>
+
+<div class="doc-code"><pre><code class="language-text" id="guide-code-12">  ds-loop dashboard — ds-loop
+  wrote scratch/phase-2/dashboard-empty.html
+</code></pre><button type="button" data-copy="guide-code-12" data-copy-kind="Example" aria-label="Copy code example 12" aria-describedby="guide-code-12-status" hidden>Copy</button><p class="sr-only" id="guide-code-12-status" role="status"></p></div>
+<h2 id="limits">Limits</h2>
+<p><code>report</code> and <code>dashboard</code> write artifacts; successful generation isn't a clean
+audit or a CI pass. Run <code>audit --require-coverage</code> for that policy. Dashboard
+samples above were captured in an empty temporary working directory with the
+fixture passed by absolute path, so no saved history affected the result. The
+report sample used the same setup. Dates and ratios belong to the generated HTML.</p>
+<nav class="guide-pager" aria-label="Guide pages"><a class="previous" href="workflow.html"><span>← Previous</span><strong>Workflows</strong></a><a class="next" href="example.html"><span>Next →</span><strong>Theme repair</strong></a></nav></div><aside class="doc-toc"><details class="page-contents" open><summary>On this page</summary><nav aria-label="On this page"><a href="#ordinary-css-inventory">Ordinary CSS inventory</a><a href="#markup-use-sites">Markup use sites</a><a href="#public-fixture-radix-colors">Public fixture: Radix Colors</a><a href="#unsupported-source">Unsupported source</a><a href="#comparing-runs">Comparing runs</a><a href="#consulting-report-generation">Consulting report generation</a><a href="#dashboard-generation">Dashboard generation</a><a href="#limits">Limits</a></nav></details></aside></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

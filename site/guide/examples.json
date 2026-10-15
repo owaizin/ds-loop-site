@@ -7,47 +7,114 @@
       "Card.tsx": "export const Card = () => <div className=\"bg-[#1da1f2] p-[13px]\">Account</div>;\n"
     },
     "result": {
-      "manifest": {
-        "tool": "ds-loop",
-        "command": "audit",
-        "target": "all",
-        "fixtureLabel": "raw-values",
-        "fixtureSha": "live",
-        "adapter": "css-custom-props@0.3.0 + tailwind-jsx@0.4.0",
-        "configHash": "05063bc7"
+      "fileImports": {
+        "version": "1.1.0",
+        "files": {
+          "Card.tsx": {
+            "state": "no-static-importer",
+            "basis": "No static importer found.",
+            "importers": []
+          },
+          "tokens.css": {
+            "state": "no-static-importer",
+            "basis": "No static importer found.",
+            "importers": []
+          }
+        },
+        "unresolved": [],
+        "configIssues": [],
+        "limits": [
+          "Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.",
+          "No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.",
+          "Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.",
+          "Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved."
+        ]
       },
-      "rulesRun": [
-        "token/tier-leakage",
-        "color/semantic-holds-literal",
-        "color/literal-duplicate-tokens",
-        "token/semantic-name-describes-appearance",
-        "token/var-missing-fallback",
-        "token/tier-model-undetectable",
-        "token/raw-dimension-in-semantic",
-        "token/raw-value-in-markup",
-        "token/stock-palette-utility",
-        "color/near-duplicate-primitives",
-        "color/mixed-storage-forms",
-        "color/no-intent-plateau"
-      ],
-      "findings": [
+      "findingEvidence": [
         {
+          "ruleId": "token/tier-model-undetectable",
+          "severity": "low",
+          "summary": "only 0 of 1 referencing token(s) match a tier pattern (0 < floor 0.5) — tier checks could not judge this source",
+          "where": "--brand",
+          "fix": "Set taxonomy.primitivePattern, semanticNamespaces and componentPattern to this source's naming convention, then re-run. Until then treat a clean token/tier-leakage result as \"not checked\", not \"passed\".",
+          "data": {
+            "references": 1,
+            "classified": 0,
+            "coverage": 0,
+            "floor": 0.5
+          },
+          "impact": "A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.",
+          "dimensions": {
+            "reached": {
+              "state": "unresolved",
+              "basis": "This aggregate has no complete source locations; file membership is unresolved."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": null,
+              "reached": null,
+              "noStaticImporter": null,
+              "unresolved": null
+            },
+            "locations": []
+          }
+        },
+        {
+          "evidence": [
+            {
+              "raw": "#1da1f2",
+              "provenance": {
+                "file": "Card.tsx",
+                "line": 1,
+                "selector": null,
+                "property": "bg",
+                "tokenName": null,
+                "surface": "markup",
+                "category": null,
+                "classification": "color",
+                "reason": "hardcoded colour on utility bg",
+                "fixtureSha": "live",
+                "adapterId": "tailwind-jsx",
+                "adapterVersion": "0.5.0"
+              }
+            },
+            {
+              "raw": "13px",
+              "provenance": {
+                "file": "Card.tsx",
+                "line": 1,
+                "selector": null,
+                "property": "p",
+                "tokenName": null,
+                "surface": "markup",
+                "category": null,
+                "classification": "dimension",
+                "reason": "hardcoded length on utility p",
+                "fixtureSha": "live",
+                "adapterId": "tailwind-jsx",
+                "adapterVersion": "0.5.0"
+              }
+            }
+          ],
           "ruleId": "token/raw-value-in-markup",
           "severity": "high",
-          "summary": "2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct, 1 already declared as a token)",
+          "summary": "2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct)",
           "where": "bg-[#1da1f2] at Card.tsx:1; p-[13px] at Card.tsx:1",
-          "fix": "#1da1f2 is already --palette-blue-500. Swap those first. Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.",
+          "fix": "Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.",
           "data": {
             "count": 2,
             "colors": 1,
             "dimensions": 1,
             "distinct": 2,
-            "alreadyDeclared": [
-              {
-                "value": "#1da1f2",
-                "token": "--palette-blue-500"
-              }
-            ],
+            "alreadyDeclared": [],
             "hits": [
               {
                 "utility": "bg",
@@ -65,26 +132,352 @@
               }
             ]
           },
-          "impact": "The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour."
-        },
-        {
-          "ruleId": "color/literal-duplicate-tokens",
-          "severity": "medium",
-          "summary": "1 colour value(s) are declared by 2 different tokens",
-          "where": "#1da1f2 <- --palette-blue-500, (inline)",
-          "fix": "Keep one canonical token per value; make the rest var() aliases of it.",
-          "data": {
-            "groups": [
+          "impact": "The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour.",
+          "dimensions": {
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": 2,
+              "reached": 0,
+              "noStaticImporter": 2,
+              "unresolved": 0
+            },
+            "locations": [
               {
+                "file": "Card.tsx",
+                "line": 1,
                 "value": "#1da1f2",
-                "tokens": [
-                  "--palette-blue-500",
-                  "(inline)"
-                ]
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              },
+              {
+                "file": "Card.tsx",
+                "line": 1,
+                "value": "13px",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              }
+            ]
+          }
+        }
+      ],
+      "findingTotals": {
+        "all": 2,
+        "reached": 0,
+        "noStaticImporter": 1,
+        "unresolved": 1,
+        "basis": "Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences."
+      },
+      "reachedStyleInventory": {},
+      "reachedRatios": {
+        "literal-colors-per-distinct": null,
+        "colors-per-distinct-in-scope": null,
+        "ambiguous-share": null
+      },
+      "documentation": {
+        "version": "0.1.0",
+        "status": "not-checked",
+        "packages": [],
+        "limits": [
+          "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+          "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+          "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+        ]
+      },
+      "manifest": {
+        "tool": "ds-loop",
+        "command": "audit",
+        "target": "all",
+        "fixtureLabel": "raw-values",
+        "fixtureSha": "live",
+        "adapter": "css-custom-props@0.6.0 + tailwind-jsx@0.5.0",
+        "configHash": "5b0a0820"
+      },
+      "tokenArchitecture": {
+        "maxAliasDepth": 4,
+        "tokens": [
+          {
+            "name": "--palette-blue-500",
+            "tier": "primitive",
+            "group": "primitive:palette-blue",
+            "declarations": [
+              {
+                "file": "tokens.css",
+                "line": 1,
+                "value": "#1da1f2",
+                "selector": ":root",
+                "mode": false,
+                "sourceOrder": 0
+              }
+            ],
+            "references": [],
+            "aliasTargets": [],
+            "aliasDepth": 0,
+            "cycle": false
+          },
+          {
+            "name": "--brand",
+            "tier": "unknown",
+            "group": "unknown:brand",
+            "declarations": [
+              {
+                "file": "tokens.css",
+                "line": 1,
+                "value": "var(--palette-blue-500, #1da1f2)",
+                "selector": ":root",
+                "mode": false,
+                "sourceOrder": 1
+              }
+            ],
+            "references": [
+              "--palette-blue-500"
+            ],
+            "aliasTargets": [
+              "--palette-blue-500"
+            ],
+            "aliasDepth": 1,
+            "cycle": false
+          }
+        ],
+        "groups": [
+          {
+            "id": "primitive:palette-blue",
+            "lane": "primitive",
+            "label": "--palette-blue-*",
+            "tokens": 1,
+            "declarations": 1,
+            "references": 0
+          },
+          {
+            "id": "unknown:brand",
+            "lane": "unknown",
+            "label": "--brand-*",
+            "tokens": 1,
+            "declarations": 1,
+            "references": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "unknown:brand",
+            "to": "primitive:palette-blue",
+            "count": 1,
+            "findings": []
+          }
+        ],
+        "references": [
+          {
+            "from": "--brand",
+            "to": "--palette-blue-500",
+            "file": "tokens.css",
+            "line": 1,
+            "property": "--brand",
+            "fromGroup": "unknown:brand",
+            "toGroup": "primitive:palette-blue",
+            "findings": []
+          }
+        ],
+        "health": {
+          "unreferenced": [
+            "--brand"
+          ],
+          "undeclared": [],
+          "semanticLiterals": [],
+          "deepAliases": [],
+          "cycles": [],
+          "redeclarations": []
+        },
+        "limits": [
+          "Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.",
+          "Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.",
+          "Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.",
+          "Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.",
+          "Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.",
+          "Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted."
+        ]
+      },
+      "styleInventory": {},
+      "rulesRun": [
+        "docs/undocumented-shared-component",
+        "token/upstream-bypass",
+        "token/tier-leakage",
+        "color/semantic-holds-literal",
+        "color/literal-duplicate-tokens",
+        "token/semantic-name-describes-appearance",
+        "token/var-missing-fallback",
+        "token/tier-model-undetectable",
+        "token/raw-dimension-in-semantic",
+        "token/raw-value-in-markup",
+        "token/stock-palette-utility",
+        "color/near-duplicate-primitives",
+        "color/mixed-storage-forms",
+        "color/no-intent-plateau",
+        "token/raw-value-in-style"
+      ],
+      "findings": [
+        {
+          "evidence": [
+            {
+              "raw": "#1da1f2",
+              "provenance": {
+                "file": "Card.tsx",
+                "line": 1,
+                "selector": null,
+                "property": "bg",
+                "tokenName": null,
+                "surface": "markup",
+                "category": null,
+                "classification": "color",
+                "reason": "hardcoded colour on utility bg",
+                "fixtureSha": "live",
+                "adapterId": "tailwind-jsx",
+                "adapterVersion": "0.5.0"
+              }
+            },
+            {
+              "raw": "13px",
+              "provenance": {
+                "file": "Card.tsx",
+                "line": 1,
+                "selector": null,
+                "property": "p",
+                "tokenName": null,
+                "surface": "markup",
+                "category": null,
+                "classification": "dimension",
+                "reason": "hardcoded length on utility p",
+                "fixtureSha": "live",
+                "adapterId": "tailwind-jsx",
+                "adapterVersion": "0.5.0"
+              }
+            }
+          ],
+          "ruleId": "token/raw-value-in-markup",
+          "severity": "high",
+          "summary": "2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct)",
+          "where": "bg-[#1da1f2] at Card.tsx:1; p-[13px] at Card.tsx:1",
+          "fix": "Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.",
+          "data": {
+            "count": 2,
+            "colors": 1,
+            "dimensions": 1,
+            "distinct": 2,
+            "alreadyDeclared": [],
+            "hits": [
+              {
+                "utility": "bg",
+                "value": "#1da1f2",
+                "variants": null,
+                "where": "Card.tsx:1",
+                "adapter": "tailwind-jsx"
+              },
+              {
+                "utility": "p",
+                "value": "13px",
+                "variants": null,
+                "where": "Card.tsx:1",
+                "adapter": "tailwind-jsx"
               }
             ]
           },
-          "impact": "The next person to change this colour changes one of the names and not the others, and the system carries two values for one decision."
+          "impact": "The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour.",
+          "dimensions": {
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": 2,
+              "reached": 0,
+              "noStaticImporter": 2,
+              "unresolved": 0
+            },
+            "locations": [
+              {
+                "file": "Card.tsx",
+                "line": 1,
+                "value": "#1da1f2",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              },
+              {
+                "file": "Card.tsx",
+                "line": 1,
+                "value": "13px",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              }
+            ]
+          },
+          "suggestion": {
+            "basis": "Value candidates only; cascade, mode, semantic role and replacement safety are not established. No automatic replacement.",
+            "values": [
+              {
+                "value": "#1da1f2",
+                "file": "Card.tsx",
+                "line": 1,
+                "property": "bg",
+                "category": "color",
+                "status": "ambiguous",
+                "candidates": [
+                  {
+                    "candidateRef": 0
+                  },
+                  {
+                    "candidateRef": 1
+                  }
+                ],
+                "limits": []
+              },
+              {
+                "value": "13px",
+                "file": "Card.tsx",
+                "line": 1,
+                "property": "p",
+                "category": "spacing",
+                "status": "no-token",
+                "candidates": [],
+                "limits": []
+              }
+            ],
+            "resolutionLimits": []
+          }
         },
         {
           "ruleId": "token/tier-model-undetectable",
@@ -98,21 +491,43 @@
             "coverage": 0,
             "floor": 0.5
           },
-          "impact": "A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce."
+          "impact": "A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.",
+          "dimensions": {
+            "reached": {
+              "state": "unresolved",
+              "basis": "This aggregate has no complete source locations; file membership is unresolved."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": null,
+              "reached": null,
+              "noStaticImporter": null,
+              "unresolved": null
+            },
+            "locations": []
+          }
         }
       ],
       "coverage": {
         "unreadFormats": {},
         "partialReads": [
           {
-            "adapter": "css-custom-props@0.3.0",
+            "adapter": "css-custom-props@0.6.0",
             "extensions": [
               ".css"
             ],
             "reads": "custom-property declarations (--token: value) — not rule bodies, not at-rules"
           },
           {
-            "adapter": "tailwind-jsx@0.4.0",
+            "adapter": "tailwind-jsx@0.5.0",
             "extensions": [
               ".jsx",
               ".tsx",
@@ -135,7 +550,17 @@
         "couldNotJudge": [
           "token/tier-model-undetectable"
         ],
-        "complete": false
+        "complete": false,
+        "documentation": {
+          "version": "0.1.0",
+          "status": "not-checked",
+          "packages": [],
+          "limits": [
+            "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+            "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+            "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+          ]
+        }
       },
       "suppressions": [],
       "ratios": {
@@ -146,18 +571,111 @@
       "next": [
         {
           "command": "decide on the rest",
-          "why": "nothing here is mechanically provable — all 3 findings state their choice on the fix line"
+          "why": "nothing here is mechanically provable — all 2 findings state their choice on the fix line"
         },
         {
           "command": "ds-loop scorecard .",
           "why": "pin these ratios as run 1 — a ratio only says something against a previous row"
         },
         {
+          "command": "ds-loop install",
+          "why": "wire your coding agent to the skill, instead of pasting that path yourself",
+          "setup": true
+        },
+        {
           "command": "ds-loop guard on",
           "why": "report high-severity findings after each Claude Code edit (never blocks)"
         }
       ],
-      "verdict": "issues"
+      "verdict": "issues",
+      "suggestionIndex": {
+        "candidates": [
+          {
+            "categories": [
+              "color"
+            ],
+            "categoryEvidence": [
+              {
+                "category": "color",
+                "source": "name",
+                "pattern": "(^|-)(color|palette|fg|bg|accent|neutral|brand)(-|$)"
+              }
+            ],
+            "categoryMatch": "same",
+            "token": "--brand",
+            "value": "#1da1f2",
+            "match": "exact",
+            "distance": 0,
+            "metric": "identity",
+            "tier": "unknown",
+            "aliasChain": [
+              "--brand",
+              "--palette-blue-500"
+            ],
+            "preferred": true,
+            "declarationRefs": [
+              0,
+              1
+            ]
+          },
+          {
+            "categories": [
+              "color"
+            ],
+            "categoryEvidence": [
+              {
+                "category": "color",
+                "source": "name",
+                "pattern": "(^|-)(color|palette|fg|bg|accent|neutral|brand)(-|$)"
+              }
+            ],
+            "categoryMatch": "same",
+            "token": "--palette-blue-500",
+            "value": "#1da1f2",
+            "match": "exact",
+            "distance": 0,
+            "metric": "identity",
+            "tier": "primitive",
+            "aliasChain": [
+              "--palette-blue-500"
+            ],
+            "preferred": false,
+            "declarationRefs": [
+              1
+            ]
+          }
+        ],
+        "declarations": [
+          {
+            "file": "tokens.css",
+            "line": 1,
+            "selector": ":root",
+            "property": "--brand",
+            "tokenName": "--brand",
+            "surface": null,
+            "category": null,
+            "fixtureSha": "live",
+            "adapterId": "css-custom-props",
+            "adapterVersion": "0.6.0",
+            "classification": "reference",
+            "reason": "references 1 token(s): --palette-blue-500"
+          },
+          {
+            "file": "tokens.css",
+            "line": 1,
+            "selector": ":root",
+            "property": "--palette-blue-500",
+            "tokenName": "--palette-blue-500",
+            "surface": null,
+            "category": null,
+            "fixtureSha": "live",
+            "adapterId": "css-custom-props",
+            "adapterVersion": "0.6.0",
+            "classification": "color",
+            "reason": "opaque color value on a non-shadow token"
+          }
+        ]
+      }
     }
   },
   {
@@ -167,31 +685,45 @@
       "tokens.css": ":root { --ocean: #1da1f2; --link: var(--ocean, #1da1f2); }\n"
     },
     "result": {
-      "manifest": {
-        "tool": "ds-loop",
-        "command": "audit",
-        "target": "all",
-        "fixtureLabel": "token-model",
-        "fixtureSha": "live",
-        "adapter": "css-custom-props@0.3.0",
-        "configHash": "05063bc7"
+      "fileImports": {
+        "version": "1.1.0",
+        "files": {
+          "tokens.css": {
+            "state": "no-static-importer",
+            "basis": "No static importer found.",
+            "importers": []
+          }
+        },
+        "unresolved": [],
+        "configIssues": [],
+        "limits": [
+          "Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.",
+          "No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.",
+          "Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.",
+          "Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved."
+        ]
       },
-      "rulesRun": [
-        "token/tier-leakage",
-        "color/semantic-holds-literal",
-        "color/literal-duplicate-tokens",
-        "token/semantic-name-describes-appearance",
-        "token/var-missing-fallback",
-        "token/tier-model-undetectable",
-        "token/raw-dimension-in-semantic",
-        "token/raw-value-in-markup",
-        "token/stock-palette-utility",
-        "color/near-duplicate-primitives",
-        "color/mixed-storage-forms",
-        "color/no-intent-plateau"
-      ],
-      "findings": [
+      "findingEvidence": [
         {
+          "evidence": [
+            {
+              "raw": "#1da1f2",
+              "provenance": {
+                "file": "tokens.css",
+                "line": 1,
+                "selector": ":root",
+                "property": "--ocean",
+                "tokenName": "--ocean",
+                "surface": null,
+                "category": null,
+                "fixtureSha": "live",
+                "adapterId": "css-custom-props",
+                "adapterVersion": "0.6.0",
+                "classification": "color",
+                "reason": "opaque color value on a non-shadow token"
+              }
+            }
+          ],
           "ruleId": "color/semantic-holds-literal",
           "severity": "high",
           "summary": "1 semantic token declaration(s) hold a literal colour instead of referencing a primitive",
@@ -206,7 +738,41 @@
               "--ocean"
             ]
           },
-          "impact": "Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit."
+          "impact": "Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.",
+          "dimensions": {
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": 1,
+              "reached": 0,
+              "noStaticImporter": 1,
+              "unresolved": 0
+            },
+            "locations": [
+              {
+                "file": "tokens.css",
+                "line": 1,
+                "value": "#1da1f2",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              }
+            ]
+          }
         },
         {
           "ruleId": "token/tier-model-undetectable",
@@ -220,14 +786,297 @@
             "coverage": 0,
             "floor": 0.5
           },
-          "impact": "A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce."
+          "impact": "A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.",
+          "dimensions": {
+            "reached": {
+              "state": "unresolved",
+              "basis": "This aggregate has no complete source locations; file membership is unresolved."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": null,
+              "reached": null,
+              "noStaticImporter": null,
+              "unresolved": null
+            },
+            "locations": []
+          }
+        }
+      ],
+      "findingTotals": {
+        "all": 2,
+        "reached": 0,
+        "noStaticImporter": 1,
+        "unresolved": 1,
+        "basis": "Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences."
+      },
+      "reachedStyleInventory": {},
+      "reachedRatios": {
+        "literal-colors-per-distinct": null,
+        "colors-per-distinct-in-scope": null,
+        "ambiguous-share": null
+      },
+      "documentation": {
+        "version": "0.1.0",
+        "status": "not-checked",
+        "packages": [],
+        "limits": [
+          "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+          "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+          "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+        ]
+      },
+      "manifest": {
+        "tool": "ds-loop",
+        "command": "audit",
+        "target": "all",
+        "fixtureLabel": "token-model",
+        "fixtureSha": "live",
+        "adapter": "css-custom-props@0.6.0",
+        "configHash": "5b0a0820"
+      },
+      "tokenArchitecture": {
+        "maxAliasDepth": 4,
+        "tokens": [
+          {
+            "name": "--ocean",
+            "tier": "unknown",
+            "group": "unknown:ocean",
+            "declarations": [
+              {
+                "file": "tokens.css",
+                "line": 1,
+                "value": "#1da1f2",
+                "selector": ":root",
+                "mode": false,
+                "sourceOrder": 0
+              }
+            ],
+            "references": [],
+            "aliasTargets": [],
+            "aliasDepth": 0,
+            "cycle": false
+          },
+          {
+            "name": "--link",
+            "tier": "unknown",
+            "group": "unknown:link",
+            "declarations": [
+              {
+                "file": "tokens.css",
+                "line": 1,
+                "value": "var(--ocean, #1da1f2)",
+                "selector": ":root",
+                "mode": false,
+                "sourceOrder": 1
+              }
+            ],
+            "references": [
+              "--ocean"
+            ],
+            "aliasTargets": [
+              "--ocean"
+            ],
+            "aliasDepth": 1,
+            "cycle": false
+          }
+        ],
+        "groups": [
+          {
+            "id": "unknown:ocean",
+            "lane": "unknown",
+            "label": "--ocean-*",
+            "tokens": 1,
+            "declarations": 1,
+            "references": 0
+          },
+          {
+            "id": "unknown:link",
+            "lane": "unknown",
+            "label": "--link-*",
+            "tokens": 1,
+            "declarations": 1,
+            "references": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "unknown:link",
+            "to": "unknown:ocean",
+            "count": 1,
+            "findings": []
+          }
+        ],
+        "references": [
+          {
+            "from": "--link",
+            "to": "--ocean",
+            "file": "tokens.css",
+            "line": 1,
+            "property": "--link",
+            "fromGroup": "unknown:link",
+            "toGroup": "unknown:ocean",
+            "findings": []
+          }
+        ],
+        "health": {
+          "unreferenced": [
+            "--link"
+          ],
+          "undeclared": [],
+          "semanticLiterals": [],
+          "deepAliases": [],
+          "cycles": [],
+          "redeclarations": []
+        },
+        "limits": [
+          "Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.",
+          "Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.",
+          "Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.",
+          "Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.",
+          "Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.",
+          "Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted."
+        ]
+      },
+      "styleInventory": {},
+      "rulesRun": [
+        "docs/undocumented-shared-component",
+        "token/upstream-bypass",
+        "token/tier-leakage",
+        "color/semantic-holds-literal",
+        "color/literal-duplicate-tokens",
+        "token/semantic-name-describes-appearance",
+        "token/var-missing-fallback",
+        "token/tier-model-undetectable",
+        "token/raw-dimension-in-semantic",
+        "token/raw-value-in-markup",
+        "token/stock-palette-utility",
+        "color/near-duplicate-primitives",
+        "color/mixed-storage-forms",
+        "color/no-intent-plateau",
+        "token/raw-value-in-style"
+      ],
+      "findings": [
+        {
+          "evidence": [
+            {
+              "raw": "#1da1f2",
+              "provenance": {
+                "file": "tokens.css",
+                "line": 1,
+                "selector": ":root",
+                "property": "--ocean",
+                "tokenName": "--ocean",
+                "surface": null,
+                "category": null,
+                "fixtureSha": "live",
+                "adapterId": "css-custom-props",
+                "adapterVersion": "0.6.0",
+                "classification": "color",
+                "reason": "opaque color value on a non-shadow token"
+              }
+            }
+          ],
+          "ruleId": "color/semantic-holds-literal",
+          "severity": "high",
+          "summary": "1 semantic token declaration(s) hold a literal colour instead of referencing a primitive",
+          "where": "--ocean = #1da1f2 (tokens.css:1)",
+          "fix": "There is no primitive tier in this source — every colour is declared where it is used, so there is nothing to reference yet. Add a palette layer first, then point these at it.",
+          "data": {
+            "count": 1,
+            "distinctNames": 1,
+            "files": 1,
+            "primitivesInSource": 0,
+            "tokens": [
+              "--ocean"
+            ]
+          },
+          "impact": "Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.",
+          "dimensions": {
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": 1,
+              "reached": 0,
+              "noStaticImporter": 1,
+              "unresolved": 0
+            },
+            "locations": [
+              {
+                "file": "tokens.css",
+                "line": 1,
+                "value": "#1da1f2",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              }
+            ]
+          }
+        },
+        {
+          "ruleId": "token/tier-model-undetectable",
+          "severity": "low",
+          "summary": "only 0 of 1 referencing token(s) match a tier pattern (0 < floor 0.5) — tier checks could not judge this source",
+          "where": "--link",
+          "fix": "Set taxonomy.primitivePattern, semanticNamespaces and componentPattern to this source's naming convention, then re-run. Until then treat a clean token/tier-leakage result as \"not checked\", not \"passed\".",
+          "data": {
+            "references": 1,
+            "classified": 0,
+            "coverage": 0,
+            "floor": 0.5
+          },
+          "impact": "A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.",
+          "dimensions": {
+            "reached": {
+              "state": "unresolved",
+              "basis": "This aggregate has no complete source locations; file membership is unresolved."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": null,
+              "reached": null,
+              "noStaticImporter": null,
+              "unresolved": null
+            },
+            "locations": []
+          }
         }
       ],
       "coverage": {
         "unreadFormats": {},
         "partialReads": [
           {
-            "adapter": "css-custom-props@0.3.0",
+            "adapter": "css-custom-props@0.6.0",
             "extensions": [
               ".css"
             ],
@@ -246,7 +1095,17 @@
         "couldNotJudge": [
           "token/tier-model-undetectable"
         ],
-        "complete": false
+        "complete": false,
+        "documentation": {
+          "version": "0.1.0",
+          "status": "not-checked",
+          "packages": [],
+          "limits": [
+            "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+            "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+            "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+          ]
+        }
       },
       "suppressions": [],
       "ratios": {
@@ -264,11 +1123,20 @@
           "why": "pin these ratios as run 1 — a ratio only says something against a previous row"
         },
         {
+          "command": "ds-loop install",
+          "why": "wire your coding agent to the skill, instead of pasting that path yourself",
+          "setup": true
+        },
+        {
           "command": "ds-loop guard on",
           "why": "report high-severity findings after each Claude Code edit (never blocks)"
         }
       ],
-      "verdict": "issues"
+      "verdict": "issues",
+      "suggestionIndex": {
+        "candidates": [],
+        "declarations": []
+      }
     }
   },
   {
@@ -280,43 +1148,57 @@
       "ds-loop.config.json": "{\"tokenContexts\":[{\"files\":[\"Card.tsx\"],\"tokens\":[\"theme.css\"]}]}\n"
     },
     "result": {
-      "manifest": {
-        "tool": "ds-loop",
-        "command": "audit",
-        "target": "all",
-        "fixtureLabel": "stock-palette",
-        "fixtureSha": "live",
-        "adapter": "css-custom-props@0.3.0 + tailwind-jsx@0.4.0",
-        "configHash": "9bbd39ce",
-        "tokenContext": [
-          {
-            "file": "theme.css",
-            "forFiles": [
-              "Card.tsx"
-            ],
-            "adapter": "css-custom-props@0.3.0",
-            "sha256": "918d74b2d41e67c30e5c781f436086fb279163b23977f40bdeec5bb6a825ea3f"
+      "fileImports": {
+        "version": "1.1.0",
+        "files": {
+          "Card.tsx": {
+            "state": "no-static-importer",
+            "basis": "No static importer found.",
+            "importers": []
+          },
+          "ds-loop.config.json": {
+            "state": "no-static-importer",
+            "basis": "No static importer found.",
+            "importers": []
+          },
+          "theme.css": {
+            "state": "no-static-importer",
+            "basis": "No static importer found.",
+            "importers": []
           }
+        },
+        "unresolved": [],
+        "configIssues": [],
+        "limits": [
+          "Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.",
+          "No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.",
+          "Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.",
+          "Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved."
         ]
       },
-      "rulesRun": [
-        "token/tier-leakage",
-        "color/semantic-holds-literal",
-        "color/literal-duplicate-tokens",
-        "token/semantic-name-describes-appearance",
-        "token/var-missing-fallback",
-        "token/tier-model-undetectable",
-        "token/raw-dimension-in-semantic",
-        "token/raw-value-in-markup",
-        "token/stock-palette-utility",
-        "color/near-duplicate-primitives",
-        "color/mixed-storage-forms",
-        "color/no-intent-plateau"
-      ],
-      "findings": [
+      "findingEvidence": [
         {
           "ruleId": "token/stock-palette-utility",
           "severity": "medium",
+          "evidence": [
+            {
+              "raw": "white",
+              "provenance": {
+                "file": "Card.tsx",
+                "line": 1,
+                "selector": null,
+                "property": "bg",
+                "tokenName": null,
+                "surface": "markup",
+                "category": null,
+                "classification": "palette-utility",
+                "reason": "utility bg names the framework palette entry white, not a theme token",
+                "fixtureSha": "live",
+                "adapterId": "tailwind-jsx",
+                "adapterVersion": "0.5.0"
+              }
+            }
+          ],
           "summary": "1 use site(s) name the framework palette instead of a theme token (1 distinct across 1 file(s))",
           "where": "bg-white at Card.tsx:1",
           "fix": "Check the resolved framework theme and project contract. Where a semantic role applies, use its utility (for example bg-surface or text-muted-foreground). This audit checks structure, not rendering: confirm the swap in the browser in both modes.",
@@ -334,21 +1216,246 @@
               }
             ]
           },
-          "impact": "Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes."
+          "impact": "Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes.",
+          "dimensions": {
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": 1,
+              "reached": 0,
+              "noStaticImporter": 1,
+              "unresolved": 0
+            },
+            "locations": [
+              {
+                "file": "Card.tsx",
+                "line": 1,
+                "value": "white",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              }
+            ]
+          }
+        }
+      ],
+      "findingTotals": {
+        "all": 1,
+        "reached": 0,
+        "noStaticImporter": 1,
+        "unresolved": 0,
+        "basis": "Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences."
+      },
+      "reachedStyleInventory": {},
+      "reachedRatios": {
+        "literal-colors-per-distinct": null,
+        "colors-per-distinct-in-scope": null,
+        "ambiguous-share": null
+      },
+      "documentation": {
+        "version": "0.1.0",
+        "status": "not-checked",
+        "packages": [],
+        "limits": [
+          "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+          "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+          "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+        ]
+      },
+      "manifest": {
+        "tool": "ds-loop",
+        "command": "audit",
+        "target": "all",
+        "fixtureLabel": "stock-palette",
+        "fixtureSha": "live",
+        "adapter": "css-custom-props@0.6.0 + tailwind-jsx@0.5.0",
+        "configHash": "24fe9e69",
+        "tokenContext": [
+          {
+            "file": "theme.css",
+            "forFiles": [
+              "Card.tsx"
+            ],
+            "adapter": "css-custom-props@0.6.0",
+            "sha256": "918d74b2d41e67c30e5c781f436086fb279163b23977f40bdeec5bb6a825ea3f"
+          }
+        ]
+      },
+      "tokenArchitecture": {
+        "maxAliasDepth": 4,
+        "tokens": [
+          {
+            "name": "--palette-blue-500",
+            "tier": "primitive",
+            "group": "primitive:palette-blue",
+            "declarations": [
+              {
+                "file": "theme.css",
+                "line": 1,
+                "value": "#2456ab",
+                "selector": ":root",
+                "mode": false,
+                "sourceOrder": 0
+              }
+            ],
+            "references": [],
+            "aliasTargets": [],
+            "aliasDepth": 0,
+            "cycle": false
+          }
+        ],
+        "groups": [
+          {
+            "id": "primitive:palette-blue",
+            "lane": "primitive",
+            "label": "--palette-blue-*",
+            "tokens": 1,
+            "declarations": 1,
+            "references": 0
+          }
+        ],
+        "edges": [],
+        "references": [],
+        "health": {
+          "unreferenced": [
+            "--palette-blue-500"
+          ],
+          "undeclared": [],
+          "semanticLiterals": [],
+          "deepAliases": [],
+          "cycles": [],
+          "redeclarations": []
+        },
+        "limits": [
+          "Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.",
+          "Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.",
+          "Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.",
+          "Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.",
+          "Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.",
+          "Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted."
+        ]
+      },
+      "styleInventory": {},
+      "rulesRun": [
+        "docs/undocumented-shared-component",
+        "token/upstream-bypass",
+        "token/tier-leakage",
+        "color/semantic-holds-literal",
+        "color/literal-duplicate-tokens",
+        "token/semantic-name-describes-appearance",
+        "token/var-missing-fallback",
+        "token/tier-model-undetectable",
+        "token/raw-dimension-in-semantic",
+        "token/raw-value-in-markup",
+        "token/stock-palette-utility",
+        "color/near-duplicate-primitives",
+        "color/mixed-storage-forms",
+        "color/no-intent-plateau",
+        "token/raw-value-in-style"
+      ],
+      "findings": [
+        {
+          "ruleId": "token/stock-palette-utility",
+          "severity": "medium",
+          "evidence": [
+            {
+              "raw": "white",
+              "provenance": {
+                "file": "Card.tsx",
+                "line": 1,
+                "selector": null,
+                "property": "bg",
+                "tokenName": null,
+                "surface": "markup",
+                "category": null,
+                "classification": "palette-utility",
+                "reason": "utility bg names the framework palette entry white, not a theme token",
+                "fixtureSha": "live",
+                "adapterId": "tailwind-jsx",
+                "adapterVersion": "0.5.0"
+              }
+            }
+          ],
+          "summary": "1 use site(s) name the framework palette instead of a theme token (1 distinct across 1 file(s))",
+          "where": "bg-white at Card.tsx:1",
+          "fix": "Check the resolved framework theme and project contract. Where a semantic role applies, use its utility (for example bg-surface or text-muted-foreground). This audit checks structure, not rendering: confirm the swap in the browser in both modes.",
+          "data": {
+            "count": 1,
+            "distinct": 1,
+            "files": 1,
+            "underDarkVariant": 0,
+            "hits": [
+              {
+                "utility": "bg",
+                "value": "white",
+                "variants": null,
+                "where": "Card.tsx:1"
+              }
+            ]
+          },
+          "impact": "Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes.",
+          "dimensions": {
+            "reached": {
+              "state": "no-static-importer",
+              "basis": "Per-location static importer evidence; mixed groups retain every occurrence."
+            },
+            "declaredIntentional": {
+              "state": "not-recorded",
+              "records": []
+            },
+            "domainValue": {
+              "state": "not-established",
+              "hints": [],
+              "basis": "Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent."
+            },
+            "occurrences": {
+              "all": 1,
+              "reached": 0,
+              "noStaticImporter": 1,
+              "unresolved": 0
+            },
+            "locations": [
+              {
+                "file": "Card.tsx",
+                "line": 1,
+                "value": "white",
+                "reached": {
+                  "state": "no-static-importer",
+                  "basis": "No static importer found."
+                },
+                "declaredIntentional": [],
+                "domainHints": []
+              }
+            ]
+          }
         }
       ],
       "coverage": {
         "unreadFormats": {},
         "partialReads": [
           {
-            "adapter": "css-custom-props@0.3.0",
+            "adapter": "css-custom-props@0.6.0",
             "extensions": [
               ".css"
             ],
             "reads": "custom-property declarations (--token: value) — not rule bodies, not at-rules"
           },
           {
-            "adapter": "tailwind-jsx@0.4.0",
+            "adapter": "tailwind-jsx@0.5.0",
             "extensions": [
               ".jsx",
               ".tsx",
@@ -369,7 +1476,17 @@
           "samples": []
         },
         "couldNotJudge": [],
-        "complete": true
+        "complete": true,
+        "documentation": {
+          "version": "0.1.0",
+          "status": "not-checked",
+          "packages": [],
+          "limits": [
+            "Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.",
+            "Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.",
+            "Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented."
+          ]
+        }
       },
       "suppressions": [],
       "ratios": {
@@ -387,11 +1504,20 @@
           "why": "pin these ratios as run 1 — a ratio only says something against a previous row"
         },
         {
+          "command": "ds-loop install",
+          "why": "wire your coding agent to the skill, instead of pasting that path yourself",
+          "setup": true
+        },
+        {
           "command": "ds-loop guard on",
           "why": "report high-severity findings after each Claude Code edit (never blocks)"
         }
       ],
-      "verdict": "issues"
+      "verdict": "issues",
+      "suggestionIndex": {
+        "candidates": [],
+        "declarations": []
+      }
     }
   }
 ]

@@ -88,3 +88,12 @@
   .ember-palette>div { flex-basis:calc(50% - 12px); }
 }
 @media(prefers-reduced-motion:reduce) { .visual-home .button.button-ember,.ember-theme .button,.ember-theme .nav .nav-start { transition:none; } }
+/* Evidence pages share the homepage ground and action instead of the earlier aubergine. */
+.evidence-page.ember-theme {
+  --paper:#0b0913; --white:#151120; --deep:#110e19; --muted:#b4abc4; --line:#2e283c;
+  --line-strong:#5a4f6e; --surface-hover:#211b30; --frame-line:#ffffff12; --frame-mark:#ffffff2e;
+  --ember-action:linear-gradient(138deg,#cdbbff 5%,#a98cff 31%,#e97a97 66%,#f2682c 86%);
+  --ember-surface:#151120; --ember-line:#2e283c;
+  --ember-glass:linear-gradient(135deg,#ffffff0d,#ffffff02 48%),radial-gradient(ellipse at 100% 0%,#a98cff14,transparent 65%);
+  background-color:#0b0913; background-image:radial-gradient(ellipse 70% 600px at 75% -180px,#a98cff12,transparent);
+}

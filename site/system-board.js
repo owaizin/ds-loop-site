@@ -1,4 +1,4 @@
-// System board study: traces, background parts and the six-step loop clock.
+// System board study: traces, background parts and the loop clock (six steps, or four with data-stages="4").
 (() => {
   const board = document.getElementById('sb-board');
   if (!board) return;
@@ -24,7 +24,16 @@
     check: [[[700, 485], [700, 415]], 0, 3],
   };
   const BLANK = { asking: '', agent: '', report: '', code: '', decision: '', guard: '', loop: '' };
-  const STEPS = [
+  // Four stages fold the same traces into Investigate, Consult, Build and Keep healthy.
+  const FOUR = board.dataset.stages === '4';
+  const STEPS = FOUR ? [
+    { on: ['agent', 'engine', 'code'], start: {}, lead: 1900, conns: [['ask', { agent: 'run' }], ['run'], ['read']] },
+    { on: ['engine', 'report', 'decisions'], start: {}, conns: [['report', { report: 'found', code: 'warm' }], ['decide', { decision: 'new' }]] },
+    { on: ['decisions', 'agent', 'code'], start: { report: 'found', code: 'warm', decision: 'new' },
+      conns: [['consult', { agent: 'edit' }], ['edit', { code: 'fixed' }]] },
+    { on: ['code', 'guard', 'engine', 'report'], start: { report: 'found', code: 'fixed', decision: 'new' },
+      conns: [['watch', { guard: 'on' }], ['check'], ['report', { report: 'clean', code: 'checked', loop: 'closed' }]] },
+  ] : [
     { on: ['agent', 'engine'], start: {}, lead: 1900, conns: [['ask', { agent: 'run' }], ['run']] },
     { on: ['code', 'engine'], start: {}, conns: [['read']] },
     { on: ['engine', 'report'], start: {}, conns: [['report', { report: 'found', code: 'warm' }]] },
@@ -37,46 +46,62 @@
   // Sample requests. Slash commands and engine commands are the real ds-loop surface.
   // code: [line, ...] with one [before, after] pair for the flagged line.
   const SCENARIOS = [
-    { ask: 'Fix the colors so they match our design system.', skill: '/ds-loop:transform',
-      run: ['ds-loop audit', '--target color'], edit: ['apply decision', 'button.css'],
-      file: 'button.css', ref: 'button.css:42', decision: 'use --accent',
-      code: ['.button {', '  padding: var(--space-3);', ['  color: #6a3fd1;', '  color: var(--accent);'], '  radius: var(--radius-2);', '}'],
-      text: ['Your agent loads the ds-loop skill and runs a color audit.',
-        'The engine reads every color in your code against your tokens. No model, no network.',
-        'Each off-palette color comes back with a file and line, and the report says what it could not read.',
-        'Your team confirms which token each stray color should use. The choice is saved.',
-        'The agent replaces the hardcoded color, inside what your team decided.',
-        'The guard hook re-checks the edited file, and CI flags new stray colors.'] },
-    { ask: 'Set up Storybook for our shared components.', skill: '/ds-loop:document',
-      run: ['ds-loop audit', 'src/components'], edit: ['add stories', 'Button.stories'],
-      file: 'Button.tsx', ref: 'Button.tsx:18', decision: 'Button first',
-      code: ['const Button = styled.button`', '  font: var(--text-sm);', ['  padding: 14px 18px;', '  padding: var(--space-3);'], '  radius: var(--radius-2);', '`;'],
-      text: ['Your agent follows the docs playbook and measures the components first.',
-        'The engine reads the component files the stories will show.',
-        'Off-scale values come back with a file and line before they get documented.',
-        'Your team agrees which components get stories first. The plan is saved.',
-        'The agent scaffolds stories in your existing structure and fixes the value they would expose.',
-        'The guard hook re-checks each edited file before it lands.'] },
-    { ask: 'Create a settings screen using our design system.', skill: '/ds-loop:component',
-      run: ['ds-loop context', 'tokens · components'], edit: ['build screen', 'Settings.tsx'],
-      file: 'Settings.tsx', ref: 'Settings.tsx:27', decision: 'Stack + Field',
-      code: ['<Stack gap="4">', '  <Field label="Name" />', ['  <div style={{ gap: 18 }}>', '  <Stack gap="5">'], '  <Button>Save</Button>', '</Stack>'],
-      text: ['Your agent asks the engine what your system already has.',
-        'The engine reads your tokens and components, and where they are used.',
-        'Hand-rolled values near the new screen come back with a file and line.',
-        'Your team picks the components the screen should reuse.',
-        'The agent builds the screen from those components, not new ones.',
-        'The guard hook checks every file the agent touches.'] },
-    { ask: 'Why do we have fourteen font sizes?', skill: '/ds-loop:diagnose',
-      run: ['ds-loop audit', '--target typography'], edit: ['apply scale', 'card.css'],
-      file: 'card.css', ref: 'card.css:18', decision: '7-step scale',
+    { ask: 'Use our shared Button in billing. Keep the delete action distinct.', skill: '/ds-loop:transform',
+      run: ['ds-loop consumers .', '--scope @acme/ui'], edit: ['reuse Button', 'Billing.tsx'],
+      file: 'Billing.tsx', ref: 'Billing.tsx:12', decision: 'keep danger variant',
+      code: ["import { Button } from '@acme/ui';", 'function DeleteAction() {', ['  return <LocalDelete />;', '  return <Button variant="danger" />;'], '}'],
+      text4: ['Your agent reads the project and runs shared-component usage analysis. The engine traces imports and counts shared and local elements.',
+        'The report shows billing uses a local control. Your team approves the shared Button and keeps the delete action distinct.',
+        'Your agent updates the component and its handlers within the agreed scope.',
+        'Your agent reruns usage analysis and tests the interaction. Hooks and CI can repeat the check after later edits.'],
+      text: ['Your agent reads the project instructions and runs shared-component usage analysis.',
+        'The engine traces supported imports and counts shared and local JSX elements. Unresolved references stay visible.',
+        'Your agent uses that evidence to investigate why billing uses a local control.',
+        'Your team approves using the shared Button while keeping the distinct delete action.',
+        'The agent updates the component and its handlers within the agreed scope. This snippet shows the component choice.',
+        'Your agent reruns usage analysis, tests the interaction, and records the results and anything still unchecked.'] },
+    { ask: 'Add usage examples for our shared Button.', skill: '/ds-loop:document',
+      run: ['ds-loop context .', 'project conventions'], edit: ['add example', 'Button.stories.tsx'],
+      file: 'Button.stories.tsx', ref: 'Button.tsx', decision: 'document danger',
+      code: ["import { Button } from './Button';", 'export const Delete = () => (', ['  <Button>Delete</Button>', '  <Button variant="danger">Delete</Button>'], ');'],
+      text4: ['Your agent reads the component, its props and states, and the project’s documentation conventions.',
+        'The report flags the missing delete-action example. Your team confirms when the danger variant applies.',
+        'Your agent adds the example in your existing documentation setup.',
+        'Your agent runs the build and interaction checks, and records how to use the variant.'],
+      text: ['Your agent reads the component and the project’s documentation conventions.',
+        'The engine supplies repository context. The agent inspects the actual props, states, and existing examples.',
+        'The agent identifies the missing delete-action example and links to the component source.',
+        'Your team confirms when the danger variant should be used.',
+        'The agent adds the example in the existing documentation setup.',
+        'Your agent runs the relevant build and interaction checks and records how to use the variant.'] },
+    { ask: 'Connect this hardcoded action color to our existing palette.', skill: '/ds-loop:transform',
+      run: ['ds-loop audit .', '--target color'], edit: ['apply decision', 'button.css'],
+      file: 'button.css', ref: 'button.css:3', decision: 'use --accent',
+      code: ['.button {', '  padding: var(--space-3);', ['  color: #6a3fd1;', '  color: var(--accent);'], '  border-radius: var(--radius-2);', '}'],
+      text4: ['Your agent runs a token and styling audit. The engine checks your source locally, without model calls.',
+        'The report points to the hardcoded color and its source line. Your team confirms the token and the themes to keep.',
+        'Your agent replaces the hardcoded value within the agreed scope.',
+        'Your agent reruns the audit and checks both themes. An optional hook flags it if the value comes back.'],
+      text: ['Your agent loads the skill and runs a token and styling audit.',
+        'The engine checks supported source syntax locally, without model calls.',
+        'Findings include source references and coverage limits. Your agent checks the intended color role.',
+        'Your team confirms the token to use and the theme choices to preserve.',
+        'The agent replaces the hardcoded value within the agreed scope.',
+        'Your agent reruns the audit and checks the affected themes. An optional hook can provide feedback after edits.'] },
+    { ask: 'Find where our card styles bypass the type scale.', skill: '/ds-loop:diagnose',
+      run: ['ds-loop audit .', 'supported styling'], edit: ['apply scale', 'card.css'],
+      file: 'card.css', ref: 'card.css:3', decision: 'use --text-md',
       code: ['.card-title {', '  line-height: 1.3;', ['  font-size: 15px;', '  font-size: var(--text-md);'], '  font-weight: 600;', '}'],
-      text: ['Your agent looks for the cause, not just the count.',
-        'The engine reads every font size in use and where it comes from.',
-        'Each stray size comes back with a file and line, compared with real public codebases.',
-        'Your team picks a type scale from vetted options. The decision is saved.',
-        'The agent moves one reviewed slice onto the scale.',
-        'The guard hook and CI flag new sizes.'] },
+      text4: ['Your agent reads your type conventions. The engine finds hardcoded values in supported styles.',
+        'The report compares them with your type scale. Your team picks the token and records any size that stays different.',
+        'Your agent updates the agreed styles and leaves intentional exceptions in place.',
+        'Your agent reruns the audit, checks text wrapping, and leaves notes. CI can keep the scale from drifting back.'],
+      text: ['Your agent reads the type conventions and runs an audit.',
+        'The engine extracts supported declarations and reports hardcoded styling values.',
+        'Source references let your agent compare the findings with the intended type scale.',
+        'Your team chooses the token and records any size that needs to stay different.',
+        'The agent updates the agreed styles and leaves intentional exceptions in place.',
+        'Your agent reruns the audit, checks text wrapping in the affected screens, and leaves review notes.'] },
   ];
   const $ = (id) => document.getElementById(id);
   const tabs = [...document.querySelectorAll('.sb-scenario')];
@@ -266,7 +291,7 @@
     if (i !== current) {
       current = i;
       steps.forEach((b, j) => b.setAttribute('aria-pressed', String(j === i)));
-      caption.textContent = sc.text[i];
+      caption.textContent = (FOUR ? sc.text4 : sc.text)[i];
       if (playing) caption.animate([{ opacity: 0, filter: 'blur(4px)' }, { opacity: 1, filter: 'blur(0)' }], { duration: 500, easing: 'cubic-bezier(.23,1,.32,1)' });
       for (const node of board.querySelectorAll('.sb-chip, .sb-tag')) node.classList.toggle('is-on', step.on.includes(node.dataset.chip || node.dataset.tag));
     }

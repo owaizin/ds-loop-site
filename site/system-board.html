@@ -21,14 +21,14 @@
     </header>
 
     <div class="sb-scenarios" role="group" aria-label="Example requests">
-      <button type="button" class="sb-scenario" aria-pressed="true">Fix colors</button>
+      <button type="button" class="sb-scenario" aria-pressed="true">Use shared components</button>
       <button type="button" class="sb-scenario" aria-pressed="false">Storybook</button>
-      <button type="button" class="sb-scenario" aria-pressed="false">New screen</button>
+      <button type="button" class="sb-scenario" aria-pressed="false">Fix tokens</button>
       <button type="button" class="sb-scenario" aria-pressed="false">Type scale</button>
     </div>
 
     <div class="sb-viewport">
-      <div class="sb-board" id="sb-board" data-step="0" role="img" aria-label="Circuit diagram. A request goes to the coding agent, which runs the ds-loop engine, which reads your code and produces a report. Your team records a decision, the agent edits your code within it, and the guard hook and CI send the edited file back to the engine.">
+      <div class="sb-board" id="sb-board" data-step="0" role="img" aria-label="Circuit diagram. A request goes to the coding agent, which runs the ds-loop engine, which reads your code and produces a report. Your team records a decision, the agent edits your code within it, and the agent reruns the relevant checks. Optional hooks and CI can add feedback.">
         <svg class="sb-layer sb-debris" id="sb-debris" viewBox="0 0 1200 760" aria-hidden="true"></svg>
         <div class="sb-ask" aria-hidden="true">
           <span class="sb-ask-icon"><svg viewBox="0 0 16 16"><path d="M5 4l4 4-4 4"/></svg></span>
@@ -102,7 +102,7 @@
             <span class="sb-mini"><i></i><i></i><i></i><i></i><i></i></span>
           </div>
         </div>
-        <span class="sb-tag" data-tag="guard" style="left:650px;top:656px">Guard hook · CI</span>
+        <span class="sb-tag" data-tag="guard" style="left:650px;top:656px">Checks · CI</span>
 
         <!-- Decisions -->
         <div class="sb-chip" data-chip="decisions" style="left:795px;top:485px;width:150px;height:150px" aria-hidden="true">
@@ -131,7 +131,7 @@
       <p id="sb-caption"></p>
       <button type="button" class="sb-toggle" id="sb-toggle" aria-pressed="false">Pause</button>
     </div>
-    <p class="sb-note">Illustration. Requests, code and references are sample data; commands are real.</p>
+    <p class="sb-note">Illustration with sample code. Your agent runs the checks; hooks and CI require setup.</p>
   </section>
 </main>
 </body>

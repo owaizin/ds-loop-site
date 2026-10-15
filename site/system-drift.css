@@ -113,10 +113,21 @@
   border-color: #6d5c96;
   box-shadow: inset 0 1px 0 #ffffff1c, 0 18px 40px -12px #000c, 0 0 48px -16px #a98cff66;
 }
+/* Shared product actions use a quiet component treatment, separate from marketing CTAs. */
 .homepage-polish .drift-demo[data-connected="true"] .drift-sample-action {
-  background: var(--hp-cta, #cbb2ee); color: #1a0f1f;
-  box-shadow: inset 0 1px 0 #ffffff8c, 0 8px 20px -12px var(--hp-cta-glow, #f2682c99);
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid #ddc9ef;
+  border-radius: 6px;
+  background: #cbb6e4;
+  color: #281934;
+  font: 600 12px/1.5 var(--display);
+  letter-spacing: 0;
+  text-align: center;
+  box-shadow: inset 0 1px 0 #ffffff40, 0 2px 3px #0002;
 }
+.homepage-polish .drift-demo[data-connected="true"] .drift-sample-action > span { display:none; }
 .homepage-polish .drift-window::after { height: 42px; background: linear-gradient(#6d5c96, #a98cff); }
 .homepage-polish .drift-foundation-line { transition: background 260ms ease, box-shadow 260ms ease; }
 .homepage-polish .drift-demo[data-connected="true"] .drift-foundation-line {
@@ -124,4 +135,66 @@
 }
 .homepage-polish .drift-demo[data-connected="true"] .drift-foundation-line:last-child {
   background: linear-gradient(90deg, #d888b4, #e97a97 30%, #f2682c 65%, transparent);
+}
+
+/* Pair the screen illustration with the component choice behind it. */
+.drift-agent-example {
+  margin-block-start: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(145deg, #1c1728, #0e0b17);
+  padding: 14px 16px;
+}
+.drift-code-label { font: 10px/1.5 var(--mono); color: var(--muted); }
+.drift-agent-example pre { margin: 12px 0 0; padding: 0; border: 0; background: none; white-space: pre-wrap; overflow-wrap: anywhere; }
+.drift-agent-example code { padding: 0; background: none; font: 12px/1.65 var(--mono); color: var(--ink); }
+.drift-demo[data-connected="true"] .drift-agent-example { border-color: #806598; }
+
+/* Problem vignette: compact fragments with visible drift, not a polished product showcase. */
+.homepage-polish .drift-stage { padding:20px 0 12px; }
+.homepage-polish .drift-windows { gap:12px; padding:8px 0; }
+.homepage-polish .drift-window { transform:none; background:#16141b; border:1px solid #65504b; border-radius:4px; box-shadow:none; }
+.homepage-polish .drift-requests { transform:translateY(10px); background:#1b171a; border-style:dashed; border-radius:12px 12px 4px 4px; }
+.homepage-polish .drift-billing { transform:translateY(3px); background:#13191a; border-radius:0; }
+.homepage-polish .drift-window-bar { min-height:21px; }
+.homepage-polish .drift-window-body { padding:12px 10px; }
+.homepage-polish .drift-app-name { margin-bottom:10px; }
+.homepage-polish .drift-window-body>strong { margin-bottom:12px; }
+.homepage-polish .drift-meta { display:none; }
+.homepage-polish .drift-sample-action { box-shadow:none; }
+.homepage-polish .drift-demo[data-connected=false] .drift-projects .drift-field { padding-block:5px; border-radius:2px; }
+.homepage-polish .drift-demo[data-connected=false] .drift-requests .drift-field { border-radius:16px; border-color:#8c7262; font-family:Georgia,serif; }
+.homepage-polish .drift-demo[data-connected=false] .drift-billing .drift-field { border-radius:0; border-bottom:2px solid #6c9f97; }
+.homepage-polish .drift-demo[data-connected=false] .drift-billing .drift-sample-action { font-family:var(--mono); text-transform:uppercase; padding-block:5px; }
+.homepage-polish .drift-annotation { display:flex; justify-content:center; align-items:center; gap:6px; color:#e5ac94; background:#b96a4510; font:500 11px/1.5 var(--body); padding:8px 4px; }
+.homepage-polish .drift-annotation::before { content:''; width:5px; height:5px; flex:none; border:1px solid currentColor; transform:rotate(45deg); }
+.homepage-polish .drift-foundation { margin-top:20px; }
+.homepage-polish .drift-demo[data-connected=false] .drift-foundation-line { height:0; background:none; border-top:1px dashed #87614d70; }
+.homepage-polish .drift-demo[data-connected=false] .drift-foundation-label { color:#d2a28b; }
+.homepage-polish .drift-agent-example { margin-top:16px; padding:10px 12px; border-radius:4px; background:#17121b; border-color:#70544470; border-left:2px solid #b67e64; }
+.homepage-polish .drift-agent-example pre { margin-top:6px; }
+.homepage-polish .drift-agent-example code { font-size:11px; line-height:1.5; }
+.homepage-polish .drift-demo figcaption { padding-top:8px; }
+.homepage-polish .customer-problem .drift-disclosure { margin-top:8px; }
+.homepage-polish .drift-demo[data-connected=true] .drift-window { transform:none; box-shadow:none; border-style:solid; border-radius:6px; }
+.homepage-polish .drift-demo[data-connected=true] .drift-annotation { color:#c9b8e8; background:#9e7ed90a; }
+.homepage-polish .drift-demo[data-connected=true] .drift-agent-example { border-color:#806598; }
+@container(max-width:420px) {
+ .homepage-polish .drift-eyebrow { display:block; font-size:10px; }
+ .homepage-polish .drift-toolbar { justify-content:space-between; gap:8px; }
+ .homepage-polish .drift-switch button { padding:5px 10px; min-height:32px; }
+ .homepage-polish .drift-windows { gap:10px; padding:0; }
+ .homepage-polish .drift-window { transform:none; }
+ .homepage-polish .drift-window-body { padding:10px 12px; gap:6px 12px; }
+ .homepage-polish .drift-app-name,.homepage-polish .drift-window-body>strong { margin:0; }
+ .homepage-polish .drift-annotation { padding:5px; }
+}
+@container(max-width:420px) {
+ .homepage-polish .drift-toolbar { display:grid; grid-template-columns:minmax(0,1fr) auto; }
+ .homepage-polish .drift-eyebrow { max-width:18ch; }
+ .homepage-polish .drift-window-body>strong { display:none; }
+ .homepage-polish .drift-app-name { grid-column:1; grid-row:1; }
+ .homepage-polish .drift-sample-action { grid-column:2; grid-row:1; }
+ .homepage-polish .drift-annotation { font-size:10px; padding:4px; }
+ .homepage-polish .drift-agent-example { padding:8px 10px; }
 }

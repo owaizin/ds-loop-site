@@ -44,3 +44,91 @@
 .visual-home .home-close .home-faq > div { min-width: 0; }
 .visual-home .home-close .home-faq details:first-child { padding-top: 0; }
 .visual-home .home-close .home-faq details p { max-width: none; }
+
+/* Explain design-system capacity and how decisions carry forward. */
+.homepage-polish .hero-audience {
+  margin: 0 auto 20px; color: var(--muted); font-size: .875rem;
+  line-height: 1.6; text-align: center; max-width: 50ch;
+}
+.homepage-polish .design-context {
+  margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--frame-line);
+  text-align: left;
+}
+.homepage-polish .design-context-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+}
+.homepage-polish .design-context h2 {
+  margin: 0; font-size: 1.5rem; font-weight: 500; line-height: 1.4;
+}
+.homepage-polish .design-context p { margin: 0; color: var(--muted); }
+.homepage-polish .design-context-details {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 28px 0 0;
+}
+.homepage-polish .design-context dt { font-weight: 500; margin-bottom: 8px; }
+.homepage-polish .design-context dd { margin: 0; color: var(--muted); font-size: .875rem; line-height: 1.65; }
+@media(max-width:760px) {
+  .homepage-polish .hero-audience { font-size: .8125rem; }
+  .homepage-polish .design-context-intro, .homepage-polish .design-context-details { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+
+.homepage-polish .hero-intro h1 .copy-phrase { white-space: nowrap; }
+
+.homepage-polish .design-context .system-feedback { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--frame-line); font-size: .875rem; line-height: 1.65; }
+
+/* A first run is available alongside the hero's agent setup action. */
+.homepage-polish .hero-quickstart { margin: 24px auto 0; }
+.homepage-polish .hero-quickstart .restore-command { margin: 0; gap: 16px; flex-wrap: wrap; }
+.homepage-polish .hero-quickstart .restore-command code { white-space: nowrap; }
+.homepage-polish .hero-quickstart button { cursor: pointer; width: 40px; height: 40px; padding: 10px; }
+.homepage-polish .hero-quickstart button:not([hidden]) { display: inline-grid; place-items: center; }
+.homepage-polish .hero-quickstart button svg { width: 18px; height: 18px; grid-area: 1 / 1; }
+.homepage-polish .hero-quickstart .copied-symbol,
+.homepage-polish .hero-quickstart [data-copied] .copy-symbol { display: none; }
+.homepage-polish .hero-quickstart [data-copied] .copied-symbol { display: block; }
+.homepage-polish .hero-quickstart button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+@media(max-width:760px) {
+  .homepage-polish .hero-quickstart .restore-command { gap: 12px; }
+}
+
+/* Four stages and four starting situations share a balanced responsive grid. */
+@media (min-width: 761px) {
+  .homepage-polish .design-context-details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1100px) {
+  .homepage-polish .design-context-details,
+  .visual-home.homepage-polish .entry-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 761px) and (max-width: 1099px) {
+  .visual-home.homepage-polish .entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.home-close p code { white-space: nowrap; }
+
+/* Section 2: one statement; the loop above carries each stage's detail. */
+.homepage-polish .design-context { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.homepage-polish .design-context .system-feedback { margin: 12px 0 0; padding: 0; border: 0; color: var(--ink); }
+.homepage-polish .loop-detail {
+  margin: 20px auto 0; max-width: 52ch; min-height: 3.3em; text-align: center; color: var(--muted); font-size: .9375rem; line-height: 1.65;
+}
+@media (max-width: 760px) { .homepage-polish .design-context { grid-template-columns: minmax(0, 1fr); gap: 16px; } }
+
+/* Section 4: four starting situations in a roomy 2 x 2 grid instead of four narrow columns. */
+@media (min-width: 761px) {
+  .visual-home.homepage-polish .entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .visual-home.homepage-polish .entry-path { padding: 32px; min-height: 0; }
+  .visual-home.homepage-polish .entry-path > p { font-size: 1.0625rem; line-height: 1.5; color: var(--ink); max-width: 36ch; }
+  .visual-home.homepage-polish .entry-path > span { max-width: 48ch; }
+}
+
+@media (max-width: 600px) {
+  .homepage-polish .sb:has(.sb-board[data-stages="4"]) .sb-rail {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+  .homepage-polish .sb:has(.sb-board[data-stages="4"]) .sb-step {
+    justify-content: center;
+    margin-left: 0;
+  }
+}

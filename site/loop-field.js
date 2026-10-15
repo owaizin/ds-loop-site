@@ -1,6 +1,6 @@
 // Shared geometry keeps the selected homepage loop identical to its playground preview.
 export const selectedLoopSettings = Object.freeze({
-  count: 3,
+  count: 1,
   width: 125,
   height: 84,
   depth: 88,

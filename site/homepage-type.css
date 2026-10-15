@@ -49,6 +49,13 @@
 .homepage-polish .restore-command button {
   font-size: var(--type-caption); font-weight: 400; line-height: 1.6;
 }
+/* Editorial labels share the site's reading font, regardless of their element. */
+.homepage-polish main .section-label {
+  display: block; margin: 0; color: var(--muted);
+  font: 500 var(--type-body)/1.5 var(--body);
+  letter-spacing: 0; text-transform: none;
+}
+.homepage-polish .drift-copy > .section-label { margin-bottom: 12px; }
 .homepage-polish .copy-label { font-size: .75rem; line-height: 1.5; letter-spacing: .05em; }
 .homepage-polish a { text-underline-offset: .2em; text-decoration-thickness: from-font; }
 .homepage-polish .report-step-number { font-variant-numeric: tabular-nums; }

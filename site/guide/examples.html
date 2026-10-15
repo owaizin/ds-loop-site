@@ -1,53 +1,116 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Verified examples | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
-<a href="example.html">Worked example: fix a button’s dark theme</a>
-<a href="install.html">Set up Design System Loop</a>
-<a href="output.html">Reading an audit</a>
-<a href="reference.html">Commands and coverage</a>
-<a href="release-0.2.0.html">0.2.0 release notes</a>
-<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1>Verified examples</h1><p>These fixtures run against the installed 0.2.1 package whenever the website builds. An audit may exit with findings; a crash or missing expected rule blocks publication.</p><section><h2 id="raw-values">Hardcoded component styles</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>tokens.css</p><pre><code>:root { --palette-blue-500: #1da1f2; --brand: var(--palette-blue-500, #1da1f2); }
-</code></pre><p>Card.tsx</p><pre><code>export const Card = () =&gt; &lt;div className=&quot;bg-[#1da1f2] p-[13px]&quot;&gt;Account&lt;/div&gt;;
-</code></pre><h3>Result</h3><pre><code>{
-  &quot;manifest&quot;: {
-    &quot;tool&quot;: &quot;ds-loop&quot;,
-    &quot;command&quot;: &quot;audit&quot;,
-    &quot;target&quot;: &quot;all&quot;,
-    &quot;fixtureLabel&quot;: &quot;raw-values&quot;,
-    &quot;fixtureSha&quot;: &quot;live&quot;,
-    &quot;adapter&quot;: &quot;css-custom-props@0.3.0 + tailwind-jsx@0.4.0&quot;,
-    &quot;configHash&quot;: &quot;05063bc7&quot;
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Verified examples | DS Loop</title><meta name="description" content="These fixtures run against the installed 0.4.0 package whenever the website builds. An audit may exit with findings; a crash or missing expected rule blocks publication."><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html">Overview</a><a href="install.html">Installation</a><a href="workflow.html">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html" aria-current="page">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Guide</a><span aria-hidden="true">/</span><span aria-current="page">Verified examples</span></nav><div class="doc-title"><div class="guide-title-copy"><h1 id="verified-examples">Verified examples</h1><p>These fixtures run against the installed 0.4.0 package whenever the website builds. An audit may exit with findings; a crash or missing expected rule blocks publication.</p></div></div><div class="doc-body-layout"><div class="doc-reading"><section><h2 id="raw-values">Hardcoded component styles</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>tokens.css</p><div class="doc-code"><pre><code id="guide-code-1">:root { --palette-blue-500: #1da1f2; --brand: var(--palette-blue-500, #1da1f2); }
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div><p>Card.tsx</p><div class="doc-code"><pre><code id="guide-code-2">export const Card = () =&gt; &lt;div className=&quot;bg-[#1da1f2] p-[13px]&quot;&gt;Account&lt;/div&gt;;
+</code></pre><button type="button" data-copy="guide-code-2" data-copy-kind="Example" aria-label="Copy code example 2" aria-describedby="guide-code-2-status" hidden>Copy</button><p class="sr-only" id="guide-code-2-status" role="status"></p></div><h3>Result</h3><div class="doc-code"><pre><code id="guide-code-3">{
+  &quot;fileImports&quot;: {
+    &quot;version&quot;: &quot;1.1.0&quot;,
+    &quot;files&quot;: {
+      &quot;Card.tsx&quot;: {
+        &quot;state&quot;: &quot;no-static-importer&quot;,
+        &quot;basis&quot;: &quot;No static importer found.&quot;,
+        &quot;importers&quot;: []
+      },
+      &quot;tokens.css&quot;: {
+        &quot;state&quot;: &quot;no-static-importer&quot;,
+        &quot;basis&quot;: &quot;No static importer found.&quot;,
+        &quot;importers&quot;: []
+      }
+    },
+    &quot;unresolved&quot;: [],
+    &quot;configIssues&quot;: [],
+    &quot;limits&quot;: [
+      &quot;Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.&quot;,
+      &quot;No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.&quot;,
+      &quot;Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.&quot;,
+      &quot;Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved.&quot;
+    ]
   },
-  &quot;rulesRun&quot;: [
-    &quot;token/tier-leakage&quot;,
-    &quot;color/semantic-holds-literal&quot;,
-    &quot;color/literal-duplicate-tokens&quot;,
-    &quot;token/semantic-name-describes-appearance&quot;,
-    &quot;token/var-missing-fallback&quot;,
-    &quot;token/tier-model-undetectable&quot;,
-    &quot;token/raw-dimension-in-semantic&quot;,
-    &quot;token/raw-value-in-markup&quot;,
-    &quot;token/stock-palette-utility&quot;,
-    &quot;color/near-duplicate-primitives&quot;,
-    &quot;color/mixed-storage-forms&quot;,
-    &quot;color/no-intent-plateau&quot;
-  ],
-  &quot;findings&quot;: [
+  &quot;findingEvidence&quot;: [
     {
+      &quot;ruleId&quot;: &quot;token/tier-model-undetectable&quot;,
+      &quot;severity&quot;: &quot;low&quot;,
+      &quot;summary&quot;: &quot;only 0 of 1 referencing token(s) match a tier pattern (0 &lt; floor 0.5) — tier checks could not judge this source&quot;,
+      &quot;where&quot;: &quot;--brand&quot;,
+      &quot;fix&quot;: &quot;Set taxonomy.primitivePattern, semanticNamespaces and componentPattern to this source's naming convention, then re-run. Until then treat a clean token/tier-leakage result as \&quot;not checked\&quot;, not \&quot;passed\&quot;.&quot;,
+      &quot;data&quot;: {
+        &quot;references&quot;: 1,
+        &quot;classified&quot;: 0,
+        &quot;coverage&quot;: 0,
+        &quot;floor&quot;: 0.5
+      },
+      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;unresolved&quot;,
+          &quot;basis&quot;: &quot;This aggregate has no complete source locations; file membership is unresolved.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: null,
+          &quot;reached&quot;: null,
+          &quot;noStaticImporter&quot;: null,
+          &quot;unresolved&quot;: null
+        },
+        &quot;locations&quot;: []
+      }
+    },
+    {
+      &quot;evidence&quot;: [
+        {
+          &quot;raw&quot;: &quot;#1da1f2&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: null,
+            &quot;property&quot;: &quot;bg&quot;,
+            &quot;tokenName&quot;: null,
+            &quot;surface&quot;: &quot;markup&quot;,
+            &quot;category&quot;: null,
+            &quot;classification&quot;: &quot;color&quot;,
+            &quot;reason&quot;: &quot;hardcoded colour on utility bg&quot;,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;tailwind-jsx&quot;,
+            &quot;adapterVersion&quot;: &quot;0.5.0&quot;
+          }
+        },
+        {
+          &quot;raw&quot;: &quot;13px&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: null,
+            &quot;property&quot;: &quot;p&quot;,
+            &quot;tokenName&quot;: null,
+            &quot;surface&quot;: &quot;markup&quot;,
+            &quot;category&quot;: null,
+            &quot;classification&quot;: &quot;dimension&quot;,
+            &quot;reason&quot;: &quot;hardcoded length on utility p&quot;,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;tailwind-jsx&quot;,
+            &quot;adapterVersion&quot;: &quot;0.5.0&quot;
+          }
+        }
+      ],
       &quot;ruleId&quot;: &quot;token/raw-value-in-markup&quot;,
       &quot;severity&quot;: &quot;high&quot;,
-      &quot;summary&quot;: &quot;2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct, 1 already declared as a token)&quot;,
+      &quot;summary&quot;: &quot;2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct)&quot;,
       &quot;where&quot;: &quot;bg-[#1da1f2] at Card.tsx:1; p-[13px] at Card.tsx:1&quot;,
-      &quot;fix&quot;: &quot;#1da1f2 is already --palette-blue-500. Swap those first. Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.&quot;,
+      &quot;fix&quot;: &quot;Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.&quot;,
       &quot;data&quot;: {
         &quot;count&quot;: 2,
         &quot;colors&quot;: 1,
         &quot;dimensions&quot;: 1,
         &quot;distinct&quot;: 2,
-        &quot;alreadyDeclared&quot;: [
-          {
-            &quot;value&quot;: &quot;#1da1f2&quot;,
-            &quot;token&quot;: &quot;--palette-blue-500&quot;
-          }
-        ],
+        &quot;alreadyDeclared&quot;: [],
         &quot;hits&quot;: [
           {
             &quot;utility&quot;: &quot;bg&quot;,
@@ -65,26 +128,352 @@
           }
         ]
       },
-      &quot;impact&quot;: &quot;The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour.&quot;
-    },
-    {
-      &quot;ruleId&quot;: &quot;color/literal-duplicate-tokens&quot;,
-      &quot;severity&quot;: &quot;medium&quot;,
-      &quot;summary&quot;: &quot;1 colour value(s) are declared by 2 different tokens&quot;,
-      &quot;where&quot;: &quot;#1da1f2 &lt;- --palette-blue-500, (inline)&quot;,
-      &quot;fix&quot;: &quot;Keep one canonical token per value; make the rest var() aliases of it.&quot;,
-      &quot;data&quot;: {
-        &quot;groups&quot;: [
+      &quot;impact&quot;: &quot;The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;no-static-importer&quot;,
+          &quot;basis&quot;: &quot;Per-location static importer evidence; mixed groups retain every occurrence.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: 2,
+          &quot;reached&quot;: 0,
+          &quot;noStaticImporter&quot;: 2,
+          &quot;unresolved&quot;: 0
+        },
+        &quot;locations&quot;: [
           {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
             &quot;value&quot;: &quot;#1da1f2&quot;,
-            &quot;tokens&quot;: [
-              &quot;--palette-blue-500&quot;,
-              &quot;(inline)&quot;
-            ]
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          },
+          {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;13px&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          }
+        ]
+      }
+    }
+  ],
+  &quot;findingTotals&quot;: {
+    &quot;all&quot;: 2,
+    &quot;reached&quot;: 0,
+    &quot;noStaticImporter&quot;: 1,
+    &quot;unresolved&quot;: 1,
+    &quot;basis&quot;: &quot;Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences.&quot;
+  },
+  &quot;reachedStyleInventory&quot;: {},
+  &quot;reachedRatios&quot;: {
+    &quot;literal-colors-per-distinct&quot;: null,
+    &quot;colors-per-distinct-in-scope&quot;: null,
+    &quot;ambiguous-share&quot;: null
+  },
+  &quot;documentation&quot;: {
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;status&quot;: &quot;not-checked&quot;,
+    &quot;packages&quot;: [],
+    &quot;limits&quot;: [
+      &quot;Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.&quot;,
+      &quot;Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.&quot;,
+      &quot;Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.&quot;
+    ]
+  },
+  &quot;manifest&quot;: {
+    &quot;tool&quot;: &quot;ds-loop&quot;,
+    &quot;command&quot;: &quot;audit&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;fixtureLabel&quot;: &quot;raw-values&quot;,
+    &quot;fixtureSha&quot;: &quot;live&quot;,
+    &quot;adapter&quot;: &quot;css-custom-props@0.6.0 + tailwind-jsx@0.5.0&quot;,
+    &quot;configHash&quot;: &quot;5b0a0820&quot;
+  },
+  &quot;tokenArchitecture&quot;: {
+    &quot;maxAliasDepth&quot;: 4,
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;--palette-blue-500&quot;,
+        &quot;tier&quot;: &quot;primitive&quot;,
+        &quot;group&quot;: &quot;primitive:palette-blue&quot;,
+        &quot;declarations&quot;: [
+          {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;mode&quot;: false,
+            &quot;sourceOrder&quot;: 0
+          }
+        ],
+        &quot;references&quot;: [],
+        &quot;aliasTargets&quot;: [],
+        &quot;aliasDepth&quot;: 0,
+        &quot;cycle&quot;: false
+      },
+      {
+        &quot;name&quot;: &quot;--brand&quot;,
+        &quot;tier&quot;: &quot;unknown&quot;,
+        &quot;group&quot;: &quot;unknown:brand&quot;,
+        &quot;declarations&quot;: [
+          {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;var(--palette-blue-500, #1da1f2)&quot;,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;mode&quot;: false,
+            &quot;sourceOrder&quot;: 1
+          }
+        ],
+        &quot;references&quot;: [
+          &quot;--palette-blue-500&quot;
+        ],
+        &quot;aliasTargets&quot;: [
+          &quot;--palette-blue-500&quot;
+        ],
+        &quot;aliasDepth&quot;: 1,
+        &quot;cycle&quot;: false
+      }
+    ],
+    &quot;groups&quot;: [
+      {
+        &quot;id&quot;: &quot;primitive:palette-blue&quot;,
+        &quot;lane&quot;: &quot;primitive&quot;,
+        &quot;label&quot;: &quot;--palette-blue-*&quot;,
+        &quot;tokens&quot;: 1,
+        &quot;declarations&quot;: 1,
+        &quot;references&quot;: 0
+      },
+      {
+        &quot;id&quot;: &quot;unknown:brand&quot;,
+        &quot;lane&quot;: &quot;unknown&quot;,
+        &quot;label&quot;: &quot;--brand-*&quot;,
+        &quot;tokens&quot;: 1,
+        &quot;declarations&quot;: 1,
+        &quot;references&quot;: 1
+      }
+    ],
+    &quot;edges&quot;: [
+      {
+        &quot;from&quot;: &quot;unknown:brand&quot;,
+        &quot;to&quot;: &quot;primitive:palette-blue&quot;,
+        &quot;count&quot;: 1,
+        &quot;findings&quot;: []
+      }
+    ],
+    &quot;references&quot;: [
+      {
+        &quot;from&quot;: &quot;--brand&quot;,
+        &quot;to&quot;: &quot;--palette-blue-500&quot;,
+        &quot;file&quot;: &quot;tokens.css&quot;,
+        &quot;line&quot;: 1,
+        &quot;property&quot;: &quot;--brand&quot;,
+        &quot;fromGroup&quot;: &quot;unknown:brand&quot;,
+        &quot;toGroup&quot;: &quot;primitive:palette-blue&quot;,
+        &quot;findings&quot;: []
+      }
+    ],
+    &quot;health&quot;: {
+      &quot;unreferenced&quot;: [
+        &quot;--brand&quot;
+      ],
+      &quot;undeclared&quot;: [],
+      &quot;semanticLiterals&quot;: [],
+      &quot;deepAliases&quot;: [],
+      &quot;cycles&quot;: [],
+      &quot;redeclarations&quot;: []
+    },
+    &quot;limits&quot;: [
+      &quot;Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.&quot;,
+      &quot;Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.&quot;,
+      &quot;Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.&quot;,
+      &quot;Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.&quot;,
+      &quot;Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.&quot;,
+      &quot;Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted.&quot;
+    ]
+  },
+  &quot;styleInventory&quot;: {},
+  &quot;rulesRun&quot;: [
+    &quot;docs/undocumented-shared-component&quot;,
+    &quot;token/upstream-bypass&quot;,
+    &quot;token/tier-leakage&quot;,
+    &quot;color/semantic-holds-literal&quot;,
+    &quot;color/literal-duplicate-tokens&quot;,
+    &quot;token/semantic-name-describes-appearance&quot;,
+    &quot;token/var-missing-fallback&quot;,
+    &quot;token/tier-model-undetectable&quot;,
+    &quot;token/raw-dimension-in-semantic&quot;,
+    &quot;token/raw-value-in-markup&quot;,
+    &quot;token/stock-palette-utility&quot;,
+    &quot;color/near-duplicate-primitives&quot;,
+    &quot;color/mixed-storage-forms&quot;,
+    &quot;color/no-intent-plateau&quot;,
+    &quot;token/raw-value-in-style&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;evidence&quot;: [
+        {
+          &quot;raw&quot;: &quot;#1da1f2&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: null,
+            &quot;property&quot;: &quot;bg&quot;,
+            &quot;tokenName&quot;: null,
+            &quot;surface&quot;: &quot;markup&quot;,
+            &quot;category&quot;: null,
+            &quot;classification&quot;: &quot;color&quot;,
+            &quot;reason&quot;: &quot;hardcoded colour on utility bg&quot;,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;tailwind-jsx&quot;,
+            &quot;adapterVersion&quot;: &quot;0.5.0&quot;
+          }
+        },
+        {
+          &quot;raw&quot;: &quot;13px&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: null,
+            &quot;property&quot;: &quot;p&quot;,
+            &quot;tokenName&quot;: null,
+            &quot;surface&quot;: &quot;markup&quot;,
+            &quot;category&quot;: null,
+            &quot;classification&quot;: &quot;dimension&quot;,
+            &quot;reason&quot;: &quot;hardcoded length on utility p&quot;,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;tailwind-jsx&quot;,
+            &quot;adapterVersion&quot;: &quot;0.5.0&quot;
+          }
+        }
+      ],
+      &quot;ruleId&quot;: &quot;token/raw-value-in-markup&quot;,
+      &quot;severity&quot;: &quot;high&quot;,
+      &quot;summary&quot;: &quot;2 hardcoded value(s) at use sites bypass the token layer (1 colour, 1 length; 2 distinct)&quot;,
+      &quot;where&quot;: &quot;bg-[#1da1f2] at Card.tsx:1; p-[13px] at Card.tsx:1&quot;,
+      &quot;fix&quot;: &quot;Replace each with the scale step or token that covers it — a utility that names the scale (bg-surface, p-4) or var(--token) via an arbitrary value. If no token matches the value, add one to the system first; a bracket is the system being bypassed, not extended.&quot;,
+      &quot;data&quot;: {
+        &quot;count&quot;: 2,
+        &quot;colors&quot;: 1,
+        &quot;dimensions&quot;: 1,
+        &quot;distinct&quot;: 2,
+        &quot;alreadyDeclared&quot;: [],
+        &quot;hits&quot;: [
+          {
+            &quot;utility&quot;: &quot;bg&quot;,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;variants&quot;: null,
+            &quot;where&quot;: &quot;Card.tsx:1&quot;,
+            &quot;adapter&quot;: &quot;tailwind-jsx&quot;
+          },
+          {
+            &quot;utility&quot;: &quot;p&quot;,
+            &quot;value&quot;: &quot;13px&quot;,
+            &quot;variants&quot;: null,
+            &quot;where&quot;: &quot;Card.tsx:1&quot;,
+            &quot;adapter&quot;: &quot;tailwind-jsx&quot;
           }
         ]
       },
-      &quot;impact&quot;: &quot;The next person to change this colour changes one of the names and not the others, and the system carries two values for one decision.&quot;
+      &quot;impact&quot;: &quot;The value is invisible to every theme, rebrand and audit that reads the token files — a rebrand ships and these sites keep the old colour.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;no-static-importer&quot;,
+          &quot;basis&quot;: &quot;Per-location static importer evidence; mixed groups retain every occurrence.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: 2,
+          &quot;reached&quot;: 0,
+          &quot;noStaticImporter&quot;: 2,
+          &quot;unresolved&quot;: 0
+        },
+        &quot;locations&quot;: [
+          {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          },
+          {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;13px&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          }
+        ]
+      },
+      &quot;suggestion&quot;: {
+        &quot;basis&quot;: &quot;Value candidates only; cascade, mode, semantic role and replacement safety are not established. No automatic replacement.&quot;,
+        &quot;values&quot;: [
+          {
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;property&quot;: &quot;bg&quot;,
+            &quot;category&quot;: &quot;color&quot;,
+            &quot;status&quot;: &quot;ambiguous&quot;,
+            &quot;candidates&quot;: [
+              {
+                &quot;candidateRef&quot;: 0
+              },
+              {
+                &quot;candidateRef&quot;: 1
+              }
+            ],
+            &quot;limits&quot;: []
+          },
+          {
+            &quot;value&quot;: &quot;13px&quot;,
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;property&quot;: &quot;p&quot;,
+            &quot;category&quot;: &quot;spacing&quot;,
+            &quot;status&quot;: &quot;no-token&quot;,
+            &quot;candidates&quot;: [],
+            &quot;limits&quot;: []
+          }
+        ],
+        &quot;resolutionLimits&quot;: []
+      }
     },
     {
       &quot;ruleId&quot;: &quot;token/tier-model-undetectable&quot;,
@@ -98,21 +487,43 @@
         &quot;coverage&quot;: 0,
         &quot;floor&quot;: 0.5
       },
-      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;
+      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;unresolved&quot;,
+          &quot;basis&quot;: &quot;This aggregate has no complete source locations; file membership is unresolved.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: null,
+          &quot;reached&quot;: null,
+          &quot;noStaticImporter&quot;: null,
+          &quot;unresolved&quot;: null
+        },
+        &quot;locations&quot;: []
+      }
     }
   ],
   &quot;coverage&quot;: {
     &quot;unreadFormats&quot;: {},
     &quot;partialReads&quot;: [
       {
-        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;adapter&quot;: &quot;css-custom-props@0.6.0&quot;,
         &quot;extensions&quot;: [
           &quot;.css&quot;
         ],
         &quot;reads&quot;: &quot;custom-property declarations (--token: value) — not rule bodies, not at-rules&quot;
       },
       {
-        &quot;adapter&quot;: &quot;tailwind-jsx@0.4.0&quot;,
+        &quot;adapter&quot;: &quot;tailwind-jsx@0.5.0&quot;,
         &quot;extensions&quot;: [
           &quot;.jsx&quot;,
           &quot;.tsx&quot;,
@@ -135,7 +546,17 @@
     &quot;couldNotJudge&quot;: [
       &quot;token/tier-model-undetectable&quot;
     ],
-    &quot;complete&quot;: false
+    &quot;complete&quot;: false,
+    &quot;documentation&quot;: {
+      &quot;version&quot;: &quot;0.1.0&quot;,
+      &quot;status&quot;: &quot;not-checked&quot;,
+      &quot;packages&quot;: [],
+      &quot;limits&quot;: [
+        &quot;Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.&quot;,
+        &quot;Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.&quot;,
+        &quot;Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.&quot;
+      ]
+    }
   },
   &quot;suppressions&quot;: [],
   &quot;ratios&quot;: {
@@ -146,45 +567,152 @@
   &quot;next&quot;: [
     {
       &quot;command&quot;: &quot;decide on the rest&quot;,
-      &quot;why&quot;: &quot;nothing here is mechanically provable — all 3 findings state their choice on the fix line&quot;
+      &quot;why&quot;: &quot;nothing here is mechanically provable — all 2 findings state their choice on the fix line&quot;
     },
     {
       &quot;command&quot;: &quot;ds-loop scorecard .&quot;,
       &quot;why&quot;: &quot;pin these ratios as run 1 — a ratio only says something against a previous row&quot;
     },
     {
+      &quot;command&quot;: &quot;ds-loop install&quot;,
+      &quot;why&quot;: &quot;wire your coding agent to the skill, instead of pasting that path yourself&quot;,
+      &quot;setup&quot;: true
+    },
+    {
       &quot;command&quot;: &quot;ds-loop guard on&quot;,
       &quot;why&quot;: &quot;report high-severity findings after each Claude Code edit (never blocks)&quot;
     }
   ],
-  &quot;verdict&quot;: &quot;issues&quot;
-}</code></pre></section><section><h2 id="token-model">A token decision to review</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>tokens.css</p><pre><code>:root { --ocean: #1da1f2; --link: var(--ocean, #1da1f2); }
-</code></pre><h3>Result</h3><pre><code>{
-  &quot;manifest&quot;: {
-    &quot;tool&quot;: &quot;ds-loop&quot;,
-    &quot;command&quot;: &quot;audit&quot;,
-    &quot;target&quot;: &quot;all&quot;,
-    &quot;fixtureLabel&quot;: &quot;token-model&quot;,
-    &quot;fixtureSha&quot;: &quot;live&quot;,
-    &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
-    &quot;configHash&quot;: &quot;05063bc7&quot;
+  &quot;verdict&quot;: &quot;issues&quot;,
+  &quot;suggestionIndex&quot;: {
+    &quot;candidates&quot;: [
+      {
+        &quot;categories&quot;: [
+          &quot;color&quot;
+        ],
+        &quot;categoryEvidence&quot;: [
+          {
+            &quot;category&quot;: &quot;color&quot;,
+            &quot;source&quot;: &quot;name&quot;,
+            &quot;pattern&quot;: &quot;(^|-)(color|palette|fg|bg|accent|neutral|brand)(-|$)&quot;
+          }
+        ],
+        &quot;categoryMatch&quot;: &quot;same&quot;,
+        &quot;token&quot;: &quot;--brand&quot;,
+        &quot;value&quot;: &quot;#1da1f2&quot;,
+        &quot;match&quot;: &quot;exact&quot;,
+        &quot;distance&quot;: 0,
+        &quot;metric&quot;: &quot;identity&quot;,
+        &quot;tier&quot;: &quot;unknown&quot;,
+        &quot;aliasChain&quot;: [
+          &quot;--brand&quot;,
+          &quot;--palette-blue-500&quot;
+        ],
+        &quot;preferred&quot;: true,
+        &quot;declarationRefs&quot;: [
+          0,
+          1
+        ]
+      },
+      {
+        &quot;categories&quot;: [
+          &quot;color&quot;
+        ],
+        &quot;categoryEvidence&quot;: [
+          {
+            &quot;category&quot;: &quot;color&quot;,
+            &quot;source&quot;: &quot;name&quot;,
+            &quot;pattern&quot;: &quot;(^|-)(color|palette|fg|bg|accent|neutral|brand)(-|$)&quot;
+          }
+        ],
+        &quot;categoryMatch&quot;: &quot;same&quot;,
+        &quot;token&quot;: &quot;--palette-blue-500&quot;,
+        &quot;value&quot;: &quot;#1da1f2&quot;,
+        &quot;match&quot;: &quot;exact&quot;,
+        &quot;distance&quot;: 0,
+        &quot;metric&quot;: &quot;identity&quot;,
+        &quot;tier&quot;: &quot;primitive&quot;,
+        &quot;aliasChain&quot;: [
+          &quot;--palette-blue-500&quot;
+        ],
+        &quot;preferred&quot;: false,
+        &quot;declarationRefs&quot;: [
+          1
+        ]
+      }
+    ],
+    &quot;declarations&quot;: [
+      {
+        &quot;file&quot;: &quot;tokens.css&quot;,
+        &quot;line&quot;: 1,
+        &quot;selector&quot;: &quot;:root&quot;,
+        &quot;property&quot;: &quot;--brand&quot;,
+        &quot;tokenName&quot;: &quot;--brand&quot;,
+        &quot;surface&quot;: null,
+        &quot;category&quot;: null,
+        &quot;fixtureSha&quot;: &quot;live&quot;,
+        &quot;adapterId&quot;: &quot;css-custom-props&quot;,
+        &quot;adapterVersion&quot;: &quot;0.6.0&quot;,
+        &quot;classification&quot;: &quot;reference&quot;,
+        &quot;reason&quot;: &quot;references 1 token(s): --palette-blue-500&quot;
+      },
+      {
+        &quot;file&quot;: &quot;tokens.css&quot;,
+        &quot;line&quot;: 1,
+        &quot;selector&quot;: &quot;:root&quot;,
+        &quot;property&quot;: &quot;--palette-blue-500&quot;,
+        &quot;tokenName&quot;: &quot;--palette-blue-500&quot;,
+        &quot;surface&quot;: null,
+        &quot;category&quot;: null,
+        &quot;fixtureSha&quot;: &quot;live&quot;,
+        &quot;adapterId&quot;: &quot;css-custom-props&quot;,
+        &quot;adapterVersion&quot;: &quot;0.6.0&quot;,
+        &quot;classification&quot;: &quot;color&quot;,
+        &quot;reason&quot;: &quot;opaque color value on a non-shadow token&quot;
+      }
+    ]
+  }
+}</code></pre><button type="button" data-copy="guide-code-3" data-copy-kind="Example" aria-label="Copy code example 3" aria-describedby="guide-code-3-status" hidden>Copy</button><p class="sr-only" id="guide-code-3-status" role="status"></p></div></section><section><h2 id="token-model">A token decision to review</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>tokens.css</p><div class="doc-code"><pre><code id="guide-code-4">:root { --ocean: #1da1f2; --link: var(--ocean, #1da1f2); }
+</code></pre><button type="button" data-copy="guide-code-4" data-copy-kind="Example" aria-label="Copy code example 4" aria-describedby="guide-code-4-status" hidden>Copy</button><p class="sr-only" id="guide-code-4-status" role="status"></p></div><h3>Result</h3><div class="doc-code"><pre><code id="guide-code-5">{
+  &quot;fileImports&quot;: {
+    &quot;version&quot;: &quot;1.1.0&quot;,
+    &quot;files&quot;: {
+      &quot;tokens.css&quot;: {
+        &quot;state&quot;: &quot;no-static-importer&quot;,
+        &quot;basis&quot;: &quot;No static importer found.&quot;,
+        &quot;importers&quot;: []
+      }
+    },
+    &quot;unresolved&quot;: [],
+    &quot;configIssues&quot;: [],
+    &quot;limits&quot;: [
+      &quot;Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.&quot;,
+      &quot;No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.&quot;,
+      &quot;Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.&quot;,
+      &quot;Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved.&quot;
+    ]
   },
-  &quot;rulesRun&quot;: [
-    &quot;token/tier-leakage&quot;,
-    &quot;color/semantic-holds-literal&quot;,
-    &quot;color/literal-duplicate-tokens&quot;,
-    &quot;token/semantic-name-describes-appearance&quot;,
-    &quot;token/var-missing-fallback&quot;,
-    &quot;token/tier-model-undetectable&quot;,
-    &quot;token/raw-dimension-in-semantic&quot;,
-    &quot;token/raw-value-in-markup&quot;,
-    &quot;token/stock-palette-utility&quot;,
-    &quot;color/near-duplicate-primitives&quot;,
-    &quot;color/mixed-storage-forms&quot;,
-    &quot;color/no-intent-plateau&quot;
-  ],
-  &quot;findings&quot;: [
+  &quot;findingEvidence&quot;: [
     {
+      &quot;evidence&quot;: [
+        {
+          &quot;raw&quot;: &quot;#1da1f2&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;property&quot;: &quot;--ocean&quot;,
+            &quot;tokenName&quot;: &quot;--ocean&quot;,
+            &quot;surface&quot;: null,
+            &quot;category&quot;: null,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;css-custom-props&quot;,
+            &quot;adapterVersion&quot;: &quot;0.6.0&quot;,
+            &quot;classification&quot;: &quot;color&quot;,
+            &quot;reason&quot;: &quot;opaque color value on a non-shadow token&quot;
+          }
+        }
+      ],
       &quot;ruleId&quot;: &quot;color/semantic-holds-literal&quot;,
       &quot;severity&quot;: &quot;high&quot;,
       &quot;summary&quot;: &quot;1 semantic token declaration(s) hold a literal colour instead of referencing a primitive&quot;,
@@ -199,7 +727,41 @@
           &quot;--ocean&quot;
         ]
       },
-      &quot;impact&quot;: &quot;Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.&quot;
+      &quot;impact&quot;: &quot;Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;no-static-importer&quot;,
+          &quot;basis&quot;: &quot;Per-location static importer evidence; mixed groups retain every occurrence.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: 1,
+          &quot;reached&quot;: 0,
+          &quot;noStaticImporter&quot;: 1,
+          &quot;unresolved&quot;: 0
+        },
+        &quot;locations&quot;: [
+          {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          }
+        ]
+      }
     },
     {
       &quot;ruleId&quot;: &quot;token/tier-model-undetectable&quot;,
@@ -213,14 +775,297 @@
         &quot;coverage&quot;: 0,
         &quot;floor&quot;: 0.5
       },
-      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;
+      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;unresolved&quot;,
+          &quot;basis&quot;: &quot;This aggregate has no complete source locations; file membership is unresolved.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: null,
+          &quot;reached&quot;: null,
+          &quot;noStaticImporter&quot;: null,
+          &quot;unresolved&quot;: null
+        },
+        &quot;locations&quot;: []
+      }
+    }
+  ],
+  &quot;findingTotals&quot;: {
+    &quot;all&quot;: 2,
+    &quot;reached&quot;: 0,
+    &quot;noStaticImporter&quot;: 1,
+    &quot;unresolved&quot;: 1,
+    &quot;basis&quot;: &quot;Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences.&quot;
+  },
+  &quot;reachedStyleInventory&quot;: {},
+  &quot;reachedRatios&quot;: {
+    &quot;literal-colors-per-distinct&quot;: null,
+    &quot;colors-per-distinct-in-scope&quot;: null,
+    &quot;ambiguous-share&quot;: null
+  },
+  &quot;documentation&quot;: {
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;status&quot;: &quot;not-checked&quot;,
+    &quot;packages&quot;: [],
+    &quot;limits&quot;: [
+      &quot;Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.&quot;,
+      &quot;Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.&quot;,
+      &quot;Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.&quot;
+    ]
+  },
+  &quot;manifest&quot;: {
+    &quot;tool&quot;: &quot;ds-loop&quot;,
+    &quot;command&quot;: &quot;audit&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;fixtureLabel&quot;: &quot;token-model&quot;,
+    &quot;fixtureSha&quot;: &quot;live&quot;,
+    &quot;adapter&quot;: &quot;css-custom-props@0.6.0&quot;,
+    &quot;configHash&quot;: &quot;5b0a0820&quot;
+  },
+  &quot;tokenArchitecture&quot;: {
+    &quot;maxAliasDepth&quot;: 4,
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;--ocean&quot;,
+        &quot;tier&quot;: &quot;unknown&quot;,
+        &quot;group&quot;: &quot;unknown:ocean&quot;,
+        &quot;declarations&quot;: [
+          {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;mode&quot;: false,
+            &quot;sourceOrder&quot;: 0
+          }
+        ],
+        &quot;references&quot;: [],
+        &quot;aliasTargets&quot;: [],
+        &quot;aliasDepth&quot;: 0,
+        &quot;cycle&quot;: false
+      },
+      {
+        &quot;name&quot;: &quot;--link&quot;,
+        &quot;tier&quot;: &quot;unknown&quot;,
+        &quot;group&quot;: &quot;unknown:link&quot;,
+        &quot;declarations&quot;: [
+          {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;var(--ocean, #1da1f2)&quot;,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;mode&quot;: false,
+            &quot;sourceOrder&quot;: 1
+          }
+        ],
+        &quot;references&quot;: [
+          &quot;--ocean&quot;
+        ],
+        &quot;aliasTargets&quot;: [
+          &quot;--ocean&quot;
+        ],
+        &quot;aliasDepth&quot;: 1,
+        &quot;cycle&quot;: false
+      }
+    ],
+    &quot;groups&quot;: [
+      {
+        &quot;id&quot;: &quot;unknown:ocean&quot;,
+        &quot;lane&quot;: &quot;unknown&quot;,
+        &quot;label&quot;: &quot;--ocean-*&quot;,
+        &quot;tokens&quot;: 1,
+        &quot;declarations&quot;: 1,
+        &quot;references&quot;: 0
+      },
+      {
+        &quot;id&quot;: &quot;unknown:link&quot;,
+        &quot;lane&quot;: &quot;unknown&quot;,
+        &quot;label&quot;: &quot;--link-*&quot;,
+        &quot;tokens&quot;: 1,
+        &quot;declarations&quot;: 1,
+        &quot;references&quot;: 1
+      }
+    ],
+    &quot;edges&quot;: [
+      {
+        &quot;from&quot;: &quot;unknown:link&quot;,
+        &quot;to&quot;: &quot;unknown:ocean&quot;,
+        &quot;count&quot;: 1,
+        &quot;findings&quot;: []
+      }
+    ],
+    &quot;references&quot;: [
+      {
+        &quot;from&quot;: &quot;--link&quot;,
+        &quot;to&quot;: &quot;--ocean&quot;,
+        &quot;file&quot;: &quot;tokens.css&quot;,
+        &quot;line&quot;: 1,
+        &quot;property&quot;: &quot;--link&quot;,
+        &quot;fromGroup&quot;: &quot;unknown:link&quot;,
+        &quot;toGroup&quot;: &quot;unknown:ocean&quot;,
+        &quot;findings&quot;: []
+      }
+    ],
+    &quot;health&quot;: {
+      &quot;unreferenced&quot;: [
+        &quot;--link&quot;
+      ],
+      &quot;undeclared&quot;: [],
+      &quot;semanticLiterals&quot;: [],
+      &quot;deepAliases&quot;: [],
+      &quot;cycles&quot;: [],
+      &quot;redeclarations&quot;: []
+    },
+    &quot;limits&quot;: [
+      &quot;Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.&quot;,
+      &quot;Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.&quot;,
+      &quot;Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.&quot;,
+      &quot;Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.&quot;,
+      &quot;Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.&quot;,
+      &quot;Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted.&quot;
+    ]
+  },
+  &quot;styleInventory&quot;: {},
+  &quot;rulesRun&quot;: [
+    &quot;docs/undocumented-shared-component&quot;,
+    &quot;token/upstream-bypass&quot;,
+    &quot;token/tier-leakage&quot;,
+    &quot;color/semantic-holds-literal&quot;,
+    &quot;color/literal-duplicate-tokens&quot;,
+    &quot;token/semantic-name-describes-appearance&quot;,
+    &quot;token/var-missing-fallback&quot;,
+    &quot;token/tier-model-undetectable&quot;,
+    &quot;token/raw-dimension-in-semantic&quot;,
+    &quot;token/raw-value-in-markup&quot;,
+    &quot;token/stock-palette-utility&quot;,
+    &quot;color/near-duplicate-primitives&quot;,
+    &quot;color/mixed-storage-forms&quot;,
+    &quot;color/no-intent-plateau&quot;,
+    &quot;token/raw-value-in-style&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;evidence&quot;: [
+        {
+          &quot;raw&quot;: &quot;#1da1f2&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;property&quot;: &quot;--ocean&quot;,
+            &quot;tokenName&quot;: &quot;--ocean&quot;,
+            &quot;surface&quot;: null,
+            &quot;category&quot;: null,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;css-custom-props&quot;,
+            &quot;adapterVersion&quot;: &quot;0.6.0&quot;,
+            &quot;classification&quot;: &quot;color&quot;,
+            &quot;reason&quot;: &quot;opaque color value on a non-shadow token&quot;
+          }
+        }
+      ],
+      &quot;ruleId&quot;: &quot;color/semantic-holds-literal&quot;,
+      &quot;severity&quot;: &quot;high&quot;,
+      &quot;summary&quot;: &quot;1 semantic token declaration(s) hold a literal colour instead of referencing a primitive&quot;,
+      &quot;where&quot;: &quot;--ocean = #1da1f2 (tokens.css:1)&quot;,
+      &quot;fix&quot;: &quot;There is no primitive tier in this source — every colour is declared where it is used, so there is nothing to reference yet. Add a palette layer first, then point these at it.&quot;,
+      &quot;data&quot;: {
+        &quot;count&quot;: 1,
+        &quot;distinctNames&quot;: 1,
+        &quot;files&quot;: 1,
+        &quot;primitivesInSource&quot;: 0,
+        &quot;tokens&quot;: [
+          &quot;--ocean&quot;
+        ]
+      },
+      &quot;impact&quot;: &quot;Renaming or retuning a palette entry stops propagating — the same colour now lives in two places and drifts apart on the next edit.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;no-static-importer&quot;,
+          &quot;basis&quot;: &quot;Per-location static importer evidence; mixed groups retain every occurrence.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: 1,
+          &quot;reached&quot;: 0,
+          &quot;noStaticImporter&quot;: 1,
+          &quot;unresolved&quot;: 0
+        },
+        &quot;locations&quot;: [
+          {
+            &quot;file&quot;: &quot;tokens.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;#1da1f2&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          }
+        ]
+      }
+    },
+    {
+      &quot;ruleId&quot;: &quot;token/tier-model-undetectable&quot;,
+      &quot;severity&quot;: &quot;low&quot;,
+      &quot;summary&quot;: &quot;only 0 of 1 referencing token(s) match a tier pattern (0 &lt; floor 0.5) — tier checks could not judge this source&quot;,
+      &quot;where&quot;: &quot;--link&quot;,
+      &quot;fix&quot;: &quot;Set taxonomy.primitivePattern, semanticNamespaces and componentPattern to this source's naming convention, then re-run. Until then treat a clean token/tier-leakage result as \&quot;not checked\&quot;, not \&quot;passed\&quot;.&quot;,
+      &quot;data&quot;: {
+        &quot;references&quot;: 1,
+        &quot;classified&quot;: 0,
+        &quot;coverage&quot;: 0,
+        &quot;floor&quot;: 0.5
+      },
+      &quot;impact&quot;: &quot;A clean `token/tier-leakage` result in this source means nothing was checked, not that nothing is wrong — the strongest silent-pass this tool can produce.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;unresolved&quot;,
+          &quot;basis&quot;: &quot;This aggregate has no complete source locations; file membership is unresolved.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: null,
+          &quot;reached&quot;: null,
+          &quot;noStaticImporter&quot;: null,
+          &quot;unresolved&quot;: null
+        },
+        &quot;locations&quot;: []
+      }
     }
   ],
   &quot;coverage&quot;: {
     &quot;unreadFormats&quot;: {},
     &quot;partialReads&quot;: [
       {
-        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;adapter&quot;: &quot;css-custom-props@0.6.0&quot;,
         &quot;extensions&quot;: [
           &quot;.css&quot;
         ],
@@ -239,7 +1084,17 @@
     &quot;couldNotJudge&quot;: [
       &quot;token/tier-model-undetectable&quot;
     ],
-    &quot;complete&quot;: false
+    &quot;complete&quot;: false,
+    &quot;documentation&quot;: {
+      &quot;version&quot;: &quot;0.1.0&quot;,
+      &quot;status&quot;: &quot;not-checked&quot;,
+      &quot;packages&quot;: [],
+      &quot;limits&quot;: [
+        &quot;Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.&quot;,
+        &quot;Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.&quot;,
+        &quot;Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.&quot;
+      ]
+    }
   },
   &quot;suppressions&quot;: [],
   &quot;ratios&quot;: {
@@ -257,52 +1112,75 @@
       &quot;why&quot;: &quot;pin these ratios as run 1 — a ratio only says something against a previous row&quot;
     },
     {
+      &quot;command&quot;: &quot;ds-loop install&quot;,
+      &quot;why&quot;: &quot;wire your coding agent to the skill, instead of pasting that path yourself&quot;,
+      &quot;setup&quot;: true
+    },
+    {
       &quot;command&quot;: &quot;ds-loop guard on&quot;,
       &quot;why&quot;: &quot;report high-severity findings after each Claude Code edit (never blocks)&quot;
     }
   ],
-  &quot;verdict&quot;: &quot;issues&quot;
-}</code></pre></section><section><h2 id="stock-palette">A stock palette utility</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>theme.css</p><pre><code>:root { --palette-blue-500: #2456ab; }
-</code></pre><p>Card.tsx</p><pre><code>export const Card = () =&gt; &lt;div className=&quot;bg-white&quot;&gt;Account&lt;/div&gt;;
-</code></pre><p>ds-loop.config.json</p><pre><code>{&quot;tokenContexts&quot;:[{&quot;files&quot;:[&quot;Card.tsx&quot;],&quot;tokens&quot;:[&quot;theme.css&quot;]}]}
-</code></pre><h3>Result</h3><pre><code>{
-  &quot;manifest&quot;: {
-    &quot;tool&quot;: &quot;ds-loop&quot;,
-    &quot;command&quot;: &quot;audit&quot;,
-    &quot;target&quot;: &quot;all&quot;,
-    &quot;fixtureLabel&quot;: &quot;stock-palette&quot;,
-    &quot;fixtureSha&quot;: &quot;live&quot;,
-    &quot;adapter&quot;: &quot;css-custom-props@0.3.0 + tailwind-jsx@0.4.0&quot;,
-    &quot;configHash&quot;: &quot;9bbd39ce&quot;,
-    &quot;tokenContext&quot;: [
-      {
-        &quot;file&quot;: &quot;theme.css&quot;,
-        &quot;forFiles&quot;: [
-          &quot;Card.tsx&quot;
-        ],
-        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
-        &quot;sha256&quot;: &quot;918d74b2d41e67c30e5c781f436086fb279163b23977f40bdeec5bb6a825ea3f&quot;
+  &quot;verdict&quot;: &quot;issues&quot;,
+  &quot;suggestionIndex&quot;: {
+    &quot;candidates&quot;: [],
+    &quot;declarations&quot;: []
+  }
+}</code></pre><button type="button" data-copy="guide-code-5" data-copy-kind="Example" aria-label="Copy code example 5" aria-describedby="guide-code-5-status" hidden>Copy</button><p class="sr-only" id="guide-code-5-status" role="status"></p></div></section><section><h2 id="stock-palette">A stock palette utility</h2><p><code>ds-loop audit . --json</code></p><h3>Input</h3><p>theme.css</p><div class="doc-code"><pre><code id="guide-code-6">:root { --palette-blue-500: #2456ab; }
+</code></pre><button type="button" data-copy="guide-code-6" data-copy-kind="Example" aria-label="Copy code example 6" aria-describedby="guide-code-6-status" hidden>Copy</button><p class="sr-only" id="guide-code-6-status" role="status"></p></div><p>Card.tsx</p><div class="doc-code"><pre><code id="guide-code-7">export const Card = () =&gt; &lt;div className=&quot;bg-white&quot;&gt;Account&lt;/div&gt;;
+</code></pre><button type="button" data-copy="guide-code-7" data-copy-kind="Example" aria-label="Copy code example 7" aria-describedby="guide-code-7-status" hidden>Copy</button><p class="sr-only" id="guide-code-7-status" role="status"></p></div><p>ds-loop.config.json</p><div class="doc-code"><pre><code id="guide-code-8">{&quot;tokenContexts&quot;:[{&quot;files&quot;:[&quot;Card.tsx&quot;],&quot;tokens&quot;:[&quot;theme.css&quot;]}]}
+</code></pre><button type="button" data-copy="guide-code-8" data-copy-kind="Example" aria-label="Copy code example 8" aria-describedby="guide-code-8-status" hidden>Copy</button><p class="sr-only" id="guide-code-8-status" role="status"></p></div><h3>Result</h3><div class="doc-code"><pre><code id="guide-code-9">{
+  &quot;fileImports&quot;: {
+    &quot;version&quot;: &quot;1.1.0&quot;,
+    &quot;files&quot;: {
+      &quot;Card.tsx&quot;: {
+        &quot;state&quot;: &quot;no-static-importer&quot;,
+        &quot;basis&quot;: &quot;No static importer found.&quot;,
+        &quot;importers&quot;: []
+      },
+      &quot;ds-loop.config.json&quot;: {
+        &quot;state&quot;: &quot;no-static-importer&quot;,
+        &quot;basis&quot;: &quot;No static importer found.&quot;,
+        &quot;importers&quot;: []
+      },
+      &quot;theme.css&quot;: {
+        &quot;state&quot;: &quot;no-static-importer&quot;,
+        &quot;basis&quot;: &quot;No static importer found.&quot;,
+        &quot;importers&quot;: []
       }
+    },
+    &quot;unresolved&quot;: [],
+    &quot;configIssues&quot;: [],
+    &quot;limits&quot;: [
+      &quot;Static import analysis only, within the scanned tree. An importer is not runtime usage or an entry-point path.&quot;,
+      &quot;No static importer found is not a relevance or deletion verdict. Dynamic imports, require calls, route manifests, globs, HTML link tags and build-time copies are outside this signal.&quot;,
+      &quot;Relative paths, tsconfig/jsconfig paths and baseUrl, workspace source exports, and relative stylesheet @import, @use and @forward are resolved. Build-tool aliases, package stylesheet imports and package-based config inheritance are not evaluated.&quot;,
+      &quot;Unresolved static specifiers or incomplete config resolution conservatively make files without a known importer unresolved. Finding groups without complete locations are also unresolved.&quot;
     ]
   },
-  &quot;rulesRun&quot;: [
-    &quot;token/tier-leakage&quot;,
-    &quot;color/semantic-holds-literal&quot;,
-    &quot;color/literal-duplicate-tokens&quot;,
-    &quot;token/semantic-name-describes-appearance&quot;,
-    &quot;token/var-missing-fallback&quot;,
-    &quot;token/tier-model-undetectable&quot;,
-    &quot;token/raw-dimension-in-semantic&quot;,
-    &quot;token/raw-value-in-markup&quot;,
-    &quot;token/stock-palette-utility&quot;,
-    &quot;color/near-duplicate-primitives&quot;,
-    &quot;color/mixed-storage-forms&quot;,
-    &quot;color/no-intent-plateau&quot;
-  ],
-  &quot;findings&quot;: [
+  &quot;findingEvidence&quot;: [
     {
       &quot;ruleId&quot;: &quot;token/stock-palette-utility&quot;,
       &quot;severity&quot;: &quot;medium&quot;,
+      &quot;evidence&quot;: [
+        {
+          &quot;raw&quot;: &quot;white&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: null,
+            &quot;property&quot;: &quot;bg&quot;,
+            &quot;tokenName&quot;: null,
+            &quot;surface&quot;: &quot;markup&quot;,
+            &quot;category&quot;: null,
+            &quot;classification&quot;: &quot;palette-utility&quot;,
+            &quot;reason&quot;: &quot;utility bg names the framework palette entry white, not a theme token&quot;,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;tailwind-jsx&quot;,
+            &quot;adapterVersion&quot;: &quot;0.5.0&quot;
+          }
+        }
+      ],
       &quot;summary&quot;: &quot;1 use site(s) name the framework palette instead of a theme token (1 distinct across 1 file(s))&quot;,
       &quot;where&quot;: &quot;bg-white at Card.tsx:1&quot;,
       &quot;fix&quot;: &quot;Check the resolved framework theme and project contract. Where a semantic role applies, use its utility (for example bg-surface or text-muted-foreground). This audit checks structure, not rendering: confirm the swap in the browser in both modes.&quot;,
@@ -320,21 +1198,246 @@
           }
         ]
       },
-      &quot;impact&quot;: &quot;Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes.&quot;
+      &quot;impact&quot;: &quot;Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;no-static-importer&quot;,
+          &quot;basis&quot;: &quot;Per-location static importer evidence; mixed groups retain every occurrence.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: 1,
+          &quot;reached&quot;: 0,
+          &quot;noStaticImporter&quot;: 1,
+          &quot;unresolved&quot;: 0
+        },
+        &quot;locations&quot;: [
+          {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;white&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          }
+        ]
+      }
+    }
+  ],
+  &quot;findingTotals&quot;: {
+    &quot;all&quot;: 1,
+    &quot;reached&quot;: 0,
+    &quot;noStaticImporter&quot;: 1,
+    &quot;unresolved&quot;: 0,
+    &quot;basis&quot;: &quot;Finding groups with at least one reached location; mixed groups count once. Totals do not partition occurrences.&quot;
+  },
+  &quot;reachedStyleInventory&quot;: {},
+  &quot;reachedRatios&quot;: {
+    &quot;literal-colors-per-distinct&quot;: null,
+    &quot;colors-per-distinct-in-scope&quot;: null,
+    &quot;ambiguous-share&quot;: null
+  },
+  &quot;documentation&quot;: {
+    &quot;version&quot;: &quot;0.1.0&quot;,
+    &quot;status&quot;: &quot;not-checked&quot;,
+    &quot;packages&quot;: [],
+    &quot;limits&quot;: [
+      &quot;Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.&quot;,
+      &quot;Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.&quot;,
+      &quot;Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.&quot;
+    ]
+  },
+  &quot;manifest&quot;: {
+    &quot;tool&quot;: &quot;ds-loop&quot;,
+    &quot;command&quot;: &quot;audit&quot;,
+    &quot;target&quot;: &quot;all&quot;,
+    &quot;fixtureLabel&quot;: &quot;stock-palette&quot;,
+    &quot;fixtureSha&quot;: &quot;live&quot;,
+    &quot;adapter&quot;: &quot;css-custom-props@0.6.0 + tailwind-jsx@0.5.0&quot;,
+    &quot;configHash&quot;: &quot;24fe9e69&quot;,
+    &quot;tokenContext&quot;: [
+      {
+        &quot;file&quot;: &quot;theme.css&quot;,
+        &quot;forFiles&quot;: [
+          &quot;Card.tsx&quot;
+        ],
+        &quot;adapter&quot;: &quot;css-custom-props@0.6.0&quot;,
+        &quot;sha256&quot;: &quot;918d74b2d41e67c30e5c781f436086fb279163b23977f40bdeec5bb6a825ea3f&quot;
+      }
+    ]
+  },
+  &quot;tokenArchitecture&quot;: {
+    &quot;maxAliasDepth&quot;: 4,
+    &quot;tokens&quot;: [
+      {
+        &quot;name&quot;: &quot;--palette-blue-500&quot;,
+        &quot;tier&quot;: &quot;primitive&quot;,
+        &quot;group&quot;: &quot;primitive:palette-blue&quot;,
+        &quot;declarations&quot;: [
+          {
+            &quot;file&quot;: &quot;theme.css&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;#2456ab&quot;,
+            &quot;selector&quot;: &quot;:root&quot;,
+            &quot;mode&quot;: false,
+            &quot;sourceOrder&quot;: 0
+          }
+        ],
+        &quot;references&quot;: [],
+        &quot;aliasTargets&quot;: [],
+        &quot;aliasDepth&quot;: 0,
+        &quot;cycle&quot;: false
+      }
+    ],
+    &quot;groups&quot;: [
+      {
+        &quot;id&quot;: &quot;primitive:palette-blue&quot;,
+        &quot;lane&quot;: &quot;primitive&quot;,
+        &quot;label&quot;: &quot;--palette-blue-*&quot;,
+        &quot;tokens&quot;: 1,
+        &quot;declarations&quot;: 1,
+        &quot;references&quot;: 0
+      }
+    ],
+    &quot;edges&quot;: [],
+    &quot;references&quot;: [],
+    &quot;health&quot;: {
+      &quot;unreferenced&quot;: [
+        &quot;--palette-blue-500&quot;
+      ],
+      &quot;undeclared&quot;: [],
+      &quot;semanticLiterals&quot;: [],
+      &quot;deepAliases&quot;: [],
+      &quot;cycles&quot;: [],
+      &quot;redeclarations&quot;: []
+    },
+    &quot;limits&quot;: [
+      &quot;Counts cover extracted declarations and references in the audited scope, before exceptions and severity filtering. Read-only tokenContexts dependencies are outside this architecture view. References outside this scope are not checked; undeclared names may exist in dependencies.&quot;,
+      &quot;Namespaces remove a configured trailing scale step, then group the first two hyphen-separated name segments; they do not establish ownership. Reference arrows point from consumer to referenced token, including fallback references.&quot;,
+      &quot;Source order is known only for matched lexical declarations within one file. Cross-file import order, specificity, inheritance, conditions, cascade layers and runtime overrides are not resolved. No computed winner is asserted.&quot;,
+      &quot;Selector evidence supplements already-extracted declarations using the CSS lexer; unmatched declarations retain legacy selector text and unknown order. No missing tokens are reconstructed.&quot;,
+      &quot;Alias depth counts whole-value var() chains across all declarations, not a resolved mode. Cycles and chains entering cycles have unresolved depth.&quot;,
+      &quot;Highlighted edges link only to recorded findings in this report. Filtered findings and capped rule samples may leave other problematic edges unhighlighted.&quot;
+    ]
+  },
+  &quot;styleInventory&quot;: {},
+  &quot;rulesRun&quot;: [
+    &quot;docs/undocumented-shared-component&quot;,
+    &quot;token/upstream-bypass&quot;,
+    &quot;token/tier-leakage&quot;,
+    &quot;color/semantic-holds-literal&quot;,
+    &quot;color/literal-duplicate-tokens&quot;,
+    &quot;token/semantic-name-describes-appearance&quot;,
+    &quot;token/var-missing-fallback&quot;,
+    &quot;token/tier-model-undetectable&quot;,
+    &quot;token/raw-dimension-in-semantic&quot;,
+    &quot;token/raw-value-in-markup&quot;,
+    &quot;token/stock-palette-utility&quot;,
+    &quot;color/near-duplicate-primitives&quot;,
+    &quot;color/mixed-storage-forms&quot;,
+    &quot;color/no-intent-plateau&quot;,
+    &quot;token/raw-value-in-style&quot;
+  ],
+  &quot;findings&quot;: [
+    {
+      &quot;ruleId&quot;: &quot;token/stock-palette-utility&quot;,
+      &quot;severity&quot;: &quot;medium&quot;,
+      &quot;evidence&quot;: [
+        {
+          &quot;raw&quot;: &quot;white&quot;,
+          &quot;provenance&quot;: {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;selector&quot;: null,
+            &quot;property&quot;: &quot;bg&quot;,
+            &quot;tokenName&quot;: null,
+            &quot;surface&quot;: &quot;markup&quot;,
+            &quot;category&quot;: null,
+            &quot;classification&quot;: &quot;palette-utility&quot;,
+            &quot;reason&quot;: &quot;utility bg names the framework palette entry white, not a theme token&quot;,
+            &quot;fixtureSha&quot;: &quot;live&quot;,
+            &quot;adapterId&quot;: &quot;tailwind-jsx&quot;,
+            &quot;adapterVersion&quot;: &quot;0.5.0&quot;
+          }
+        }
+      ],
+      &quot;summary&quot;: &quot;1 use site(s) name the framework palette instead of a theme token (1 distinct across 1 file(s))&quot;,
+      &quot;where&quot;: &quot;bg-white at Card.tsx:1&quot;,
+      &quot;fix&quot;: &quot;Check the resolved framework theme and project contract. Where a semantic role applies, use its utility (for example bg-surface or text-muted-foreground). This audit checks structure, not rendering: confirm the swap in the browser in both modes.&quot;,
+      &quot;data&quot;: {
+        &quot;count&quot;: 1,
+        &quot;distinct&quot;: 1,
+        &quot;files&quot;: 1,
+        &quot;underDarkVariant&quot;: 0,
+        &quot;hits&quot;: [
+          {
+            &quot;utility&quot;: &quot;bg&quot;,
+            &quot;value&quot;: &quot;white&quot;,
+            &quot;variants&quot;: null,
+            &quot;where&quot;: &quot;Card.tsx:1&quot;
+          }
+        ]
+      },
+      &quot;impact&quot;: &quot;Bypassing theme roles can leave surfaces in the wrong mode or text with insufficient contrast when the theme changes.&quot;,
+      &quot;dimensions&quot;: {
+        &quot;reached&quot;: {
+          &quot;state&quot;: &quot;no-static-importer&quot;,
+          &quot;basis&quot;: &quot;Per-location static importer evidence; mixed groups retain every occurrence.&quot;
+        },
+        &quot;declaredIntentional&quot;: {
+          &quot;state&quot;: &quot;not-recorded&quot;,
+          &quot;records&quot;: []
+        },
+        &quot;domainValue&quot;: {
+          &quot;state&quot;: &quot;not-established&quot;,
+          &quot;hints&quot;: [],
+          &quot;basis&quot;: &quot;Configured nonColorTokenHints matched color token names or selectors. A hint is declared context, not inferred product intent.&quot;
+        },
+        &quot;occurrences&quot;: {
+          &quot;all&quot;: 1,
+          &quot;reached&quot;: 0,
+          &quot;noStaticImporter&quot;: 1,
+          &quot;unresolved&quot;: 0
+        },
+        &quot;locations&quot;: [
+          {
+            &quot;file&quot;: &quot;Card.tsx&quot;,
+            &quot;line&quot;: 1,
+            &quot;value&quot;: &quot;white&quot;,
+            &quot;reached&quot;: {
+              &quot;state&quot;: &quot;no-static-importer&quot;,
+              &quot;basis&quot;: &quot;No static importer found.&quot;
+            },
+            &quot;declaredIntentional&quot;: [],
+            &quot;domainHints&quot;: []
+          }
+        ]
+      }
     }
   ],
   &quot;coverage&quot;: {
     &quot;unreadFormats&quot;: {},
     &quot;partialReads&quot;: [
       {
-        &quot;adapter&quot;: &quot;css-custom-props@0.3.0&quot;,
+        &quot;adapter&quot;: &quot;css-custom-props@0.6.0&quot;,
         &quot;extensions&quot;: [
           &quot;.css&quot;
         ],
         &quot;reads&quot;: &quot;custom-property declarations (--token: value) — not rule bodies, not at-rules&quot;
       },
       {
-        &quot;adapter&quot;: &quot;tailwind-jsx@0.4.0&quot;,
+        &quot;adapter&quot;: &quot;tailwind-jsx@0.5.0&quot;,
         &quot;extensions&quot;: [
           &quot;.jsx&quot;,
           &quot;.tsx&quot;,
@@ -355,7 +1458,17 @@
       &quot;samples&quot;: []
     },
     &quot;couldNotJudge&quot;: [],
-    &quot;complete&quot;: true
+    &quot;complete&quot;: true,
+    &quot;documentation&quot;: {
+      &quot;version&quot;: &quot;0.1.0&quot;,
+      &quot;status&quot;: &quot;not-checked&quot;,
+      &quot;packages&quot;: [],
+      &quot;limits&quot;: [
+        &quot;Documentation presence only, not quality: exported PascalCase JSX declarations in shared workspace or standalone packages; package entrypoints, re-export chains, HOCs without JSX, remote and generated docs are not resolved.&quot;,
+        &quot;Stories and docs are matched by adjacent component/source basename. Types recognize ComponentNameProps declarations or prop-table markers in matched docs; examples recognize literal component JSX in matched stories/docs. Prop tables, inferred types and differently named pages may be missed.&quot;,
+        &quot;Ratios use detected components in each package. Documented means a matched story or docs page. Without a local documentation convention, a denominator, or on a file-filtered scan: not checked, never 0% documented.&quot;
+      ]
+    }
   },
   &quot;suppressions&quot;: [],
   &quot;ratios&quot;: {
@@ -373,9 +1486,18 @@
       &quot;why&quot;: &quot;pin these ratios as run 1 — a ratio only says something against a previous row&quot;
     },
     {
+      &quot;command&quot;: &quot;ds-loop install&quot;,
+      &quot;why&quot;: &quot;wire your coding agent to the skill, instead of pasting that path yourself&quot;,
+      &quot;setup&quot;: true
+    },
+    {
       &quot;command&quot;: &quot;ds-loop guard on&quot;,
       &quot;why&quot;: &quot;report high-severity findings after each Claude Code edit (never blocks)&quot;
     }
   ],
-  &quot;verdict&quot;: &quot;issues&quot;
-}</code></pre></section></article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>
+  &quot;verdict&quot;: &quot;issues&quot;,
+  &quot;suggestionIndex&quot;: {
+    &quot;candidates&quot;: [],
+    &quot;declarations&quot;: []
+  }
+}</code></pre><button type="button" data-copy="guide-code-9" data-copy-kind="Example" aria-label="Copy code example 9" aria-describedby="guide-code-9-status" hidden>Copy</button><p class="sr-only" id="guide-code-9-status" role="status"></p></div></section></div><aside class="doc-toc"><details class="page-contents" open><summary>On this page</summary><nav aria-label="On this page"><a href="#raw-values">Hardcoded component styles</a><a href="#token-model">A token decision to review</a><a href="#stock-palette">A stock palette utility</a></nav></details></aside></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

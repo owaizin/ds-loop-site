@@ -18,7 +18,7 @@ for (const specimenFrame of document.querySelectorAll('[data-specimen-frame]')) 
 }
 
 const loopButtons = [...document.querySelectorAll('[data-loop-step]')];
-const loopRecords = [
+const loopRecords = window.loopRecords ?? [
   {
     stage: '01 / INVESTIGATE',
     title: 'Find the theme mismatch.',
@@ -118,8 +118,9 @@ if (loopButtons.length) {
       'record-value-a': record.valueA,
       'record-label-b': record.labelB,
       'record-value-b': record.valueB,
+      'record-detail': record.detail,
     }))
-      document.getElementById(id).textContent = value;
+      if (value && document.getElementById(id)) document.getElementById(id).textContent = value;
     fade?.cancel();
     if (animate && !reducedMotion.matches) {
       fade = recordContent.animate([{ opacity: 0.35 }, { opacity: 1 }], {

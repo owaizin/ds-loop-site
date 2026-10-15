@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>0.4.0 release notes | DS Loop</title><meta name="description" content="See where your system is used, then save the evidence for the next change."><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html">Overview</a><a href="install.html">Installation</a><a href="workflow.html">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html" aria-current="page">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Guide</a><span aria-hidden="true">/</span><span aria-current="page">0.4.0 release notes</span></nav><div class="doc-title"><div class="guide-title-copy"><h1 id="040-release-notes">0.4.0 release notes</h1>
+<p>See where your system is used, then save the evidence for the next change.</p></div></div><div class="doc-body-layout"><div class="doc-reading">
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-1">npm install --save-dev ds-loop@0.4.0
+npx ds-loop install --agent codex
+npx ds-loop audit .
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div>
+<h2 id="what-changed-since-021">What changed since 0.2.1</h2>
+<ul>
+<li>Read ordinary CSS properties, token JSON and bounded SCSS/Sass alongside CSS
+custom properties and Tailwind strings. Reports keep unsupported expressions
+and unresolved references visible. See <a href="reference.html#coverage">coverage</a>.</li>
+<li>Inspect tokenization across seven style categories and review exact or nearby
+token candidates. Suggestions retain ambiguity and provenance; they don't
+authorize replacement. See <a href="output.html">real output</a>.</li>
+<li>Use <code>consumers</code> for workspace imports and production shared-component share,
+<code>impact</code> for direct static import locations, and <code>audit --target docs</code> for
+detected shared-component documentation. See <a href="reference.html">the reference</a>.</li>
+<li>Save an offline consulting report with <code>report</code> and an agent-written assessment
+with <code>--consult</code>. Open <code>dashboard</code> for today and comparable saved trends.
+Public reference comparisons retain coverage and instrument limits.</li>
+<li>Record owner, alternatives and evidence with <code>decide</code>. Use <code>doctor</code> to inspect
+contract drift, configuration, intent evidence and guard state without writing.</li>
+<li>Use <code>install</code> to add agent instructions. It appends to existing files and
+replaces only its own marked block on reruns. The settings-writing guard
+remains opt-in through <code>--guard</code>. See <a href="install.html">installation</a>.</li>
+<li>Route agent work through twelve commands, eight roles and six practice guides.
+Start with <code>/ds-loop:start</code>. See <a href="workflow.html#agent-commands">workflows</a>.</li>
+<li>Keep translucent and opaque palette colours apart with
+<code>clustering.alphaTolerance</code>. CIEDE2000 alone has no alpha term, so their colour
+distance could be zero. See <a href="reference.html#configuration">configuration</a>.</li>
+</ul>
+<p>These capabilities are defined by the <a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">CLI</a>,
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">adapter registry</a> and
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">configuration defaults</a>.</p>
+<p>The release also includes evidence-backed assessment plans, a shared delivery
+overview, component-registry guidance, and an optional Storybook Architect handoff.
+Claude Code users can install through the repository marketplace; see
+<a href="install.html#claude-code-plugin">installation</a>. Reports include font license notices
+and CSS-only decorative artwork.</p>
+<h2 id="upgrade-and-verify">Upgrade and verify</h2>
+<p>Rerun an unfiltered audit after installing. Check adapter versions, the config
+hash and source scope before comparing history. Changed instruments prevent a
+delta; an old baseline doesn't become comparable by relabelling it. Review your
+naming patterns and exceptions against the actual project contract.</p>
+<h2 id="limits">Limits</h2>
+<p><code>clean</code>, <code>issues</code> and <code>not-checked</code> remain distinct outcomes. A clean result covers
+only the stated scope; unread code hasn't passed. Sass evaluation, CSS-in-JS,
+Vue/Svelte templates, runtime composition and visual behavior still need other
+checks. The engine runs locally with no model or runtime dependencies; the agent
+supplies judgment within the scope your team authorizes.</p>
+</div><aside class="doc-toc"><details class="page-contents" open><summary>On this page</summary><nav aria-label="On this page"><a href="#what-changed-since-021">What changed since 0.2.1</a><a href="#upgrade-and-verify">Upgrade and verify</a><a href="#limits">Limits</a></nav></details></aside></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

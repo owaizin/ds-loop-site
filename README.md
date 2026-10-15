@@ -2,7 +2,7 @@
 
 Public website: https://design-system-loop.vercel.app
 
-Design System Loop helps teams build and improve their design system with a coding agent: use evidence, preserve legitimate choices, implement agreed work, and leave a verified handoff. The homepage is written for product teams without dedicated design-system capacity.
+Design System Loop helps teams build and improve their design system with a coding agent: use evidence, preserve legitimate choices, implement agreed work, and leave a verified handoff. The website is written for product teams that need more design-system capacity.
 
 This repository owns the website, visuals, demos and deployment. The [DS Loop repository](https://github.com/owaizin/ds-loop) owns the engine, companion skill and technical documentation.
 
@@ -27,6 +27,20 @@ Open [the website style guide](site/style-guide.html) locally at http://127.0.0.
 The page loads the production homepage stylesheet cascade; color swatches consume existing custom properties and show their resolved values. `site/style-guide.css` owns only reference-page composition. `site/style-guide.js` updates displayed token values and the section indicator; `site/app.js` supplies the existing copy behavior. Component examples use production classes, not a parallel library. Example code assumes the `.visual-home` context and the same stylesheet order.
 
 When changing shared styles, update the corresponding usage notes in `site/style-guide.html` and `DESIGN.md`, then inspect the reference and the affected live page. Do not move illustration or sample-product colors into the website palette. The guide is handwritten website content and is not generated into `site/guide/`.
+
+## Inner-page navigation
+
+Public inner pages use `scripts/site-shell.mjs` for the shared header and footer.
+`build-site-shell.mjs` refreshes the product example, worked example, and style guide;
+the guide renderer uses the same components with nested paths. Edit the shared
+source to keep their labels and destinations consistent. `site/inner-pages.css`
+and `site/inner-pages.js` own the inner-page theme and accessible mobile menu.
+The homepage keeps its independently approved composition.
+
+The guide sidebar follows task order, identifies the current page, and separates
+historical releases. Page contents, code-copy controls, and previous/next links
+are built from the released documentation. Change guide presentation in
+`content/guide.css` or `scripts/build-docs.mjs`, never in generated pages.
 
 ## Automatic documentation updates
 

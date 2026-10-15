@@ -1,11 +1,111 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Work with Design System Loop | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
-<a href="example.html">Worked example: fix a button’s dark theme</a>
-<a href="install.html">Set up Design System Loop</a>
-<a href="output.html">Reading an audit</a>
-<a href="reference.html">Commands and coverage</a>
-<a href="release-0.2.0.html">0.2.0 release notes</a>
-<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="work-with-design-system-loop">Work with Design System Loop</h1>
-<p>Design System Loop combines an agent skill for design-system work with an engine that checks supported code. Start with the problem or outcome you need help with. The agent investigates and recommends a route; you do not need to classify your company or select a playbook. Scanner silence does not tell you whether a design system exists.</p>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Work with Design System Loop | DS Loop</title><meta name="description" content="Repeated components and drifting styles need a cause before they need a migration. Start by checking what your project declares and uses:"><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html">Overview</a><a href="install.html">Installation</a><a href="workflow.html" aria-current="page">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Guide</a><span aria-hidden="true">/</span><span aria-current="page">Workflows</span></nav><div class="doc-title"><div class="guide-title-copy"><h1 id="work-with-design-system-loop">Work with Design System Loop</h1>
+<p>Repeated components and drifting styles need a cause before they need a migration.
+Start by checking what your project declares and uses:</p></div></div><div class="doc-body-layout"><div class="doc-reading">
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-1">npx ds-loop context .
+npx ds-loop audit .
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div>
+<p>Then give your agent the outcome you need. It investigates the evidence and
+recommends a route. You don't need to classify your company or select a playbook.</p>
+<p>Choose the closest task: <a href="#start-a-design-system">start a system</a>,
+<a href="#improve-a-partial-system">improve one</a>, <a href="#transform-an-existing-system">transform it</a>,
+or <a href="#maintain-an-existing-system">maintain it</a>. If the problem is unclear, start below.</p>
+<h2 id="agent-commands">Agent commands</h2>
+<p>With the <a href="install.html#start-with-your-agent">skill loaded</a>, type <code>/ds-loop:start</code>
+or ask your agent to follow its command file. The colon is part of the command.
+The twelve <a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">command files</a> route your task to procedures
+and roles; they aren't shell commands. Native slash-command discovery depends on
+your agent host. Directly reading a command file works when discovery isn't configured.</p>
+<table>
+<thead>
+<tr>
+<th>Agent command</th>
+<th>What you get</th>
+<th>Backing CLI commands</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/ds-loop:start</code></td>
+<td>A first reading of your system</td>
+<td><code>context</code>, <code>audit</code>, <code>report</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:diagnose</code></td>
+<td>A cause and a first action</td>
+<td><code>context</code>, <code>audit</code>, <code>consumers</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:inventory</code></td>
+<td>What exists and who uses it</td>
+<td><code>audit</code>, <code>consumers</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:foundations</code></td>
+<td>Type, colour and spacing options</td>
+<td><code>audit</code>, <code>scan</code>, <code>sweep</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:propose</code></td>
+<td>A plan your team can approve</td>
+<td><code>audit</code>, <code>consumers</code>, <code>report</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:establish</code></td>
+<td>A system your product can use</td>
+<td><code>context</code>, <code>audit</code>, <code>consumers</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:transform</code></td>
+<td>A checked migration slice</td>
+<td><code>audit</code>, <code>consumers</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:component</code></td>
+<td>A component built or reviewed</td>
+<td><code>audit</code>, <code>consumers</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:document</code></td>
+<td>Guides tied to real code</td>
+<td><code>context</code>, <code>audit</code>, <code>consumers</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:govern</code></td>
+<td>Decisions with owners and evidence</td>
+<td><code>context</code>, <code>audit</code>, <code>decide</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:drift</code></td>
+<td>Feedback after edits</td>
+<td><code>audit</code>, <code>guard</code></td>
+</tr>
+<tr>
+<td><code>/ds-loop:prove</code></td>
+<td>What changed and what wasn't checked</td>
+<td><code>audit</code>, <code>scorecard</code>, <code>report</code></td>
+</tr>
+</tbody></table>
+<h2 id="roles-and-practice-guides">Roles and practice guides</h2>
+<p>The eight roles divide responsibilities within the same authorized task:
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">auditor</a> gathers measurements;
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">consultant</a> diagnoses and plans;
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">architect</a> maps structure;
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">foundations</a> compares scales and themes;
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">components</a> builds and checks contracts;
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">migrator</a> moves consumers;
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">docs</a> writes usable guidance; and
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">governor</a> retains owners and decisions.
+They're responsibilities your agent follows, not eight automatically launched agents.</p>
+<p>The six practice guides support those roles:
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">starting</a>,
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">maintaining</a>,
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">migrating</a>,
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">documenting</a>,
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">Storybook</a>, and
+<a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">governing</a>.
+Read the guide for your task before recommending a process. Keep each cited source
+beside the specific recommendation it supports; label the agent's own opinion.</p>
 <h2 id="if-you-do-not-know-where-to-start">If you do not know where to start</h2>
 <p>Tell the agent what brought you here. It should inspect existing evidence, ask only
 questions that affect the work, and explain a diagnosis before proposing changes.
@@ -34,6 +134,16 @@ may improve documentation or contribution practices instead of adding code.</p>
 <blockquote>
 <p>Read node_modules/ds-loop/skill/SKILL.md. Investigate why the primary button in src/settings/ differs from the shared Button. Check its states, themes, and existing decisions. If it is unintended drift, fix it within this screen and verify the result. If the difference serves a real need, keep it and record why. Do not change the shared scale or other screens without resolving that wider scope. Link the before/after evidence and the saved decision.</p>
 </blockquote>
+<h2 id="transform-an-existing-system">Transform an existing system</h2>
+<p>Use the <a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">nine-step transformation procedure</a>
+when the goal spans diagnosis, foundation decisions, adoption and maintenance.
+It starts from existing commitments and ends with an evidence-backed completion
+record; it is an agent procedure, not a CLI command. The <a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">foundations procedure</a>
+helps compare choices without assuming the current system should be replaced.</p>
+<p>Establish theming areas and their override boundaries early. Before relying on
+Storybook or another preview, verify its CSS sources and order against the app.
+Label deliverables as observed, inferred, proposed or not checked. A scoped review
+can stop with a recommendation; a migration needs its own authorization.</p>
 <h2 id="maintain-an-existing-system">Maintain an existing system</h2>
 <p><strong>Bring:</strong> a diff or feature, component contracts, and previous decisions.</p>
 <p><strong>Your agent does:</strong> review against those commitments, run applicable checks, and separate regressions from existing issues.</p>
@@ -55,4 +165,4 @@ may improve documentation or contribution practices instead of adding code.</p>
 <p>The handoff states what was delivered, what was deliberately left unchanged, and what remains blocked. It links to changed files, actual checks and their limits, open questions, and relevant decisions. The record explains what was chosen, why, the affected scope, and when to reconsider. Use an existing issue, component document, or decision directory; a new registry is not required. Name where the next task finds it.</p>
 <p>For an adoption pilot, ask a separate agent session to retrieve and apply that decision. Writing a record alone does not prove retrieval, suppress a finding, or create a checker.</p>
 <p>See the <a href="example.html">complete synthetic example</a> and its saved decision. Use the website preview to see the rendered before and after.</p>
-</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>
+<nav class="guide-pager" aria-label="Guide pages"><a class="previous" href="install.html"><span>← Previous</span><strong>Installation</strong></a><a class="next" href="output.html"><span>Next →</span><strong>Reports &amp; findings</strong></a></nav></div><aside class="doc-toc"><details class="page-contents" open><summary>On this page</summary><nav aria-label="On this page"><a href="#agent-commands">Agent commands</a><a href="#roles-and-practice-guides">Roles and practice guides</a><a href="#if-you-do-not-know-where-to-start">If you do not know where to start</a><a href="#start-a-design-system">Start a design system</a><a href="#improve-a-partial-system">Improve a partial system</a><a href="#transform-an-existing-system">Transform an existing system</a><a href="#maintain-an-existing-system">Maintain an existing system</a><a href="#three-connected-loops">Three connected loops</a><a href="#work-with-your-agent">Work with your agent</a><a href="#review-the-handoff">Review the handoff</a></nav></details></aside></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

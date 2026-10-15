@@ -7,10 +7,22 @@ for (const button of document.querySelectorAll('[data-copy]')) {
     try {
       await navigator.clipboard.writeText(target.textContent.trim());
       status.textContent = `${button.dataset.copyKind || 'Command'} copied.`;
-      button.textContent = 'Copied';
+      if (button.hasAttribute('data-copy-icon')) {
+        button.setAttribute('data-copied', '');
+        button.setAttribute('aria-label', 'Command copied');
+        button.title = 'Command copied';
+      } else {
+        button.textContent = 'Copied';
+      }
     } catch {
-      status.textContent = 'Copy unavailable. Select the text below and copy it manually.';
-      button.textContent = 'Copy';
+      status.textContent = 'Copy unavailable. Select the text and copy it manually.';
+      if (button.hasAttribute('data-copy-icon')) {
+        button.removeAttribute('data-copied');
+        button.setAttribute('aria-label', 'Copy command');
+        button.title = 'Copy command';
+      } else {
+        button.textContent = 'Copy';
+      }
     } finally {
       button.disabled = false;
     }

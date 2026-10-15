@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Compare your system with public code | DS Loop</title><meta name="description" content="A ratio needs context. Compare your measured tokenization with pinned public sources:"><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html">Overview</a><a href="install.html">Installation</a><a href="workflow.html">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html" aria-current="page">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Guide</a><span aria-hidden="true">/</span><span aria-current="page">Public comparisons</span></nav><div class="doc-title"><div class="guide-title-copy"><h1 id="compare-your-system-with-public-code">Compare your system with public code</h1>
+<p>A ratio needs context. Compare your measured tokenization with pinned public sources:</p></div></div><div class="doc-body-layout"><div class="doc-reading">
+<div class="doc-code"><pre><code class="language-bash" id="guide-code-1">ds-loop report .
+ds-loop dashboard . --against products
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div>
+<p>The report and dashboard choose products when they find application commands or private
+production consumers of workspace packages. A package with <code>exports</code> and no <code>private: true</code>
+selects systems when no product application was identified. Documentation, examples and
+playgrounds are excluded from those application signals. Without enough evidence, products
+is the fallback. This is an inference from manifests and supported imports, not proof of the
+repository's audience. Use <code>--against products|systems</code> to correct it. Dashboard refreshes
+retain your override.</p>
+<p><code>ds-loop context .</code> lists the structural facts with their source paths. The consulting report
+also includes them under “Where you are now.” Missing or unreadable manifests and unavailable
+workspace analysis say <code>not checked</code>.</p>
+<p>Each tokenization dimension shows your ratio, the observed minimum and maximum, the median,
+and <code>below range</code>, <code>in range</code> or <code>above range</code>. Boundaries are inclusive. These are observations,
+not grades or recommendations. The contributor count and named sources appear alongside each dimension.
+Ratios use reference-only values divided by literal, reference and mixed values together.
+They do not establish reference resolution, visual quality or runtime behaviour.</p>
+<p>A reference dimension requires <strong>100 classified occurrences</strong>: literal + reference + mixed
+values, excluding ambiguous and excluded values. Its recorded <code>occurrences</code> is this exact
+denominator, not the number of distinct values or the total inventory. Below that floor,
+<code>ratios[dimension]</code> is <code>null</code>, meaning <strong>not measured</strong>, and contributes to no range.
+A genuine zero with sufficient occurrences remains a measurement.</p>
+<p>A range requires <strong>three contributing repositories</strong>. With fewer, both report and dashboard
+say <code>too few reference repos to state a range</code>, show the contributor count, and omit the
+range and median. A missing team measurement still says <code>not checked</code>. Once there are enough
+contributors, the configuration hashes must match, and any adapter used by both sources must
+have the same version. An adapter used by only one source means that source has a different
+format; it does not prevent comparison. A different shared adapter version, a different
+configuration hash or an unparseable adapter string says <code>not comparable — instrument differs</code>
+and suppresses the comparison numbers. Mismatched rows are never silently removed to
+manufacture a comparable range. Scorecard comparisons of the same source still require the
+entire adapter set to match.</p>
+<p>Both floors live in <code>src/config/benchmark.ts</code> and are <strong>UNCALIBRATED</strong>. The occurrence floor
+screens out small incidental stylesheets; at 100 occurrences one observation moves a ratio
+by at most one percentage point. Three repositories are a minimal starting corpus, not an
+industry distribution. Neither rule proves coverage of a repository's main styling format.
+These eligibility settings do not change the audit instrument or its configuration hash.</p>
+<h2 id="current-reference-coverage">Current reference coverage</h2>
+<p>Every pinned row was re-measured on 2026-09-30 with <code>scripts/benchmark.mjs</code>, configuration
+hash <code>5b0a0820</code>. Nine repositories are eligible references:</p>
+<table>
+<thead>
+<tr>
+<th>Set</th>
+<th>Repository</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>systems</td>
+<td>Radix Themes, Radix Primitives, Mantine, Primer React</td>
+</tr>
+<tr>
+<td>products</td>
+<td>Supabase, Appsmith, Refine, Excalidraw, PostHog</td>
+</tr>
+</tbody></table>
+<p>Contributing repositories per dimension (a range needs three):</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>systems</th>
+<th>products</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>spacing</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>typography</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>radius</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>shadow</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>z-index</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>With a matching configuration and shared adapter versions, color, spacing and typography
+produce ranges in both sets when the team dimension is measured.</p>
+<p>Four pinned repositories stay in <code>unmeasurable</code>, each with the reason the script recorded:</p>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>chakra-ui/chakra-ui</code></td>
+<td>CSS-in-JS, which no adapter reads</td>
+</tr>
+<tr>
+<td><code>FlowiseAI/Flowise</code></td>
+<td>MUI CSS-in-JS, which no adapter reads</td>
+</tr>
+<tr>
+<td><code>langflow-ai/langflow</code></td>
+<td>CSS-in-JS dependencies; no dimension reaches 100 classified occurrences</td>
+</tr>
+<tr>
+<td><code>shadcn-ui/ui</code></td>
+<td>Styles in <code>.html</code> and <code>.astro</code>, which no adapter reads; no dimension reaches 100 classified occurrences</td>
+</tr>
+</tbody></table>
+<p><code>pendingMeasurements</code> is empty.</p>
+<p><code>benchmarks/reference.json</code> schema 2 separates eligible <code>references</code>, <code>unmeasurable</code> sources,
+<code>pendingMeasurements</code> and unpinned <code>candidates</code>. Newly measured rows store all seven
+benchmark ratios and denominators, total extracted values, public URL, SHA, licence, scan
+path, date, adapters, configuration hash and coverage. Legacy palette ratios are not
+benchmark dimensions and are omitted from new records; their zero-denominator placeholders
+must not become comparison data. No source code is vendored, and the packaged engine reads
+this file from disk without network access.</p>
+<h2 id="reproduce-or-extend-the-corpus">Reproduce or extend the corpus</h2>
+<p>Run these from a development checkout with Node 22.6 or newer and Git installed:</p>
+<div class="doc-code"><pre><code class="language-bash" id="guide-code-2">npm run benchmark
+npm run benchmark -- --verify
+npm run benchmark -- --verify --repo=radix-ui/themes
+</code></pre><button type="button" data-copy="guide-code-2" data-copy-kind="Example" aria-label="Copy code example 2" aria-describedby="guide-code-2-status" hidden>Copy</button><p class="sr-only" id="guide-code-2-status" role="status"></p></div>
+<p>The default run fetches each reference, excluded source and pending measurement at its pinned SHA into an OS temporary
+directory, audits its recorded scope with <code>DEFAULT_CONFIG</code>, updates the measurements, then
+removes the checkout. It never installs dependencies or runs upstream build scripts.
+<code>--verify</code> measures one pinned reference and fails on changed ratios, denominators, total extracted values, adapters or configuration;
+it does not rewrite the data. <code>--repo=owner/name</code> selects a specific row.</p>
+<p>When reviewing a new candidate, verify that its scanned code is permissively licensed and that
+its scope represents the intended product or system, then pin and measure it:</p>
+<div class="doc-code"><pre><code class="language-bash" id="guide-code-3">npm run benchmark -- --pin --repo=excalidraw/excalidraw
+</code></pre><button type="button" data-copy="guide-code-3" data-copy-kind="Example" aria-label="Copy code example 3" aria-describedby="guide-code-3-status" hidden>Copy</button><p class="sr-only" id="guide-code-3-status" role="status"></p></div>
+<p><code>--pin</code> resolves HEAD only for candidates without a SHA. Subsequent runs use that pin. The
+script checks the recorded licence file for its licence notice and requires at least one tokenization dimension with 100 classified occurrences before promoting
+a candidate. A refusal names likely unread formats, using coverage and CSS-in-JS dependency
+evidence. The existing pure-palette rejection remains. Ordinary refreshes move sources with
+no eligible dimensions into <code>unmeasurable</code>, retaining their coverage and exclusion reason. This basic check does not replace
+reviewing mixed-licence subtrees. Stop and revise or reject unsuitable candidates.</p>
+<p>For an existing local clone, <code>--cache=/absolute/path/to/clone</code> fetches its pinned Git object
+into a fresh temporary checkout. It does not audit uncommitted files or mutate the cached
+clone. This makes offline verification possible when the object is already available.
+<code>--data=/absolute/path/to/reference.json</code> selects an alternate manifest, useful for checking
+that deliberately changed ratios fail verification without modifying the shipped data.</p>
+<nav class="guide-pager" aria-label="Guide pages"><a class="previous" href="example.html"><span>← Previous</span><strong>Theme repair</strong></a><a class="next" href="reference.html"><span>Next →</span><strong>Commands &amp; coverage</strong></a></nav></div><aside class="doc-toc"><details class="page-contents" open><summary>On this page</summary><nav aria-label="On this page"><a href="#current-reference-coverage">Current reference coverage</a><a href="#reproduce-or-extend-the-corpus">Reproduce or extend the corpus</a></nav></details></aside></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

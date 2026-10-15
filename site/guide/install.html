@@ -1,15 +1,68 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Set up Design System Loop | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
-<a href="example.html">Worked example: fix a button’s dark theme</a>
-<a href="install.html">Set up Design System Loop</a>
-<a href="output.html">Reading an audit</a>
-<a href="reference.html">Commands and coverage</a>
-<a href="release-0.2.0.html">0.2.0 release notes</a>
-<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p><h1 id="set-up-design-system-loop">Set up Design System Loop</h1>
-<p>Use Node 22.6 or later. Install the complete package in the project you want to inspect.</p>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Set up Design System Loop | DS Loop</title><meta name="description" content="Give your agent the same design-system instructions on every task. Install the complete package in your project with Node 22.6 or later."><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html">Overview</a><a href="install.html" aria-current="page">Installation</a><a href="workflow.html">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Guide</a><span aria-hidden="true">/</span><span aria-current="page">Installation</span></nav><div class="doc-title"><div class="guide-title-copy"><h1 id="set-up-design-system-loop">Set up Design System Loop</h1>
+<p>Give your agent the same design-system instructions on every task. Install the
+complete package in your project with Node 22.6 or later.</p></div></div><div class="doc-body-layout"><div class="doc-reading">
 <h2 id="install-from-npm">Install from npm</h2>
-<pre><code class="language-sh">npm install --save-dev ds-loop@0.2.1
-</code></pre>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-1">npm install --save-dev ds-loop@0.4.0
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div>
 <p>To test local changes, use <a href="#install-from-source">source installation</a>. Both paths install the CLI and companion skill. A local tarball path is specific to your machine; switch to the matching registry release before asking teammates to install it.</p>
+<h2 id="add-instructions-for-your-agent">Add instructions for your agent</h2>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-2">npx ds-loop install --agent codex --dry-run
+npx ds-loop install --agent codex
+</code></pre><button type="button" data-copy="guide-code-2" data-copy-kind="Example" aria-label="Copy code example 2" aria-describedby="guide-code-2-status" hidden>Copy</button><p class="sr-only" id="guide-code-2-status" role="status"></p></div>
+<p>Choose <code>claude</code>, <code>cursor</code>, <code>codex</code> or <code>all</code>. Without <code>--agent</code>, the installer detects
+<code>.claude/</code>, <code>.cursor/</code>, and either <code>AGENTS.md</code> or <code>.codex/</code>. If it finds none, it
+writes nothing and prints three runnable choices with their destination files:
+<code>ds-loop install --agent claude</code> writes <code>CLAUDE.md</code>,
+<code>ds-loop install --agent cursor</code> writes <code>.cursor/rules/ds-loop.mdc</code>, and
+<code>ds-loop install --agent codex</code> writes <code>AGENTS.md</code>. Run the command for your agent;
+use <code>npx ds-loop</code> in place of <code>ds-loop</code> for a local npm installation.</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Project file</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Code</td>
+<td><code>CLAUDE.md</code></td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>.cursor/rules/ds-loop.mdc</code></td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code>AGENTS.md</code></td>
+</tr>
+</tbody></table>
+<p>The <a href="https://www.npmjs.com/package/ds-loop/v/0.4.0?activeTab=code">installer</a> writes a short instruction block:
+the first CLI command, twelve agent commands, and paths to the bundled skill and
+command instructions. It creates missing parent directories and files. In an
+existing file it appends the block and preserves your text. On reruns it replaces
+only the text between <code>&lt;!-- ds-loop:start --&gt;</code> and <code>&lt;!-- ds-loop:end --&gt;</code>, including
+the markers. Unchanged blocks aren't rewritten. Missing, repeated or reversed
+markers stop installation before any selected instruction file changes.</p>
+<p>The guard is opt-in because it edits your <code>.claude/settings.json</code>:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-3">npx ds-loop install --agent claude --guard --dry-run
+npx ds-loop install --agent claude --guard
+</code></pre><button type="button" data-copy="guide-code-3" data-copy-kind="Example" aria-label="Copy code example 3" aria-describedby="guide-code-3-status" hidden>Copy</button><p class="sr-only" id="guide-code-3-status" role="status"></p></div>
+<p>Without <code>--guard</code>, installation only writes agent instructions. <code>--dry-run</code>
+previews both instruction and requested guard changes. These references don't
+launch an agent or register slash commands in every host; load the bundled skill
+using your agent's setup below.</p>
+<h2 id="get-a-first-reading">Get a first reading</h2>
+<p>From your project directory, run <code>npx ds-loop</code> (or <code>npx ds-loop start .</code>).
+On a fresh project it prints findings and coverage and writes <code>ds-loop-report.html</code>.
+Open it for findings and coverage, then ask your agent to add the assessment and plan.
+A pre-existing report or <code>.ds-scorecard/</code> prevents automatic creation. Explicit
+<code>npx ds-loop report .</code> refreshes the report; <code>audit</code> remains read-only unless given an output flag.</p>
+<h2 id="check-the-installation">Check the installation</h2>
+<p>Run <code>npx ds-loop doctor .</code> for read-only installation and contract diagnostics.
+It reports missing evidence and drift without changing settings or acting as a CI gate.</p>
+<p>Your first audit produces a report containing a verdict, adapter coverage and findings or their absence. If the result is <code>not-checked</code>, consult <a href="reference.html#coverage">coverage</a>; reinstalling will not add an adapter for an unsupported format.</p>
 <h2 id="start-with-your-agent">Start with your agent</h2>
 <p>Ask your agent to read <code>node_modules/ds-loop/skill/SKILL.md</code>. Keep the complete package installed: its launcher requires the adjacent <code>bin/</code> and <code>dist/</code> directories. Copying just the skill folder is not a standalone installation. Your agent's automatic skill discovery depends on its own setup; direct loading makes the entry point explicit.</p>
 <p>Describe the problem or outcome in your own words; you do not need to choose an internal command. For example:</p>
@@ -19,38 +72,74 @@
 <p>The agent should explain the evidence, recommended intervention, and scope. For a concrete task, say what it may implement. The <a href="workflow.html">workflow guide</a> gives examples for starting, improving, and maintaining a system. Installing the package alone does not activate an agent or arrange ongoing maintenance.</p>
 <h2 id="run-the-checks-yourself">Run the checks yourself</h2>
 <p>You can also use the engine directly, without an agent. From your project directory:</p>
-<pre><code class="language-sh">./node_modules/.bin/ds-loop context .
-./node_modules/.bin/ds-loop audit . --json
-</code></pre>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-4">npx ds-loop context .
+npx ds-loop audit . --json
+</code></pre><button type="button" data-copy="guide-code-4" data-copy-kind="Example" aria-label="Copy code example 4" aria-describedby="guide-code-4-status" hidden>Copy</button><p class="sr-only" id="guide-code-4-status" role="status"></p></div>
 <p><code>context</code> reports configuration, conventional intent-source paths and extraction scope. It runs no rules. The unfiltered audit reports findings and checks that could not judge. Inspect both <code>verdict</code> and <code>coverage</code>; exit 0 alone does not establish a clean result. These commands provide measurements; they do not conduct the interview or recommend an engagement plan.</p>
 <h2 id="optional-add-edit-feedback">Optional: add edit feedback</h2>
 <p>From the target project, run:</p>
-<pre><code class="language-sh">./node_modules/.bin/ds-loop guard on
-./node_modules/.bin/ds-loop guard status
-</code></pre>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-5">npx ds-loop guard on
+npx ds-loop guard status
+</code></pre><button type="button" data-copy="guide-code-5" data-copy-kind="Example" aria-label="Copy code example 5" aria-describedby="guide-code-5-status" hidden>Copy</button><p class="sr-only" id="guide-code-5-status" role="status"></p></div>
 <p>This installs a Claude Code PostToolUse hook in <code>.claude/settings.json</code>. It reports high-severity findings after supported edits and announces project extraction-coverage changes. It never blocks an edit. It does not deliver lower-severity judgment limits; run an unfiltered audit at setup and completion. <code>guard off</code> removes its entry while preserving other settings.</p>
 <p>If the audit fails or times out, the hook says the edit was not checked and reports
 the error. Correct the problem and rerun the audit before relying on its result.</p>
 <h2 id="optional-choose-a-ci-policy">Optional: choose a CI policy</h2>
-<pre><code class="language-sh">./node_modules/.bin/ds-loop audit . --min-severity high --require-coverage
-</code></pre>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-6">npx ds-loop audit . --min-severity high --require-coverage
+</code></pre><button type="button" data-copy="guide-code-6" data-copy-kind="Example" aria-label="Copy code example 6" aria-describedby="guide-code-6-status" hidden>Copy</button><p class="sr-only" id="guide-code-6-status" role="status"></p></div>
 <p>This fails on findings at the chosen floor or reported coverage gaps. Its pass applies only to the adapters' stated scope and chosen severity. Review your repository's unsupported formats before enabling it. Run an unfiltered audit separately when you need all findings.</p>
-<h2 id="check-the-installation">Check the installation</h2>
-<p>You should receive a report containing a verdict, adapter coverage and findings or their absence. If the result is <code>not-checked</code>, consult <a href="reference.html#coverage">coverage</a>; reinstalling will not add an adapter for an unsupported format.</p>
 <h2 id="install-from-source">Install from source</h2>
 <p>Use this path to test a local change. In a directory outside the project you want to inspect:</p>
-<pre><code class="language-sh">git clone https://github.com/owaizin/ds-loop.git
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-7">git clone https://github.com/owaizin/ds-loop.git
 cd ds-loop
 npm ci
 npm pack
-</code></pre>
-<p>This builds <code>ds-loop-0.2.1.tgz</code> without publishing it. From your target project, install the tarball using its actual absolute path:</p>
-<pre><code class="language-sh">npm install --save-dev /absolute/path/to/ds-loop-0.2.1.tgz
-</code></pre>
+</code></pre><button type="button" data-copy="guide-code-7" data-copy-kind="Example" aria-label="Copy code example 7" aria-describedby="guide-code-7-status" hidden>Copy</button><p class="sr-only" id="guide-code-7-status" role="status"></p></div>
+<p>This builds <code>ds-loop-0.4.0.tgz</code> without publishing it. From your target project, install the tarball using its actual absolute path:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-8">npm install --save-dev /absolute/path/to/ds-loop-0.4.0.tgz
+</code></pre><button type="button" data-copy="guide-code-8" data-copy-kind="Example" aria-label="Copy code example 8" aria-describedby="guide-code-8-status" hidden>Copy</button><p class="sr-only" id="guide-code-8-status" role="status"></p></div>
 <p>Continue with <a href="#start-with-your-agent">Start with your agent</a>, or <a href="#run-the-checks-yourself">run the checks yourself</a>. The launcher uses the compiled JavaScript included in the package.</p>
 <p>To try the public Radix Colors fixture from the source checkout:</p>
-<pre><code class="language-sh">npm run ds-loop -- audit fixtures/radix-colors
-</code></pre>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-9">npm run ds-loop -- audit fixtures/radix-colors
+</code></pre><button type="button" data-copy="guide-code-9" data-copy-kind="Example" aria-label="Copy code example 9" aria-describedby="guide-code-9-status" hidden>Copy</button><p class="sr-only" id="guide-code-9-status" role="status"></p></div>
 <p>The fixture contains known findings, so exit 1 is expected. Fixtures and development scripts are not included in the npm package.</p>
 <p><a href="workflow.html">Next: work through a change</a></p>
-</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>
+<h2 id="claude-code-plugin">Claude Code plugin</h2>
+<p>After installing <code>ds-loop@0.4.0</code>, launch Claude Code from your project:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-10">claude --plugin-dir ./node_modules/ds-loop
+</code></pre><button type="button" data-copy="guide-code-10" data-copy-kind="Example" aria-label="Copy code example 10" aria-describedby="guide-code-10-status" hidden>Copy</button><p class="sr-only" id="guide-code-10-status" role="status"></p></div>
+<p>Invoke <code>/ds-loop:ds-loop</code> and describe your goal. The plugin loads the same skill,
+including its roles, practices and playbooks, and registers the post-edit guard.
+Do not also install the project guard: if you previously ran <code>guard on</code>, run
+<code>npx --no-install ds-loop guard off</code> before using the plugin to avoid duplicate feedback.
+Leaving the plugin out of the next session removes its hook from that session.
+The hook reports after edits; it cannot block them or replace an unfiltered audit.</p>
+<p>To install it without npm, add this repository as a plugin marketplace:</p>
+<div class="doc-code"><pre><code class="language-text" id="guide-code-11">/plugin marketplace add owaizin/ds-loop
+/plugin install ds-loop@ds-loop
+</code></pre><button type="button" data-copy="guide-code-11" data-copy-kind="Example" aria-label="Copy code example 11" aria-describedby="guide-code-11-status" hidden>Copy</button><p class="sr-only" id="guide-code-11-status" role="status"></p></div>
+<p>To update the installed plugin, run this in your terminal:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-12">claude plugin marketplace update ds-loop
+claude plugin update ds-loop@ds-loop
+</code></pre><button type="button" data-copy="guide-code-12" data-copy-kind="Example" aria-label="Copy code example 12" aria-describedby="guide-code-12-status" hidden>Copy</button><p class="sr-only" id="guide-code-12-status" role="status"></p></div>
+<p>Start a new Claude Code session to load the update. The marketplace command
+refreshes the listing; the plugin command updates the installed copy. You can
+also enable auto-update for this marketplace in Claude Code's <code>/plugin</code> panel.
+A marketplace install runs from the repository source and needs Node 22.6 or later.</p>
+<p>The package follows Claude Code's <a href="https://code.claude.com/docs/en/plugins-reference">plugin manifest format</a>
+and <a href="https://code.claude.com/docs/en/plugins">local loading workflow</a>.
+Keep the entire package or repository together. The npm package runs compiled
+JavaScript; the repository launcher can run source directly on Node 22.6 or later.</p>
+<h2 id="codex-skill">Codex skill</h2>
+<p>The same <code>skill/SKILL.md</code> is the Codex entry point, using the documented
+<a href="https://developers.openai.com/codex/skills/#where-codex-loads-local-skills">local skill discovery format</a>. From your project root,
+make it discoverable without copying it away from the engine:</p>
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-13">mkdir -p .agents/skills
+ln -s ../../node_modules/ds-loop/skill .agents/skills/ds-loop
+</code></pre><button type="button" data-copy="guide-code-13" data-copy-kind="Example" aria-label="Copy code example 13" aria-describedby="guide-code-13-status" hidden>Copy</button><p class="sr-only" id="guide-code-13-status" role="status"></p></div>
+<p>Start a new Codex session and invoke <code>$ds-loop</code>, followed by your goal. The relative
+link stays inside the project and resolves the package's launcher. If a skill with
+that name already exists, inspect it before replacing it. Directly asking Codex to
+read <code>node_modules/ds-loop/skill/SKILL.md</code> also works. Codex does not run the Claude
+Code hook; run the unfiltered audit at setup and completion as the skill directs.</p>
+<nav class="guide-pager" aria-label="Guide pages"><a class="previous" href="index.html"><span>← Previous</span><strong>Overview</strong></a><a class="next" href="workflow.html"><span>Next →</span><strong>Workflows</strong></a></nav></div><aside class="doc-toc"><details class="page-contents" open><summary>On this page</summary><nav aria-label="On this page"><a href="#install-from-npm">Install from npm</a><a href="#add-instructions-for-your-agent">Add instructions for your agent</a><a href="#get-a-first-reading">Get a first reading</a><a href="#check-the-installation">Check the installation</a><a href="#start-with-your-agent">Start with your agent</a><a href="#run-the-checks-yourself">Run the checks yourself</a><a href="#optional-add-edit-feedback">Optional: add edit feedback</a><a href="#optional-choose-a-ci-policy">Optional: choose a CI policy</a><a href="#install-from-source">Install from source</a><a href="#claude-code-plugin">Claude Code plugin</a><a href="#codex-skill">Codex skill</a></nav></details></aside></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

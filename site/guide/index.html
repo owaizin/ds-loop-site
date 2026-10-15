@@ -1,17 +1,42 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design System Loop guide | Design System Loop</title><meta name="theme-color" content="#080512"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="guide.css"></head><body class="guide-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap"><a class="brand" href="../index.html"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="42" height="42" alt="">Design System Loop</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Guide</a><a href="../system-example.html">SaaS example</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a class="nav-start" href="install.html">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><nav class="nav-group" aria-label="Documentation"><p>Released package · 0.2.1</p><a href="index.html">Design System Loop guide</a>
-<a href="example.html">Worked example: fix a button’s dark theme</a>
-<a href="install.html">Set up Design System Loop</a>
-<a href="output.html">Reading an audit</a>
-<a href="reference.html">Commands and coverage</a>
-<a href="release-0.2.0.html">0.2.0 release notes</a>
-<a href="workflow.html">Work with Design System Loop</a><a href="examples.html">Verified examples</a></nav></aside><article class="release-doc"><div class="doc-title"><div class="guide-title-copy"><h1 id="design-system-loop-guide">Design System Loop guide</h1>
-<p>Describe the problem you want help with. The agent investigates and recommends
-whether to establish a foundation, improve an existing system, or use its current conventions.</p></div><svg class="guide-blueprint" viewBox="0 0 320 250" fill="none" aria-hidden="true"><defs><pattern id="guide-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" stroke="#393047" stroke-width=".5"/></pattern></defs><rect width="320" height="250" fill="url(#guide-grid)"/><g stroke="#635578"><path d="M20 35h280M20 215h280M40 15v220m240-220v220"/><rect x="40" y="55" width="240" height="140" rx="2" fill="#100d1a"/><path d="M40 85h240M95 85v110"/></g><g stroke="#a78bc8"><rect x="114" y="106" width="146" height="16" rx="2"/><rect x="114" y="137" width="63" height="38" rx="2"/><rect x="193" y="137" width="67" height="38" rx="2"/><path d="M53 105h28m-28 16h19m-19 16h25M55 69h5m8 0h5m8 0h5"/></g><g fill="#100d1a" stroke="#d1bcff"><rect x="37" y="52" width="6" height="6"/><rect x="277" y="52" width="6" height="6"/><rect x="37" y="192" width="6" height="6"/><rect x="277" y="192" width="6" height="6"/></g><path d="M137 207v16m-8-8h16M270 26h16m-8-8v16" stroke="#a78bc8"/></svg></div><p class="release-note">Documentation shipped with <a href="https://www.npmjs.com/package/ds-loop/v/0.2.1">ds-loop 0.2.1</a>. Updated from the package, not maintained separately.</p>
-<ul>
-<li><a href="install.html">Set up Design System Loop</a>: install the package and load the skill.</li>
-<li><a href="workflow.html">Choose your first task</a>: what to provide, what the agent does, and what you review.</li>
-<li><a href="example.html">Complete worked example</a>: a synthetic theme bug, code change, checks, and saved decision. Use the website preview for the rendered views.</li>
-<li><a href="reference.html">Technical reference</a>: commands, configuration, and coverage.</li>
-<li><a href="output.html">Example reports</a>: verified public and synthetic engine output.</li>
-</ul>
-</article></main><footer class="site-footer wrap"><p>Design System Loop · Documentation for 0.2.1</p><a href="../index.html">Back to the website</a></footer></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Design System Loop guide | DS Loop</title><meta name="description" content="Find hardcoded styles and the shared components your product uses:"><meta name="theme-color" content="#0b0913"><link rel="icon" href="../assets/ds-circuit.svg"><link rel="preload" href="../assets/manrope.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../inner-pages.css"><link rel="stylesheet" href="guide.css"><script src="../app.js" defer></script><script src="../inner-pages.js" defer></script></head>
+<body class="guide-page inner-page"><a class="skip" href="#main">Skip to content</a><header class="site-header wrap inner-header"><a class="brand" href="../index.html" aria-label="DS Loop home" title="Design System Loop"><img class="brand-emblem" src="../assets/ds-circuit.svg" width="36" height="36" alt="">DS Loop</a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>Menu<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14"/></svg></button><nav id="site-navigation" class="nav" aria-label="Main"><a href="../guide/index.html" aria-current="page">Guide</a><a href="../system-example.html">See it in use</a><a href="https://github.com/owaizin/ds-loop">GitHub</a><a href="../guide/install.html" class="nav-start">Get started</a></nav></header><main id="main" class="wrap docs-layout"><aside class="docs-nav"><details class="guide-contents" open><summary>Guide contents <span aria-hidden="true">⌄</span></summary><nav aria-label="Documentation"><div class="guide-version"><a href="https://www.npmjs.com/package/ds-loop/v/0.4.0">DS Loop <span>v0.4.0</span></a></div><div class="nav-group"><p>Get started</p><a href="index.html" aria-current="page">Overview</a><a href="install.html">Installation</a><a href="workflow.html">Workflows</a></div><div class="nav-group"><p>Go deeper</p><a href="output.html">Reports &amp; findings</a><a href="example.html">Theme repair</a><a href="benchmark.html">Public comparisons</a><a href="reference.html">Commands &amp; coverage</a><a href="examples.html">Verified examples</a></div><div class="nav-group"><p>Releases</p><a href="release-0.4.0.html">0.4.0 release notes</a><details class="release-history"><summary>Earlier releases</summary><a href="release-0.2.0.html">0.2.0 release notes (historical)</a></details></div></nav></details></aside><article class="release-doc"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Guide</span></nav><div class="doc-title guide-overview"><div class="guide-title-copy"><h1 id="design-system-loop-guide">Design System Loop guide</h1>
+<p>Find hardcoded styles and the shared components your product uses:</p></div><svg class="guide-blueprint" viewBox="0 0 320 250" fill="none" aria-hidden="true"><defs><pattern id="guide-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" stroke="#393047" stroke-width=".5"/></pattern></defs><rect width="320" height="250" fill="url(#guide-grid)"/><g stroke="#635578"><path d="M20 35h280M20 215h280M40 15v220m240-220v220"/><rect x="40" y="55" width="240" height="140" rx="2" fill="#100d1a"/><path d="M40 85h240M95 85v110"/></g><g stroke="#a78bc8"><rect x="114" y="106" width="146" height="16" rx="2"/><rect x="114" y="137" width="63" height="38" rx="2"/><rect x="193" y="137" width="67" height="38" rx="2"/><path d="M53 105h28m-28 16h19m-19 16h25M55 69h5m8 0h5m8 0h5"/></g><g fill="#100d1a" stroke="#d1bcff"><rect x="37" y="52" width="6" height="6"/><rect x="277" y="52" width="6" height="6"/><rect x="37" y="192" width="6" height="6"/><rect x="277" y="192" width="6" height="6"/></g><path d="M137 207v16m-8-8h16M270 26h16m-8-8v16" stroke="#a78bc8"/></svg></div><div class="doc-body-layout"><div class="doc-reading">
+<div class="doc-code"><pre><code class="language-sh" id="guide-code-1">npx ds-loop
+</code></pre><button type="button" data-copy="guide-code-1" data-copy-kind="Example" aria-label="Copy code example 1" aria-describedby="guide-code-1-status" hidden>Copy</button><p class="sr-only" id="guide-code-1-status" role="status"></p></div>
+<p>Bring the findings or a design-system problem to your agent.</p>
+<table>
+<thead>
+<tr>
+<th>Your next step</th>
+<th>Read</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>See what changed in 0.4.0</td>
+<td><a href="release-0.4.0.html">Release notes</a></td>
+</tr>
+<tr>
+<td>Install and run your first check</td>
+<td><a href="install.html">Installation</a></td>
+</tr>
+<tr>
+<td>Understand a finding or coverage gap</td>
+<td><a href="output.html">Reading an audit</a></td>
+</tr>
+<tr>
+<td>Set up, improve or maintain a system</td>
+<td><a href="workflow.html">Choose a workflow</a></td>
+</tr>
+<tr>
+<td>Follow a repair from source to verification</td>
+<td><a href="example.html">Button theme example</a></td>
+</tr>
+<tr>
+<td>Find a command, config key or supported format</td>
+<td><a href="reference.html">Commands and coverage</a></td>
+</tr>
+</tbody></table>
+<p>The worked example uses synthetic source you can reproduce locally.
+Start with the installation guide if this is your first run.</p>
+<nav class="guide-pager" aria-label="Guide pages"><span></span><a class="next" href="install.html"><span>Next →</span><strong>Installation</strong></a></nav></div></div></article></main><footer class="site-footer wrap inner-footer"><div><a class="brand" href="../index.html">DS Loop</a><p>Build a system your team and agents can keep using.</p></div><nav aria-label="Footer"><a href="../guide/index.html">Guide</a><a href="../worked-example.html">Worked example</a><a href="../guide/reference.html">Reference</a><a href="../style-guide.html">Style guide</a><a href="https://github.com/owaizin/ds-loop/blob/main/LICENSE">MIT license</a></nav></footer></body></html>

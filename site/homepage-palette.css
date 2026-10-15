@@ -82,3 +82,35 @@
   .homepage-polish .close-horizon::after { box-shadow:0 -14px 0 #0b09135c,0 -28px 0 #0b09135c,0 -42px 0 #0b09135c,0 -56px 0 #0b09135c,0 -60px 40px #e97a9740; }
 }
 .homepage-polish .restored-record-light { background:radial-gradient(ellipse at 30% 65%,#a98cff24,transparent 60%),radial-gradient(ellipse at 70% 40%,#f2682c1f,transparent 65%); }
+
+/* Hero loop glass: same geometry and alpha as restored-loop.css, re-hued from blue (h220) to the palette violet (h255). */
+.homepage-polish .restored-loop-instrument { --ink:#f1edfa; --muted:#b0a8c2; --line:#2e283c; --accent:var(--hp-tint); }
+.homepage-polish .restored-track-progress { stroke:#f3ecff; }
+.homepage-polish .restored-track-arrows { stroke:#ddd1f4; }
+.homepage-polish .restored-record-connectors { stroke:#6f658e; }
+.homepage-polish .restored-record-tab { color:var(--hp-tint); }
+.homepage-polish .restored-loop-stop,
+.homepage-polish .restored-loop-record {
+  background:linear-gradient(145deg,#e6dcff1a,#b09bff05 42%,#c9b6ff10),#15111fb8;
+  border-color:#c6b8e045; border-top-color:#ece5ff8c; border-bottom-color:#c6b8e030;
+  box-shadow:inset 0 1px 0 #ffffff26,inset 0 -1px 0 #d6c9ff14,0 12px 28px #00000029;
+}
+.homepage-polish .restored-loop-stop small,
+.homepage-polish .restored-loop-record { --muted:#c4bdd6; }
+.homepage-polish .restored-loop-stop::after,
+.homepage-polish .restored-loop-record::after { background:linear-gradient(115deg,#ffffff0d,transparent 28%,transparent 72%,#e0d4ff08); }
+.homepage-polish .restored-loop-stop:hover { background:linear-gradient(145deg,#e6dcff26,#b09bff0a 42%,#c9b6ff14),#1d1730b8; border-color:#ddd1ff80; }
+.homepage-polish .restored-loop-stop[aria-pressed="true"] {
+  background:linear-gradient(145deg,#efe8ff2e,#b09bff14 42%,#c9b6ff1a),#2e2547b8;
+  border-color:#ddd1ffb3; border-top-color:#f5f1ffe6;
+  box-shadow:inset 0 1px 0 #ffffff52,inset 0 -1px 0 #d6c9ff26,0 12px 28px #00000029;
+}
+.homepage-polish .restored-loop-record::before { border-color:#e0d4ff14; }
+.homepage-polish .restored-record-rule { border-color:#d5c8f526; }
+.homepage-polish .loop-motion { color:#c4bdd6; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .homepage-polish .restored-loop-stop, .homepage-polish .restored-loop-record { background-color:#1b1628; }
+  .homepage-polish .restored-loop-stop[aria-pressed="true"] { background-color:#342a4d; }
+}
+/* Board code accent follows the palette tint instead of legacy blue. */
+.homepage-polish .sb-ln em { color:var(--hp-tint); }

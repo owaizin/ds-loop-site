@@ -24,7 +24,7 @@ if (reportStage) {
     fitResult();
   });
   const scenes = [
-    { name:'System report', copy:'A 0.4.0 report from the demo project, with code findings and an agent-written recommendation.', label:'Open the full report', href:'samples/theme-delivery/report.html' },
+    { name:'System report', copy:'A 0.4.0 report, with code findings and an agent-written recommendation.', label:'Open the full report', href:'samples/theme-delivery/report.html' },
     { name:'Applied change', copy:'Two CSS declarations now use the existing theme colors. Open the diff to see the change.', label:'See the code change', href:'worked-example.html#source' },
     { name:'Verified result', copy:'The dark-mode button uses its theme color. Its size and light-mode color stayed the same. The notes list the browser checks.', label:'Read the tests and notes', href:'worked-example.html#checks' },
   ];
