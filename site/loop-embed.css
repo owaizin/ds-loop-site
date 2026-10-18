@@ -8,6 +8,12 @@ body.loop-embed { background:transparent; --study-bg:#080512; }
 @media(max-width:760px) {
  .loop-embed .category-tabs { max-width:100%; width:100%; margin-bottom:20px; }
  .loop-embed .loop-panel { width:100%; }
- /* Hold the page geometry while different screen types cycle. */
+ /* Hold the desktop embed geometry even when its own viewport is narrow. */
  .loop-embed #before-screen>.specimen:not(.study-measure),.loop-embed #after-screen>.specimen:not(.study-measure) { min-height:var(--scene-height,700px); }
 }
+/* Phone categories are chosen manually; each comparison uses its actual height. */
+body.loop-embed.mobile-embed #before-screen>.specimen:not(.study-measure),
+body.loop-embed.mobile-embed #after-screen>.specimen:not(.study-measure) { min-height:0; }
+body.loop-embed.mobile-embed[data-layout=scene] .before-side { grid-row:2; opacity:1; pointer-events:auto; }
+body.loop-embed.mobile-embed[data-layout=scene] .after-side { grid-row:3; opacity:1; margin-top:24px; }
+.loop-embed.mobile-embed .category-tabs button { min-height:44px; }

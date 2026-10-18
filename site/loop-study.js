@@ -5,6 +5,10 @@ const tabs=[...document.querySelectorAll('[role=tab]')];
 const layouts=[...document.querySelectorAll('[data-layout]')].filter(e=>e.tagName==='A');
 const status=document.getElementById('story-status');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+// Use the page width: a narrow iframe can also belong to the desktop layout.
+const compactEmbed=(window.frameElement?window.parent:window).matchMedia('(max-width: 760px)');
+const manualEmbed=()=>document.body.classList.contains('loop-embed')&&compactEmbed.matches;
+document.body.classList.toggle('mobile-embed',manualEmbed());
 const ns='http://www.w3.org/2000/svg';
 const ease='cubic-bezier(.23,1,.32,1)',inOut='cubic-bezier(.77,0,.175,1)';
 // Ported from 42e2943: wireframe → route signal → traced surface → real components.
@@ -20,8 +24,8 @@ const beforeSide=before.closest('.screen-side');
 const afterSide=after.closest('.screen-side');
 function sceneState(state){
  panel.dataset.sceneStage=state;
- beforeSide.setAttribute('aria-hidden',String(isScene()&&!reduced.matches&&state!=='before'));
- afterSide.setAttribute('aria-hidden',String(isScene()&&!reduced.matches&&state==='before'));
+ beforeSide.setAttribute('aria-hidden',String(isScene()&&!reduced.matches&&!manualEmbed()&&state!=='before'));
+ afterSide.setAttribute('aria-hidden',String(isScene()&&!reduced.matches&&!manualEmbed()&&state==='before'));
 }
 const routes=document.createElementNS(ns,'svg');
 routes.classList.add('study-routes');routes.setAttribute('aria-hidden','true');stage.prepend(routes);
@@ -31,9 +35,10 @@ const loopButton=document.querySelector('.infinity-art');
 let animations=[],parts=[],visible=false,started=false,selected=0,paused=false,loopMotion,generation=0;
 function cancel(){generation++;cancelAnimationFrame(frame);animations.forEach(a=>a.cancel());animations=[];clock=null;}
 function updatePlayback(){
- loopButton.disabled=reduced.matches;
+ loopButton.disabled=reduced.matches||manualEmbed();
  loopButton.setAttribute('aria-pressed',String(paused));
  loopButton.setAttribute('aria-label',paused?'Resume automatic screen sequence':'Pause automatic screen sequence');
+ if(manualEmbed())loopButton.setAttribute('aria-label','Static before and after comparison');
  panel.dataset.playback=reduced.matches?'reduced':paused?'paused':visible&&!document.hidden?'playing':'suspended';
 }
 function ensureLoop(){
@@ -115,6 +120,8 @@ function tick(){
  frame=requestAnimationFrame(tick);
 }
 function reserveScenes(){
+ // Phone readers choose a category; its content determines the height.
+ if(manualEmbed()){panel.style.removeProperty('--scene-height');measureRoutes();return;}
  let tallest=480;
  for(const tab of tabs)for(const [host,state]of [[before,'before'],[after,'after']]){
   const template=state==='after'?afterTemplate(tab.dataset.category):document.getElementById(`before-${tab.dataset.category}`);
@@ -127,7 +134,7 @@ function reserveScenes(){
 }
 function sync(){
  cancelAnimationFrame(frame);
- const running=visible&&!document.hidden&&!paused&&!reduced.matches;
+ const running=visible&&!document.hidden&&!paused&&!reduced.matches&&!manualEmbed();
  for(const a of [...animations,...(loopMotion?[loopMotion]:[])])running?a.play():a.pause();
  updatePlayback();
  if(running&&clock)frame=requestAnimationFrame(tick);
@@ -139,7 +146,7 @@ function build(){
  const lead=isScene()?sceneLead:0;
  sceneState(isScene()?'before':'comparison');
  updatePlayback();
- if(reduced.matches){settle();return;}
+ if(reduced.matches||manualEmbed()){loopMotion?.pause();settle();return;}
  ensureLoop();
  panel.dataset.phase='forming';
  status.textContent='Starting with the wireframe';
@@ -262,6 +269,11 @@ document.addEventListener('visibilitychange',sync);
 reduced.addEventListener('change',()=>{
  if(reduced.matches){cancel();loopMotion?.cancel();loopMotion=null;settle();sync();}
  else build();
+});
+compactEmbed.addEventListener('change',()=>{
+ if(!document.body.classList.contains('loop-embed'))return;
+ document.body.classList.toggle('mobile-embed',manualEmbed());
+ reserveScenes();build();
 });
 const observeVisibility=([entry])=>{visible=entry.isIntersecting;if(visible&&!started)build();else sync();};
 // Use the host viewport for the auto-height homepage embed (same origin).

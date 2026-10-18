@@ -60,7 +60,8 @@ if (loopButtons.length) {
   const recordContent = document.querySelector('.record-content, .restored-record-content');
   const playback = document.getElementById('loop-playback');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let userPaused = reducedMotion.matches;
+  const mobileMotion = window.matchMedia('(max-width: 760px)');
+  let userPaused = reducedMotion.matches || mobileMotion.matches;
   let inView = false;
   let activeIndex = 0;
   let timer;
@@ -168,7 +169,11 @@ if (loopButtons.length) {
     clock.cancel();
     clock = makeClock();
     clock.currentTime = time;
-    userPaused = reducedMotion.matches;
+    userPaused = reducedMotion.matches || mobileMotion.matches;
+    syncPlayback();
+  });
+  mobileMotion.addEventListener('change', () => {
+    userPaused = reducedMotion.matches || mobileMotion.matches;
     syncPlayback();
   });
   if ('IntersectionObserver' in window) {
