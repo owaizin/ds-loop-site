@@ -1,7 +1,9 @@
 # Website asset provenance
 
 - `manrope.ttf`: Manrope variable font from the Google Fonts Manrope distribution (https://github.com/google/fonts/tree/main/ofl/manrope). The SIL Open Font License is retained in `OFL.txt`.
-- `ds-circuit.svg`: original D/S outline mark authored for this project. It is the active website mark and favicon.
+- `branding/ds-loop-logo-*.svg`: supplied brand lockups copied unchanged from the repository’s `branding/dsloop-brand/logo/` folder. Dark variants are used on the website; light and monochrome variants are available for other backgrounds.
+- `branding/ds-loop-mark.svg`: symbol extracted from the supplied horizontal logo, with a padded viewBox for small placements and favicons.
+- `ds-circuit.svg`: retired website mark, retained as an earlier design exploration.
 - `measure-spectral.png`, `decide-spectral.png`, `verify-spectral.png`, `retain-spectral.png`, `loop-mark-spectral.png`: generated for this project using OpenAI image generation on 18 September 2026. These are not screenshots or copied artwork from reference websites.
 - Other SVG diagrams and marks: authored for this project. Some are retained as earlier design explorations.
 

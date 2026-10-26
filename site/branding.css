@@ -1,0 +1,11 @@
+/* Supplied vector lockups retain their own lettering and proportions. */
+.brand-art { display:block; flex:none; width:234px; max-width:100%; line-height:0; }
+.brand-art .brand-lockup { display:block; width:100%; height:auto; max-width:none; margin:0; }
+.brand .brand-lockup-stacked { display:block; flex:none; width:217px; height:auto; max-width:100%; margin:0; }
+@media (max-width:760px) {
+  .brand-art { width:148px; }
+  .brand .brand-lockup-stacked { width:186px; }
+}
+@media (max-width:360px) {
+  .site-header .brand-art { width:120px; }
+}

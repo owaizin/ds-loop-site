@@ -84,3 +84,5 @@
 
 .homepage-polish .report-title-block .report-overline { font-size: var(--type-caption); line-height: 1.5; }
 .homepage-polish .scope-panels .scope-panel p { font-size: var(--type-body); font-weight: 400; line-height: 1.6; max-width: 65ch; }
+
+.homepage-polish .entry-paths > .section-label { margin-bottom: 12px; }

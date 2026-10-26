@@ -1,0 +1,30 @@
+/* DS Loop brand tokens. Interface colours follow the DS Loop style guide. */
+:root {
+  /* Surfaces and text (style guide) */
+  --dsl-paper: #080512;        /* page background */
+  --dsl-surface: #110d20;      /* raised panels */
+  --dsl-ink: #f3f0ff;          /* primary text, wordmark on dark */
+  --dsl-muted: #b1abc4;        /* secondary text */
+  --dsl-line: #2d2541;         /* quiet borders */
+  --dsl-accent: #d1bcff;       /* links, selected emphasis */
+
+  /* Ember (CTA) */
+  --dsl-lilac: #b9a0ff;
+  --dsl-purple: #9a74ed;
+  --dsl-orange: #ff743d;
+  --dsl-aubergine: #1e0e26;    /* lettering on the ember gradient */
+  --dsl-action-violet: #7b46dc;
+
+  /* Logo gradients: run top-left to bottom-right across the mark's 90x90 box */
+  --dsl-mark-gradient-dark: linear-gradient(135deg, #d1bcff 0%, #9a74ed 50%, #ff743d 100%);
+  --dsl-mark-gradient-light: linear-gradient(135deg, #7b46dc 0%, #9a74ed 50%, #ff743d 100%);
+  --dsl-cta-gradient: linear-gradient(90deg, #b9a0ff 0%, #9a74ed 55%, #ff743d 100%);
+
+  /* Pattern line tone (field and echo patterns on paper) */
+  --dsl-pattern-line: #1c1530;
+
+  /* Type */
+  --dsl-font-display: "Manrope", system-ui, sans-serif;  /* headings, weight 500 */
+  --dsl-font-body: system-ui, sans-serif;
+  --dsl-font-mono: ui-monospace, monospace;
+}

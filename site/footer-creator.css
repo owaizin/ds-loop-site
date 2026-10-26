@@ -1,0 +1,46 @@
+/* A personal credit shared by the homepage and documentation footers. */
+.site-footer .footer-creator {
+  grid-column:1 / -1;
+  flex:0 0 100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px 48px;
+  border-top:1px solid var(--line, #2e283c);
+  padding-top:28px;
+  position:relative;
+  z-index:1;
+}
+.site-footer .footer-creator p {
+  max-width:56ch;
+  margin:0;
+  color:var(--muted, #b4abc4);
+  font:400 16px/1.65 var(--body, sans-serif);
+  text-wrap:pretty;
+}
+.site-footer .footer-creator p > a {
+  color:var(--ink, #eee9f5);
+  font-weight:600;
+  text-decoration:none;
+}
+.site-footer .footer-creator .creator-links {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 24px;
+  flex-shrink:0;
+}
+.site-footer .creator-links a {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:44px;
+  padding:0;
+  color:var(--muted, #b4abc4);
+  font:400 14px/1.5 var(--body, sans-serif);
+  text-decoration:none;
+}
+.site-footer .footer-creator a:hover { color:var(--ink, #eee9f5); text-decoration:underline; text-underline-offset:4px; }
+.site-footer .footer-creator a:focus-visible { outline:2px solid var(--focus, #e2ceff); outline-offset:5px; border-radius:2px; }
+@media(max-width:960px) {
+  .site-footer .footer-creator { align-items:flex-start; flex-direction:column; gap:12px; }
+}

@@ -1,4 +1,5 @@
 .git
 node_modules
 archive
-site/variants
+/launch-video/
+/branding/

@@ -75,10 +75,11 @@
 
 .homepage-polish .design-context .system-feedback { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--frame-line); font-size: .875rem; line-height: 1.65; }
 
-/* A first run is available alongside the hero's agent setup action. */
-.homepage-polish .hero-quickstart { margin: 24px auto 0; }
-.homepage-polish .hero-quickstart .restore-command { margin: 0; gap: 16px; flex-wrap: wrap; }
-.homepage-polish .hero-quickstart .restore-command code { white-space: nowrap; }
+/* Basic installation stays compact; host setup lives in getting started. */
+.homepage-polish .hero-quickstart { margin: 24px auto 0; max-width: 400px; }
+.homepage-polish .hero-quickstart .restore-command { display: flex; justify-content: center; align-items: center; margin: 0; gap: 12px; text-align: left; }
+.homepage-polish .hero-quickstart .restore-command code { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; line-height: 1.7; }
+.homepage-polish .hero-quickstart .hero-install-help { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
 .homepage-polish .hero-quickstart button { cursor: pointer; width: 40px; height: 40px; padding: 10px; }
 .homepage-polish .hero-quickstart button:not([hidden]) { display: inline-grid; place-items: center; }
 .homepage-polish .hero-quickstart button svg { width: 18px; height: 18px; grid-area: 1 / 1; }
@@ -88,6 +89,7 @@
 .homepage-polish .hero-quickstart button:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
 @media(max-width:760px) {
   .homepage-polish .hero-quickstart .restore-command { gap: 12px; }
+  .homepage-polish .hero-quickstart .restore-command code { font-size: 12px; }
 }
 
 /* Four stages and four starting situations share a balanced responsive grid. */
@@ -101,7 +103,7 @@
 @media (min-width: 761px) and (max-width: 1099px) {
   .visual-home.homepage-polish .entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.home-close p code { white-space: nowrap; }
+.home-close p code { white-space: normal; overflow-wrap: anywhere; }
 
 /* Section 2: one statement; the loop above carries each stage's detail. */
 .homepage-polish .design-context { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
