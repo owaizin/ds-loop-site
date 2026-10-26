@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { dirname, resolve, extname } from 'node:path';
 const root = resolve('site');
-function pages(dir) { return readdirSync(dir, {withFileTypes:true}).flatMap(e => e.name.startsWith('.') || e.name === 'variants' ? [] : e.isDirectory() ? pages(resolve(dir,e.name)) : e.name.endsWith('.html') ? [resolve(dir,e.name)] : []); }
+function pages(dir) { return readdirSync(dir, {withFileTypes:true}).flatMap(e => e.name.startsWith('.') ? [] : e.isDirectory() ? pages(resolve(dir,e.name)) : e.name.endsWith('.html') ? [resolve(dir,e.name)] : []); }
 let count=0;
 for (const file of pages(root)) {
  const html=readFileSync(file,'utf8');

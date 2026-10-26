@@ -236,7 +236,7 @@ The assembly demo reuses these four specimens, defaults to Form, and offers Dash
 
 The current homepage uses AlignUI's spacing and ruler-gutter treatment as a reference, adapted to Violet orbit. `layout-frame.css` follows `positioning.css` and owns the homepage frame: 1216px maximum width, 32px desktop inset, 96px section spacing, fine outer rails, and paired square junctions. Numbered decorative scales appear only at 1200px and above. Tablet insets are 24px; mobile insets are 16px with 48px section spacing. All ruler markup is hidden from assistive technology and cannot receive input. Content and controls stay within the shared edges; spectral artwork may bleed to the viewport boundary.
 
-Current loop content is Investigate → Decide → Implement → Check & document. Its existing spectral sculptures, glass-backed controls, orbit, and playback behavior are retained. The current positioning is documented in POSITIONING-REFRESH.md; the October 15 edited copy and product-example changes are recorded in IMPLEMENTATION-REVIEW.md.
+Current loop content is Investigate → Decide → Implement → Check & document. Its existing spectral sculptures, glass-backed controls, orbit, and playback behavior are retained.
 
 
 ## Working reference — 15 October 2026
